@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context 
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/aop 
+            http://www.springframework.org/schema/aop/spring-aop.xsd
+            http://www.springframework.org/schema/tx 
+            http://www.springframework.org/schema/tx/spring-tx.xsd
+            http://www.springframework.org/schema/mvc 
+            http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<!-- 启用spring mvc 注解(默认的注解映射的支持) -->
+	<mvc:annotation-driven />
+
+	<!-- 设置使用注解的类所在的jar包(自动扫描的包名) -->
+	<context:component-scan base-package="com.ouc.dcrm.system.controller" />
+
+	<!--进行静态资源的访问 -->
+	<mvc:resources mapping="/static/**" location="/static/" />
+
+	<!-- 配置资源文件,防止被拦截 -->
+	<!-- 
+	<mvc:resources location="/WEB-INF/view/image/" mapping="/image/**"/> 
+	<mvc:resources location="/WEB-INF/view/js/" mapping="/js/**"/> 
+	<mvc:resources location="/WEB-INF/view/css/" mapping="/css/**"/> 
+	-->
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="lang"></property>
+		</bean>
+	</mvc:interceptors>
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*.do" />
+			<mvc:mapping path="/*.ajax" />
+			<mvc:mapping path="/*.jsp" />
+			<mvc:mapping path="/*.html" />
+
+			<!--二级目录-->
+			<mvc:mapping path="/*/*.do" />
+			<mvc:mapping path="/*/*.ajax" />
+			<mvc:mapping path="/*/*.jsp" />
+			<mvc:mapping path="/*/*.html" />
+
+			<!--需排除拦截的地址-->
+			<mvc:exclude-mapping path="/login.jsp" />
+			<mvc:exclude-mapping path="/login.do" />
+			<mvc:exclude-mapping path="/logout.do" />
+            <mvc:exclude-mapping path="/userRegister.do" />
+            
+			<bean class="com.ouc.dcrm.system.interceptor.UserSecurityInterceptor"></bean>
+
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<!-- <mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/*.do" />
+			<mvc:mapping path="/*.ajax" />
+			<mvc:mapping path="/*.jsp" />
+			<mvc:mapping path="/*.html" />
+
+			<mvc:mapping path="/*/*.do" />
+			<mvc:mapping path="/*/*.ajax" />
+			<mvc:mapping path="/*/*.jsp" />
+			<mvc:mapping path="/*/*.html" />
+
+			<mvc:exclude-mapping path="/login.jsp" />
+			<mvc:exclude-mapping path="/login.do" />
+			<mvc:exclude-mapping path="/logout.do" />
+
+			<bean class="com.ouc.ulab.interceptor.AuthoritySecurityInterceptor">
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>  -->
+
+	<!-- 视图解释类 -->
+	<!-- 对转向页面的路径解析。prefix：前缀， suffix：后缀 对模型视图名称的解析，即在模型视图名称添加前后缀 InternalResourceViewResolver默认的就是JstlView所以这里就不用配置viewClass了 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="/" p:suffix=".jsp">
+	</bean>
+
+</beans>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="    
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.0.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd  
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd  
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd  
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+    <bean id="baseDAO" class="org.mybatis.spring.mapper.MapperFactoryBean" abstract="true" lazy-init="true">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>  
+	 
+	<!-- myBatis文件 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:mapper/*Mapper.xml" />
+		<property name="configLocation" value="classpath:spring/mybatis-configure.xml" />
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageHelper">
+					<property name="properties">
+						<value>
+							dialect=mysql
+						</value>
+					</property>
+				</bean>
+			</array>
+		</property>
+	</bean>
+
+	<!-- 事务管理 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- 使用annotation定义事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+
+    <!-- 配置数据源:MySQL -->
+	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<property name="driverClassName" value="#{app.jdbcDriver}" />
+		<property name="url" value="#{app.jdbcUrl}" />
+		<property name="username" value="#{app.jdbcUsername}" />
+		<property name="password" value="#{app.jdbcPassword}" />
+
+		<!-- 初始化连接大小 -->
+		<property name="initialSize" value="#{app.jdbcInitialSize}" />
+		<!-- 连接池最大使用连接数量 -->
+		<property name="maxActive" value="#{app.jdbcMaxActive}" />
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="#{app.jdbcMinIdle}" />
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait" value="#{app.jdbcMaxWait}" />
+
+		<property name="validationQuery" value="#{app.jdbcValidationQuery}" />
+		<property name="testOnBorrow" value="#{app.jdbcTestOnBorrow}" />
+		<property name="testOnReturn" value="#{app.jdbcTestOnReturn}" />
+		<property name="testWhileIdle" value="#{app.jdbcTestWhileIdle}" />
+
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="#{app.jdbcTimeBetweenEvictionRunsMillis}" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="#{app.jdbcMinEvictableIdleTimeMillis}" />
+
+		<!-- 打开removeAbandoned功能 -->
+		<property name="removeAbandoned" value="#{app.jdbcRemoveAbandoned}" />
+		<!-- 1800秒，也就是30分钟 -->
+		<property name="removeAbandonedTimeout" value="#{app.jdbcRemoveAbandonedTimeout}" />
+		<!-- 关闭abanded连接时输出错误日志 -->
+		<property name="logAbandoned" value="#{app.jdbcLogAbandoned}" />
+
+		<!-- 监控数据库 -->
+		<property name="filters" value="#{app.jdbcFilters}" />
+	</bean>
+</beans>

@@ -1,0 +1,29 @@
+body {
+	font: normal 15px/1.5 Arial, Helvetica, Free Sans, sans-serif;
+	color: #222;
+	overflow-y: scroll;
+	padding: 60px 0 0 0;
+	background-image:url(../img/bg.png);
+}
+
+#my-form {
+	width: 600px;
+	margin: 0 auto;
+	border: 1px solid #ccc;
+	padding: 3em;
+	border-radius: 3px;
+	box-shadow: 0 0 2px rgba(0, 0, 0, .2);
+}
+
+#welcome {
+	margin: 0 600px;
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	color: #FFF;
+}
+
+#comments {
+	width: 350px;
+	height: 100px;
+}

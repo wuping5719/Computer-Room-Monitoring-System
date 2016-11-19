@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"  
+         updateCheck="false" monitoring="autodetect" dynamicConfig="true" name="ULAB_DubboConsumer">  
+    <cacheManagerEventListenerFactory class="" properties=""/>  
+    <terracottaConfig url="18.132.8.56:9540,18.132.8.58:9540" rejoin="true"/> <!--terracotta服务器配置,默认端口为9510,多个服务器用,分隔  -->  
+    <defaultCache  
+           maxEntriesLocalHeap="0"  
+           eternal="false"  
+           overflowToDisk="false"  
+           timeToIdleSeconds="30"  
+           timeToLiveSeconds="60">  
+           <terracotta clustered="true"> <!-- 开启集群 -->  
+	           <nonstop immediateTimeout="false" timeoutMillis="5000">
+			       <timeoutBehavior type="noop" />
+			   </nonstop>
+           </terracotta>
+    </defaultCache>  
+       
+    <!-- maxBytesLocalHeap="200M" -->
+    <cache name="session"    
+            eternal="false"  
+            overflowToDisk="false"  
+            timeToIdleSeconds="1800"  
+            timeToLiveSeconds="0"  
+            memoryStoreEvictionPolicy="LRU"  
+            maxElementsInMemory="100000" 
+            maxElementsOnDisk="100000"  >  
+    <terracotta clustered="true">
+    	<nonstop immediateTimeout="false" timeoutMillis="5000">
+			<timeoutBehavior type="noop" />
+		</nonstop>
+    </terracotta>    
+    </cache>
+    
+    <cache name="idToSessionkeyMapping"    
+            eternal="false"  
+            overflowToDisk="false"  
+            timeToIdleSeconds="0"  
+            timeToLiveSeconds="0"  
+            memoryStoreEvictionPolicy="LRU"  
+            maxElementsInMemory="1010" 
+            maxElementsOnDisk="1000"  >  
+		    <terracotta clustered="true">
+		    	<nonstop immediateTimeout="false" timeoutMillis="5000">
+					<timeoutBehavior type="noop" />
+				</nonstop>
+		    </terracotta>    
+    </cache>
+    
+    <cache name="sessionKeyToIdMapping"    
+            eternal="false"  
+            overflowToDisk="false"  
+            timeToIdleSeconds="0"  
+            timeToLiveSeconds="0"  
+            memoryStoreEvictionPolicy="LRU"  
+            maxElementsInMemory="1000" 
+            maxElementsOnDisk="100"  >  
+		    <terracotta clustered="true">
+		    	<nonstop immediateTimeout="false" timeoutMillis="5000">
+					<timeoutBehavior type="noop" />
+				</nonstop>
+		    </terracotta>    
+    </cache>
+</ehcache>  

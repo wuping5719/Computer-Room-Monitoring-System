@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.ouc.dcrm.system</groupId>
+	<artifactId>dcrm</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0</version>
+	<name>dcrm分布式机房监控系统</name>
+	<url>http://127.0.0.1:8001/dcrm</url>
+	<properties>
+		<sonar.jdbc.url>jdbc:mysql://127.0.0.1:3306/sonar?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true</sonar.jdbc.url>
+		<sonar.jdbc.driver>com.mysql.jdbc.Driver</sonar.jdbc.driver>
+		<sonar.jdbc.username>sonar</sonar.jdbc.username>
+		<sonar.jdbc.password>sonar</sonar.jdbc.password>
+		<sonar.host.url>http://127.0.0.1:9000</sonar.host.url>
+		<sonar.scm.enabled>true</sonar.scm.enabled>
+		<sonar.core.codeCoveragePlugin>cobertura</sonar.core.codeCoveragePlugin>
+		<sonar.cobertura.maxmen>1024M</sonar.cobertura.maxmen>
+		<!-- <sonar.doxygen.generateDocumentation>true</sonar.doxygen.generateDocumentation> -->
+		<file.encoding>UTF-8</file.encoding>
+	</properties>
+	<modules>
+		<module>dcrm-parent</module>
+		<module>dcrm-client</module>
+		<module>dcrm-core</module>
+		<module>dcrm-web</module>
+	</modules>
+</project>

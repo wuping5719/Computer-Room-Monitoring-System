@@ -3,28 +3,16 @@
 <mapper namespace="com.ouc.dcrm.system.dao.UserDao" >
   <resultMap id="BaseResultMap" type="User" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="login_name" property="login_name" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="true_name" property="true_name" jdbcType="VARCHAR" />
-    <result column="mobile_phone" property="mobile_phone" jdbcType="CHAR" />
+    <result column="telephone" property="telephone" jdbcType="CHAR" />
     <result column="email" property="email" jdbcType="VARCHAR" />
-    <result column="related_role_ids" property="related_role_ids" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="INTEGER" />
-    <result column="last_login_ip" property="last_login_ip" jdbcType="CHAR" />
-    <result column="current_login_ip" property="current_login_ip" jdbcType="CHAR" />
-    <result column="login_attempt_times" property="login_attempt_times" jdbcType="INTEGER" />
-    <result column="login_faild_time" property="login_faild_time" jdbcType="TIMESTAMP" />
-    <result column="password_first_modified_flag" property="password_first_modified_flag" jdbcType="INTEGER" />
-    <result column="gmt_create" property="gmt_create" jdbcType="TIMESTAMP" />
-    <result column="gmt_modified" property="gmt_modified" jdbcType="TIMESTAMP" />
-    <result column="create_by" property="create_by" jdbcType="VARCHAR" />
-    <result column="last_modified_by" property="last_modified_by" jdbcType="VARCHAR" />
   </resultMap>
   
   <sql id="Base_Column_List" >
-    id, login_name, password, true_name, mobile_phone, email, related_role_ids, sex, 
-    last_login_ip, current_login_ip, login_attempt_times, login_faild_time, password_first_modified_flag, 
-    gmt_create, gmt_modified, create_by, last_modified_by
+    id, name, userName, password, telephone, email, sex
   </sql>
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -33,60 +21,18 @@
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
-  
-  <select id="selectTotalNum" resultType="Integer" >
-    select count(*) from user
-    <trim prefix="WHERE" prefixOverrides="AND|OR">
-		<if test="login_name != null and login_name != '' ">
-			login_name = #{login_name,jdbcType=VARCHAR}
-		</if>
-		<if test="true_name != null and true_name != '' ">
-			true_name = #{true_name,jdbcType=VARCHAR}
-		</if>
-	</trim>
-  </select>
-  
-  <select id="selectUsers" resultMap="BaseResultMap" >
-    select 
-    <include refid="Base_Column_List" />
-    from user
-    <trim prefix="WHERE" prefixOverrides="AND|OR">
-		<if test="login_name != null and login_name != '' ">
-			login_name = #{login_name,jdbcType=VARCHAR}
-		</if>
-		<if test="true_name != null and true_name != '' ">
-			true_name = #{true_name,jdbcType=VARCHAR}
-		</if>
-	</trim>
-	Order by gmt_create Desc
-	Limit #{startIndex},#{pageSize}
-  </select>
-  
-  <select id="selectByByLoginName" resultType="User" >
-    select * from user
-    where login_name = #{login_name,jdbcType=VARCHAR}
-  </select>
-  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
   
   <insert id="insert" parameterType="User" >
-    insert into user (id, login_name, password, 
-      true_name, mobile_phone, email, 
-      related_role_ids, sex, last_login_ip, 
-      current_login_ip, login_attempt_times, login_faild_time, 
-      password_first_modified_flag, gmt_create, 
-      gmt_modified, create_by, last_modified_by
-      )
-    values (#{id,jdbcType=INTEGER}, #{login_name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{true_name,jdbcType=VARCHAR}, #{mobile_phone,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, 
-      #{related_role_ids,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{last_login_ip,jdbcType=CHAR}, 
-      #{current_login_ip,jdbcType=CHAR}, #{login_attempt_times,jdbcType=INTEGER}, #{login_faild_time,jdbcType=TIMESTAMP}, 
-      #{password_first_modified_flag,jdbcType=INTEGER}, #{gmt_create,jdbcType=TIMESTAMP}, 
-      #{gmt_modified,jdbcType=TIMESTAMP}, #{create_by,jdbcType=VARCHAR}, #{last_modified_by,jdbcType=VARCHAR}
-      )
+    insert into user (id, name, userName, 
+      password, telephone, email, 
+      sex)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{telephone,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=INTEGER})
   </insert>
   
   <insert id="insertSelective" parameterType="User" >
@@ -95,106 +41,46 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="login_name != null" >
-        login_name,
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="username != null" >
+        userName,
       </if>
       <if test="password != null" >
         password,
       </if>
-      <if test="true_name != null" >
-        true_name,
-      </if>
-      <if test="mobile_phone != null" >
-        mobile_phone,
+      <if test="telephone != null" >
+        telephone,
       </if>
       <if test="email != null" >
         email,
       </if>
-      <if test="related_role_ids != null" >
-        related_role_ids,
-      </if>
       <if test="sex != null" >
         sex,
-      </if>
-      <if test="last_login_ip != null" >
-        last_login_ip,
-      </if>
-      <if test="current_login_ip != null" >
-        current_login_ip,
-      </if>
-      <if test="login_attempt_times != null" >
-        login_attempt_times,
-      </if>
-      <if test="login_faild_time != null" >
-        login_faild_time,
-      </if>
-      <if test="password_first_modified_flag != null" >
-        password_first_modified_flag,
-      </if>
-      <if test="gmt_create != null" >
-        gmt_create,
-      </if>
-      <if test="gmt_modified != null" >
-        gmt_modified,
-      </if>
-      <if test="create_by != null" >
-        create_by,
-      </if>
-      <if test="last_modified_by != null" >
-        last_modified_by,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="login_name != null" >
-        #{login_name,jdbcType=VARCHAR},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="true_name != null" >
-        #{true_name,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile_phone != null" >
-        #{mobile_phone,jdbcType=CHAR},
+      <if test="telephone != null" >
+        #{telephone,jdbcType=CHAR},
       </if>
       <if test="email != null" >
         #{email,jdbcType=VARCHAR},
       </if>
-      <if test="related_role_ids != null" >
-        #{related_role_ids,jdbcType=VARCHAR},
-      </if>
       <if test="sex != null" >
         #{sex,jdbcType=INTEGER},
-      </if>
-      <if test="last_login_ip != null" >
-        #{last_login_ip,jdbcType=CHAR},
-      </if>
-      <if test="current_login_ip != null" >
-        #{current_login_ip,jdbcType=CHAR},
-      </if>
-      <if test="login_attempt_times != null" >
-        #{login_attempt_times,jdbcType=INTEGER},
-      </if>
-      <if test="login_faild_time != null" >
-        #{login_faild_time,jdbcType=TIMESTAMP},
-      </if>
-      <if test="password_first_modified_flag != null" >
-        #{password_first_modified_flag,jdbcType=INTEGER},
-      </if>
-      <if test="gmt_create != null" >
-        #{gmt_create,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmt_modified != null" >
-        #{gmt_modified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="create_by != null" >
-        #{create_by,jdbcType=VARCHAR},
-      </if>
-      <if test="last_modified_by != null" >
-        #{last_modified_by,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -202,53 +88,23 @@
   <update id="updateByPrimaryKeySelective" parameterType="User" >
     update user
     <set >
-      <if test="login_name != null" >
-        login_name = #{login_name,jdbcType=VARCHAR},
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
         password = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="true_name != null" >
-        true_name = #{true_name,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile_phone != null" >
-        mobile_phone = #{mobile_phone,jdbcType=CHAR},
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=CHAR},
       </if>
       <if test="email != null" >
         email = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="related_role_ids != null" >
-        related_role_ids = #{related_role_ids,jdbcType=VARCHAR},
-      </if>
       <if test="sex != null" >
         sex = #{sex,jdbcType=INTEGER},
-      </if>
-      <if test="last_login_ip != null" >
-        last_login_ip = #{last_login_ip,jdbcType=CHAR},
-      </if>
-      <if test="current_login_ip != null" >
-        current_login_ip = #{current_login_ip,jdbcType=CHAR},
-      </if>
-      <if test="login_attempt_times != null" >
-        login_attempt_times = #{login_attempt_times,jdbcType=INTEGER},
-      </if>
-      <if test="login_faild_time != null" >
-        login_faild_time = #{login_faild_time,jdbcType=TIMESTAMP},
-      </if>
-      <if test="password_first_modified_flag != null" >
-        password_first_modified_flag = #{password_first_modified_flag,jdbcType=INTEGER},
-      </if>
-      <if test="gmt_create != null" >
-        gmt_create = #{gmt_create,jdbcType=TIMESTAMP},
-      </if>
-      <if test="gmt_modified != null" >
-        gmt_modified = #{gmt_modified,jdbcType=TIMESTAMP},
-      </if>
-      <if test="create_by != null" >
-        create_by = #{create_by,jdbcType=VARCHAR},
-      </if>
-      <if test="last_modified_by != null" >
-        last_modified_by = #{last_modified_by,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -256,22 +112,12 @@
   
   <update id="updateByPrimaryKey" parameterType="User" >
     update user
-    set login_name = #{login_name,jdbcType=VARCHAR},
+    set name = #{name,jdbcType=VARCHAR},
+      userName = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
-      true_name = #{true_name,jdbcType=VARCHAR},
-      mobile_phone = #{mobile_phone,jdbcType=CHAR},
+      telephone = #{telephone,jdbcType=CHAR},
       email = #{email,jdbcType=VARCHAR},
-      related_role_ids = #{related_role_ids,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=INTEGER},
-      last_login_ip = #{last_login_ip,jdbcType=CHAR},
-      current_login_ip = #{current_login_ip,jdbcType=CHAR},
-      login_attempt_times = #{login_attempt_times,jdbcType=INTEGER},
-      login_faild_time = #{login_faild_time,jdbcType=TIMESTAMP},
-      password_first_modified_flag = #{password_first_modified_flag,jdbcType=INTEGER},
-      gmt_create = #{gmt_create,jdbcType=TIMESTAMP},
-      gmt_modified = #{gmt_modified,jdbcType=TIMESTAMP},
-      create_by = #{create_by,jdbcType=VARCHAR},
-      last_modified_by = #{last_modified_by,jdbcType=VARCHAR}
+      sex = #{sex,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

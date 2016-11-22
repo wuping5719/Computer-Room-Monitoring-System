@@ -30,7 +30,7 @@ public class UsersController {
     }
 
     // 用户注册
-    @RequestMapping(value = "userRegister.do")
+    @RequestMapping(value = "userRegister.do", produces = "text/html;charset=UTF-8")
     public void userRegister(HttpServletRequest request,
 	    HttpServletResponse response) {
 	String username = request.getParameter("username");  // 用户名(登录名)
@@ -41,10 +41,10 @@ public class UsersController {
 	String sex = request.getParameter("sex");     // 性别
 
 	UserDTO userDTO = new UserDTO();
-	userDTO.setLogin_name(username);
+	userDTO.setUsername(username);
 	userDTO.setPassword(password);
-	userDTO.setTrue_name(trueName);
-	userDTO.setMobile_phone(telephone);
+	userDTO.setName(trueName);
+	userDTO.setTelephone(telephone);
 	userDTO.setEmail(email);
 	if(sex.equals("男")) {
 	    userDTO.setSex(0);
@@ -55,16 +55,4 @@ public class UsersController {
 	userServiceClient.saveUser(userDTO);
     }
     
-    @RequestMapping(value = "searchUsers.do", produces = "text/html;charset=UTF-8")
-    public @ResponseBody String searchUsers(HttpServletRequest request,
-	    HttpServletResponse response) {
-	String username = request.getParameter("loginName");  // 用户名(登录名)
-	String trueName = request.getParameter("trueName");  // 姓名
-	int pageNum = Integer.parseInt(request.getParameter("pageNum")); // 当前页号
-
-	String result = userServiceClient.getUsersList(username, trueName, pageNum);
-
-	return result;
-    }
-
 }

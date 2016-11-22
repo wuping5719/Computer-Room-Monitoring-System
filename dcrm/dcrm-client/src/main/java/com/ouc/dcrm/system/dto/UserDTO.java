@@ -7,17 +7,15 @@ public class UserDTO implements Serializable {
    
     private Integer id;
 
-    private String login_name;
+    private String name;
+
+    private String username;
 
     private String password;
 
-    private String true_name;
-
-    private String mobile_phone;
+    private String telephone;
 
     private String email;
-
-    private String related_role_ids;
 
     private Integer sex;
 
@@ -29,12 +27,20 @@ public class UserDTO implements Serializable {
         this.id = id;
     }
 
-    public String getLogin_name() {
-        return login_name;
+    public String getName() {
+        return name;
     }
 
-    public void setLogin_name(String login_name) {
-        this.login_name = login_name == null ? null : login_name.trim();
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
     }
 
     public String getPassword() {
@@ -45,20 +51,12 @@ public class UserDTO implements Serializable {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getTrue_name() {
-        return true_name;
+    public String getTelephone() {
+        return telephone;
     }
 
-    public void setTrue_name(String true_name) {
-        this.true_name = true_name == null ? null : true_name.trim();
-    }
-
-    public String getMobile_phone() {
-        return mobile_phone;
-    }
-
-    public void setMobile_phone(String mobile_phone) {
-        this.mobile_phone = mobile_phone == null ? null : mobile_phone.trim();
+    public void setTelephone(String telephone) {
+        this.telephone = telephone == null ? null : telephone.trim();
     }
 
     public String getEmail() {
@@ -67,14 +65,6 @@ public class UserDTO implements Serializable {
 
     public void setEmail(String email) {
         this.email = email == null ? null : email.trim();
-    }
-
-    public String getRelated_role_ids() {
-        return related_role_ids;
-    }
-
-    public void setRelatedRoleIds(String related_role_ids) {
-        this.related_role_ids = related_role_ids == null ? null : related_role_ids.trim();
     }
 
     public Integer getSex() {

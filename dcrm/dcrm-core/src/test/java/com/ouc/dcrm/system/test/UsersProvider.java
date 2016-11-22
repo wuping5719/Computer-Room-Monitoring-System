@@ -24,7 +24,7 @@ public class UsersProvider {
 
 	    userServiceClient = (UserServiceClient) cxt.getBean("userServiceClient");
 	    UserDTO userDTO = userServiceClient.getUserById(1);
-	    System.out.println("用户:" + userDTO.getTrue_name());
+	    System.out.println("用户:" + userDTO.getName());
 
 	    System.in.read(); // 模拟开启
 	} catch (Exception e) {

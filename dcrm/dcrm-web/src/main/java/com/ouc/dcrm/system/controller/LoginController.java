@@ -23,6 +23,7 @@ public class LoginController {
     /**********************
      * 登录验证
      ***********************/
+    @SuppressWarnings("unused")
     @RequestMapping(value = "login.do")
     public @ResponseBody
     String login(HttpServletRequest request, HttpServletResponse response) {
@@ -33,14 +34,18 @@ public class LoginController {
 
 	// 设置登录反馈信息变量：1—成功；2—用户名不存在；3—密码无效登录失败。
 	String msg = null;
-	UserDTO userDTO = userServiceClient.getUserByLoginName(username);
+	//UserDTO userDTO = userServiceClient.getUserByLoginName(username);
+	UserDTO userDTO = new UserDTO();
+	userDTO.setId(1);
+	userDTO.setName("admin");
+	
 	if(userDTO == null) {
 	    msg="2";
 	}else {
 	    if(passWord.equals(userDTO.getPassword())){
 		request.getSession().setAttribute(SessionConstants.KEY_USER_ID, userDTO.getId().toString());
 		request.getSession().setAttribute(SessionConstants.KEY_USER_NAME, username);
-		request.getSession().setAttribute(SessionConstants.KEY_True_NAME, userDTO.getTrue_name());
+		request.getSession().setAttribute(SessionConstants.KEY_True_NAME, userDTO.getName());
 		msg="1";
 	    }else {
 		msg="3";

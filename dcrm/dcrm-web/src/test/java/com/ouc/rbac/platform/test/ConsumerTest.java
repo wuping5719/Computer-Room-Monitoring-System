@@ -22,9 +22,7 @@ public class ConsumerTest {
 	userServiceClient = (UserServiceClient) cxt
 		.getBean("userServiceClient");
 	UserDTO userDTO = userServiceClient.getUserById(1);
-	System.out.println("用户:" + userDTO.getTrue_name());
+	System.out.println("用户:" + userDTO.getName());
 	
-	String result = userServiceClient.getUsersList("", "", 1);
-	System.out.println("用户分页测试:" + result);
     }
 }

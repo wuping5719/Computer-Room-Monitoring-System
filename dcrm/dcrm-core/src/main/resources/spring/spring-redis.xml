@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxIdle" value="#{app.redisMaxIdle}" />
+		<property name="maxTotal" value="#{app.redisMaxTotal}" />
+		<property name="minEvictableIdleTimeMillis" value="300000"></property>
+		<property name="numTestsPerEvictionRun" value="3"></property>
+		<property name="timeBetweenEvictionRunsMillis" value="60000"></property>
+		<property name="maxWaitMillis" value="#{app.redisMaxWaitMillis}" />
+		<property name="testOnBorrow" value="#{app.redisTestOnBorrow}" />
+	</bean>
+
+    <!-- redis连接池 -->
+    <bean id="jedisPool" class="redis.clients.jedis.JedisPool" destroy-method="close">
+        <constructor-arg name="poolConfig" ref="jedisPoolConfig"/>
+        <constructor-arg name="host" value="#{app.redisHost}"/>
+        <constructor-arg name="port" value="#{app.redisPort}"/>
+    </bean>
+    
+    <!-- redis服务器中心 -->  
+    <bean id="connectionFactory"  class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" >  
+        <property name="poolConfig" ref="jedisPoolConfig" />  
+        <property name="port" value="#{app.redisPort}" />  
+        <property name="hostName" value="#{app.redisHost}" />  
+        <property name="password" value="${app.redisPass}" /> 
+        <property name="timeout" value="10000" ></property>  
+    </bean >  
+    
+    <!-- <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate" >  
+         <property name="connectionFactory" ref="connectionFactory" />  
+         <property name="keySerializer" >  
+              <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />  
+         </property>  
+         <property name="valueSerializer" >  
+              <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />  
+         </property>  
+    </bean >  -->
+
+	<!-- <bean id="sentinelConfig" class="org.springframework.data.redis.connection.RedisSentinelConfiguration">
+		<property name="master">
+			<bean class="org.springframework.data.redis.connection.RedisNode">
+				<property name="name" value="mymaster"></property>
+			</bean>
+		</property>
+		<property name="sentinels">
+			<set>
+				<bean class="org.springframework.data.redis.connection.RedisNode">
+					<constructor-arg name="host" value="#{app.redisHost}" />
+					<constructor-arg name="port" value="#{app.redisPort}" />
+				</bean>
+				<bean class="org.springframework.data.redis.connection.RedisNode">
+					<constructor-arg name="host" value="127.0.0.1" />
+					<constructor-arg name="port" value="7506" />
+				</bean>
+			</set>
+		</property>
+	</bean> -->
+	
+	<!-- 在此将sentinel配置集成到redis连接池中 -->
+	<!-- <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+		<property name="timeout" value="20000"></property>
+		<property name="poolConfig" ref="jedisPoolConfig"></property>
+		<constructor-arg name="sentinelConfig" ref="sentinelConfig"></constructor-arg>
+	</bean> -->
+
+	<!-- <bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
+		<property name="connectionFactory" ref="connectionFactory" />
+	</bean>  -->
+	
+</beans>

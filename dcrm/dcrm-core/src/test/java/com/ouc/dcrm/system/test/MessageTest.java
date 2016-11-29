@@ -25,7 +25,7 @@ public class MessageTest {
 	    @SuppressWarnings("resource")
 	    ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext(
 		    new String[] { "classpath:spring/spring.xml",
-			    "classpath:spring/rabbitmq.xml" });
+			    "classpath:spring/spring-rabbitmq.xml" });
 
 	    cxt.start();
 

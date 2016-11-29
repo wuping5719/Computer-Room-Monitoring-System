@@ -47,9 +47,9 @@ public class UsersController {
 	userDTO.setTelephone(telephone);
 	userDTO.setEmail(email);
 	if(sex.equals("男")) {
-	    userDTO.setSex(0);
+	    userDTO.setSex((byte)0);
 	}else {
-	    userDTO.setSex(1);
+	    userDTO.setSex((byte)1);
 	}
 	
 	userServiceClient.saveUser(userDTO);

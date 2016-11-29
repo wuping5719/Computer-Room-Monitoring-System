@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ouc.dcrm.system.dao.RoleDao" >
+  <resultMap id="BaseResultMap" type="Role" >
+    <id column="roleId" property="roleid" jdbcType="INTEGER" />
+    <result column="roleName" property="rolename" jdbcType="CHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="userSequence" property="usersequence" jdbcType="VARCHAR" />
+    <result column="resSequence" property="ressequence" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    roleId, roleName, description, userSequence, resSequence
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where roleId = #{roleid,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from role
+    where roleId = #{roleid,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="Role" >
+    insert into role (roleId, roleName, description, 
+      userSequence, resSequence)
+    values (#{roleid,jdbcType=INTEGER}, #{rolename,jdbcType=CHAR}, #{description,jdbcType=VARCHAR}, 
+      #{usersequence,jdbcType=VARCHAR}, #{ressequence,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="Role" >
+    insert into role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleid != null" >
+        roleId,
+      </if>
+      <if test="rolename != null" >
+        roleName,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="usersequence != null" >
+        userSequence,
+      </if>
+      <if test="ressequence != null" >
+        resSequence,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleid != null" >
+        #{roleid,jdbcType=INTEGER},
+      </if>
+      <if test="rolename != null" >
+        #{rolename,jdbcType=CHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="usersequence != null" >
+        #{usersequence,jdbcType=VARCHAR},
+      </if>
+      <if test="ressequence != null" >
+        #{ressequence,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="Role" >
+    update role
+    <set >
+      <if test="rolename != null" >
+        roleName = #{rolename,jdbcType=CHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="usersequence != null" >
+        userSequence = #{usersequence,jdbcType=VARCHAR},
+      </if>
+      <if test="ressequence != null" >
+        resSequence = #{ressequence,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where roleId = #{roleid,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="Role" >
+    update role
+    set roleName = #{rolename,jdbcType=CHAR},
+      description = #{description,jdbcType=VARCHAR},
+      userSequence = #{usersequence,jdbcType=VARCHAR},
+      resSequence = #{ressequence,jdbcType=VARCHAR}
+    where roleId = #{roleid,jdbcType=INTEGER}
+  </update>
+</mapper>

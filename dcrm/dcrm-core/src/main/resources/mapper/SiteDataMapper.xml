@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ouc.dcrm.system.dao.SiteDataDao" >
+  <resultMap id="BaseResultMap" type="SiteData" >
+    <id column="dataId" property="dataid" jdbcType="BIGINT" />
+    <result column="gatherTime" property="gathertime" jdbcType="TIMESTAMP" />
+    <result column="value" property="value" jdbcType="VARCHAR" />
+    <result column="siteId" property="siteid" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    dataId, gatherTime, value, siteId
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sitedata
+    where dataId = #{dataid,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sitedata
+    where dataId = #{dataid,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="SiteData" >
+    insert into sitedata (dataId, gatherTime, value, 
+      siteId)
+    values (#{dataid,jdbcType=BIGINT}, #{gathertime,jdbcType=TIMESTAMP}, #{value,jdbcType=VARCHAR}, 
+      #{siteid,jdbcType=INTEGER})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="SiteData" >
+    insert into sitedata
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dataid != null" >
+        dataId,
+      </if>
+      <if test="gathertime != null" >
+        gatherTime,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+      <if test="siteid != null" >
+        siteId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dataid != null" >
+        #{dataid,jdbcType=BIGINT},
+      </if>
+      <if test="gathertime != null" >
+        #{gathertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="siteid != null" >
+        #{siteid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="SiteData" >
+    update sitedata
+    <set >
+      <if test="gathertime != null" >
+        gatherTime = #{gathertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="value != null" >
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="siteid != null" >
+        siteId = #{siteid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where dataId = #{dataid,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="SiteData" >
+    update sitedata
+    set gatherTime = #{gathertime,jdbcType=TIMESTAMP},
+      value = #{value,jdbcType=VARCHAR},
+      siteId = #{siteid,jdbcType=INTEGER}
+    where dataId = #{dataid,jdbcType=BIGINT}
+  </update>
+</mapper>

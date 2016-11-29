@@ -1,13 +1,5 @@
 package com.ouc.dcrm.system.service.impl;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -33,7 +25,7 @@ public class UserServiceClientImpl implements UserServiceClient {
     public UserDTO getUserById(Integer id) {
 	UserDTO userDTO = new UserDTO();
 	User user = userDao.selectByPrimaryKey(id);
-	userDTO.setId(user.getId());
+	userDTO.setId(user.getUserid());
 	userDTO.setName(user.getName());
 	return userDTO;
     }
@@ -41,7 +33,7 @@ public class UserServiceClientImpl implements UserServiceClient {
     @Override
     public String saveUser(UserDTO userDTO) {
 	User user = new User();
-	user.setId(null);  //让ID自增
+	user.setUserid(null);  //让ID自增
 	user.setName(userDTO.getName());
 	user.setPassword(userDTO.getPassword());
 	user.setUsername(userDTO.getUsername());

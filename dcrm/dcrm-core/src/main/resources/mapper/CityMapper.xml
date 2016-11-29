@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ouc.dcrm.system.dao.CityDao" >
+  <resultMap id="BaseResultMap" type="City" >
+    <id column="cityId" property="cityid" jdbcType="INTEGER" />
+    <result column="cityName" property="cityname" jdbcType="CHAR" />
+    <result column="longitude" property="longitude" jdbcType="REAL" />
+    <result column="latitude" property="latitude" jdbcType="REAL" />
+    <result column="areaCode" property="areacode" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    cityId, cityName, longitude, latitude, areaCode
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from city
+    where cityId = #{cityid,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from city
+    where cityId = #{cityid,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="City" >
+    insert into city (cityId, cityName, longitude, 
+      latitude, areaCode)
+    values (#{cityid,jdbcType=INTEGER}, #{cityname,jdbcType=CHAR}, #{longitude,jdbcType=REAL}, 
+      #{latitude,jdbcType=REAL}, #{areacode,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="City" >
+    insert into city
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cityid != null" >
+        cityId,
+      </if>
+      <if test="cityname != null" >
+        cityName,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="areacode != null" >
+        areaCode,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cityid != null" >
+        #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="cityname != null" >
+        #{cityname,jdbcType=CHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=REAL},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=REAL},
+      </if>
+      <if test="areacode != null" >
+        #{areacode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="City" >
+    update city
+    <set >
+      <if test="cityname != null" >
+        cityName = #{cityname,jdbcType=CHAR},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=REAL},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=REAL},
+      </if>
+      <if test="areacode != null" >
+        areaCode = #{areacode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cityId = #{cityid,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="City" >
+    update city
+    set cityName = #{cityname,jdbcType=CHAR},
+      longitude = #{longitude,jdbcType=REAL},
+      latitude = #{latitude,jdbcType=REAL},
+      areaCode = #{areacode,jdbcType=VARCHAR}
+    where cityId = #{cityid,jdbcType=INTEGER}
+  </update>
+</mapper>

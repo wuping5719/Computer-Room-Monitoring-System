@@ -17,7 +17,7 @@ public class UserDTO implements Serializable {
 
     private String email;
 
-    private Integer sex;
+    private Byte sex;
 
     public Integer getId() {
         return id;
@@ -67,11 +67,11 @@ public class UserDTO implements Serializable {
         this.email = email == null ? null : email.trim();
     }
 
-    public Integer getSex() {
+    public Byte getSex() {
         return sex;
     }
 
-    public void setSex(Integer sex) {
+    public void setSex(Byte sex) {
         this.sex = sex;
     }
 }

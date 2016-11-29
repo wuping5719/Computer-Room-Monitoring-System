@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ouc.dcrm.system.dao.AlertRecordDao" >
+  <resultMap id="BaseResultMap" type="AlertRecord" >
+    <id column="alertId" property="alertid" jdbcType="BIGINT" />
+    <result column="siteId" property="siteid" jdbcType="INTEGER" />
+    <result column="reasonId" property="reasonid" jdbcType="INTEGER" />
+    <result column="alertTime" property="alerttime" jdbcType="TIMESTAMP" />
+    <result column="instrumentId" property="instrumentid" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    alertId, siteId, reasonId, alertTime, instrumentId
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from alertrecord
+    where alertId = #{alertid,jdbcType=BIGINT}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from alertrecord
+    where alertId = #{alertid,jdbcType=BIGINT}
+  </delete>
+  
+  <insert id="insert" parameterType="AlertRecord" >
+    insert into alertrecord (alertId, siteId, reasonId, 
+      alertTime, instrumentId)
+    values (#{alertid,jdbcType=BIGINT}, #{siteid,jdbcType=INTEGER}, #{reasonid,jdbcType=INTEGER}, 
+      #{alerttime,jdbcType=TIMESTAMP}, #{instrumentid,jdbcType=INTEGER})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="AlertRecord" >
+    insert into alertrecord
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="alertid != null" >
+        alertId,
+      </if>
+      <if test="siteid != null" >
+        siteId,
+      </if>
+      <if test="reasonid != null" >
+        reasonId,
+      </if>
+      <if test="alerttime != null" >
+        alertTime,
+      </if>
+      <if test="instrumentid != null" >
+        instrumentId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="alertid != null" >
+        #{alertid,jdbcType=BIGINT},
+      </if>
+      <if test="siteid != null" >
+        #{siteid,jdbcType=INTEGER},
+      </if>
+      <if test="reasonid != null" >
+        #{reasonid,jdbcType=INTEGER},
+      </if>
+      <if test="alerttime != null" >
+        #{alerttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="instrumentid != null" >
+        #{instrumentid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="AlertRecord" >
+    update alertrecord
+    <set >
+      <if test="siteid != null" >
+        siteId = #{siteid,jdbcType=INTEGER},
+      </if>
+      <if test="reasonid != null" >
+        reasonId = #{reasonid,jdbcType=INTEGER},
+      </if>
+      <if test="alerttime != null" >
+        alertTime = #{alerttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="instrumentid != null" >
+        instrumentId = #{instrumentid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where alertId = #{alertid,jdbcType=BIGINT}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="AlertRecord" >
+    update alertrecord
+    set siteId = #{siteid,jdbcType=INTEGER},
+      reasonId = #{reasonid,jdbcType=INTEGER},
+      alertTime = #{alerttime,jdbcType=TIMESTAMP},
+      instrumentId = #{instrumentid,jdbcType=INTEGER}
+    where alertId = #{alertid,jdbcType=BIGINT}
+  </update>
+</mapper>

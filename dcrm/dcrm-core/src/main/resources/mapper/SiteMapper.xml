@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ouc.dcrm.system.dao.SiteDao" >
+  <resultMap id="BaseResultMap" type="Site" >
+    <id column="siteId" property="siteid" jdbcType="INTEGER" />
+    <result column="siteName" property="sitename" jdbcType="CHAR" />
+    <result column="address" property="address" jdbcType="CHAR" />
+    <result column="longitude" property="longitude" jdbcType="REAL" />
+    <result column="latitude" property="latitude" jdbcType="REAL" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="cityId" property="cityid" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    siteId, siteName, address, longitude, latitude, description, cityId
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from site
+    where siteId = #{siteid,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from site
+    where siteId = #{siteid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="Site" >
+    insert into site (siteId, siteName, address, 
+      longitude, latitude, description, 
+      cityId)
+    values (#{siteid,jdbcType=INTEGER}, #{sitename,jdbcType=CHAR}, #{address,jdbcType=CHAR}, 
+      #{longitude,jdbcType=REAL}, #{latitude,jdbcType=REAL}, #{description,jdbcType=VARCHAR}, 
+      #{cityid,jdbcType=INTEGER})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="Site" >
+    insert into site
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="siteid != null" >
+        siteId,
+      </if>
+      <if test="sitename != null" >
+        siteName,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="cityid != null" >
+        cityId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="siteid != null" >
+        #{siteid,jdbcType=INTEGER},
+      </if>
+      <if test="sitename != null" >
+        #{sitename,jdbcType=CHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=CHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=REAL},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=REAL},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="cityid != null" >
+        #{cityid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="Site" >
+    update site
+    <set >
+      <if test="sitename != null" >
+        siteName = #{sitename,jdbcType=CHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=CHAR},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=REAL},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=REAL},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="cityid != null" >
+        cityId = #{cityid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where siteId = #{siteid,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="Site" >
+    update site
+    set siteName = #{sitename,jdbcType=CHAR},
+      address = #{address,jdbcType=CHAR},
+      longitude = #{longitude,jdbcType=REAL},
+      latitude = #{latitude,jdbcType=REAL},
+      description = #{description,jdbcType=VARCHAR},
+      cityId = #{cityid,jdbcType=INTEGER}
+    where siteId = #{siteid,jdbcType=INTEGER}
+  </update>
+</mapper>

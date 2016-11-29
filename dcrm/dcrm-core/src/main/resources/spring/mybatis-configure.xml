@@ -7,6 +7,18 @@
  	</settings> 
  	 
     <typeAliases>
+        <typeAlias alias="Actiontype" type="com.ouc.dcrm.system.model.Actiontype"/>
+        <typeAlias alias="AlertRecord" type="com.ouc.dcrm.system.model.AlertRecord"/>
+        <typeAlias alias="City" type="com.ouc.dcrm.system.model.City"/>
+        <typeAlias alias="Coordinate" type="com.ouc.dcrm.system.model.Coordinate"/>
+        <typeAlias alias="Instrument" type="com.ouc.dcrm.system.model.Instrument"/>
+        <typeAlias alias="Logs" type="com.ouc.dcrm.system.model.Logs"/>
+        <typeAlias alias="Reason" type="com.ouc.dcrm.system.model.Reason"/>
+        <typeAlias alias="Resources" type="com.ouc.dcrm.system.model.Resources"/>
+        <typeAlias alias="Role" type="com.ouc.dcrm.system.model.Role"/>
+        <typeAlias alias="Sensor" type="com.ouc.dcrm.system.model.Sensor"/>
+        <typeAlias alias="SiteData" type="com.ouc.dcrm.system.model.SiteData"/>
+        <typeAlias alias="Site" type="com.ouc.dcrm.system.model.Site"/>
         <typeAlias alias="User" type="com.ouc.dcrm.system.model.User"/>
     </typeAliases> 
 </configuration>   

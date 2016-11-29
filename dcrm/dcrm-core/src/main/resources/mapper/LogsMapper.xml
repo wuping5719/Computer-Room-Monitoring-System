@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ouc.dcrm.system.dao.LogsDao" >
+  <resultMap id="BaseResultMap" type="Logs" >
+    <id column="logId" property="logid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="actionId" property="actionid" jdbcType="INTEGER" />
+    <result column="recordTime" property="recordtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    logId, userId, actionId, recordTime
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from logs
+    where logId = #{logid,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from logs
+    where logId = #{logid,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="Logs" >
+    insert into logs (logId, userId, actionId, 
+      recordTime)
+    values (#{logid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{actionid,jdbcType=INTEGER}, 
+      #{recordtime,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="Logs" >
+    insert into logs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="logid != null" >
+        logId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="actionid != null" >
+        actionId,
+      </if>
+      <if test="recordtime != null" >
+        recordTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="logid != null" >
+        #{logid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="actionid != null" >
+        #{actionid,jdbcType=INTEGER},
+      </if>
+      <if test="recordtime != null" >
+        #{recordtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="Logs" >
+    update logs
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="actionid != null" >
+        actionId = #{actionid,jdbcType=INTEGER},
+      </if>
+      <if test="recordtime != null" >
+        recordTime = #{recordtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where logId = #{logid,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="Logs" >
+    update logs
+    set userId = #{userid,jdbcType=INTEGER},
+      actionId = #{actionid,jdbcType=INTEGER},
+      recordTime = #{recordtime,jdbcType=TIMESTAMP}
+    where logId = #{logid,jdbcType=INTEGER}
+  </update>
+</mapper>

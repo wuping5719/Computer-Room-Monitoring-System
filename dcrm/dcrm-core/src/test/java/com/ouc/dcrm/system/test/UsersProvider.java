@@ -18,6 +18,7 @@ public class UsersProvider {
 	    ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext(
 		    new String[] { "classpath:spring/spring.xml",
 			    "classpath:spring/spring-mybatis.xml",
+			    "classpath:spring/spring-rabbitmq.xml",
 			    "classpath:spring/dubbo-provider.xml" });
 
 	    cxt.start();

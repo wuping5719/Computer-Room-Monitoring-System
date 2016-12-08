@@ -48,4 +48,16 @@ public class UserServiceClientImpl implements UserServiceClient {
         return "success";
     }
  
+    @Override
+    public UserDTO getUserByUserName(String username) {
+	UserDTO userDTO = new UserDTO();
+	User user = userDao.selectByUserName(username);
+	userDTO.setId(user.getUserid());
+	userDTO.setName(user.getName());
+	userDTO.setUsername(user.getUsername());
+	userDTO.setPassword(user.getPassword());
+	userDTO.setTelephone(user.getTelephone());
+	userDTO.setEmail(user.getEmail());
+	return userDTO;
+    }
 }

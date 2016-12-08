@@ -28,6 +28,14 @@
     where userId = #{userid,jdbcType=INTEGER}
   </select>
   
+  <select id="selectByUserName" resultType="User" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where userName = #{username,jdbcType=VARCHAR} 
+    limit 1
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
     where userId = #{userid,jdbcType=INTEGER}

@@ -19,8 +19,8 @@
 	<dubbo:application name="#{app.appName}" />
     <dubbo:registry id="oucRegistry" address="#{app.dubboRegistry}" protocol="zookeeper"/>
     <dubbo:protocol name="dubbo" port="#{app.dubboPort}" threads="#{app.dubboThreads}"
-                    heartbeat="#{app.dubboHeartBeats}"/>
-              
+                    heartbeat="#{app.dubboHeartBeats}"/>   
+                        
 	<!-- 声明需要暴露的服务接口 -->
 	<bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDAO">
     	<property name="mapperInterface" value="com.ouc.dcrm.system.dao.UserDao" />

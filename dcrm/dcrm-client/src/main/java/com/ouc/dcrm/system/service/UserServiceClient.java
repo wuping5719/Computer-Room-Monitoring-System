@@ -12,4 +12,6 @@ public interface UserServiceClient {
     
     public String saveUser(UserDTO userDTO);
     
+    public UserDTO getUserByUserName(String username);
 }
+

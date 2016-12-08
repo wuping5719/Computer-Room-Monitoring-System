@@ -4,6 +4,10 @@
  Integration of __Spring__、__SpringMVC__、 __MyBatis__、 __Dubbo__、__RabbitMQ__、__Shiro__ and __Redis__. 
  
  The next stage integrated __Spring Boot__ and __Spring Cloud__.
+ 
+ __Modules__
+* 1.Site Navigatio
+ <img src="http://images.cnblogs.com/cnblogs_com/wp5719/831982/o_index1.png"  />
 
 ##License 
   The MIT License (MIT)

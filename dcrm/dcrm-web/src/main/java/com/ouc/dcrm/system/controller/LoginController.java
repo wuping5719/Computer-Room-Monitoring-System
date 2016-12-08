@@ -31,7 +31,6 @@ public class LoginController {
     /**********************
      * 登录验证
      ***********************/
-    @SuppressWarnings("unused")
     @RequestMapping(value = "login.do")
     public @ResponseBody
     String login(HttpServletRequest request, HttpServletResponse response) {
@@ -42,11 +41,8 @@ public class LoginController {
 
 	// 设置登录反馈信息变量：1—成功；2—用户名不存在；3—密码无效登录失败。
 	String msg = null;
-	//UserDTO userDTO = userServiceClient.getUserByLoginName(username);
-	UserDTO userDTO = new UserDTO();
-	userDTO.setId(1);
-	userDTO.setName("admin");
-	
+	UserDTO userDTO = userServiceClient.getUserByUserName(username);
+
 	if(userDTO == null) {
 	    msg="2";
 	}else {
@@ -68,7 +64,7 @@ public class LoginController {
 	    HttpServletResponse response) {
 	String userType = request.getParameter("userType");
 	System.out.println(userType);
-	return "pages/authority/auth_main";
+	return "pages/index";
     }
 
     @RequestMapping(value = "logout.do", method = RequestMethod.GET)

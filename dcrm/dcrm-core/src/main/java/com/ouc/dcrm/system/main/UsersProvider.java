@@ -18,8 +18,8 @@ public class UsersProvider {
 	    ClassPathXmlApplicationContext cxt = new ClassPathXmlApplicationContext(
 		    new String[] { "classpath:spring/spring.xml",
 			    "classpath:spring/spring-mybatis.xml",
-			    /*"classpath:spring/spring-rabbitmq.xml",
-			    "classpath:spring/spring-redis.xml",*/
+			    /*"classpath:spring/spring-rabbitmq.xml",*/
+			    /* "classpath:spring/spring-redis.xml", */
 			    "classpath:spring/dubbo-provider.xml" });
 
 	    cxt.start();
@@ -28,7 +28,9 @@ public class UsersProvider {
 	    UserDTO userDTO = userServiceClient.getUserById(1);
 	    System.out.println("用户:" + userDTO.getName());
 
-	    System.in.read(); // 模拟开启
+	    while(true) {
+	       // 模拟开启
+	    }
 	} catch (Exception e) {
 	    e.printStackTrace();
 	    System.out.println(e.getMessage());

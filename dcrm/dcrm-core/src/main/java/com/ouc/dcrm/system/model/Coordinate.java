@@ -3,10 +3,6 @@ package com.ouc.dcrm.system.model;
 public class Coordinate {
     private Integer coordinateid;
 
-    private Integer siteid;
-
-    private Integer sensorid;
-
     private String coordinatename;
 
     private String unit;
@@ -23,22 +19,6 @@ public class Coordinate {
 
     public void setCoordinateid(Integer coordinateid) {
         this.coordinateid = coordinateid;
-    }
-
-    public Integer getSiteid() {
-        return siteid;
-    }
-
-    public void setSiteid(Integer siteid) {
-        this.siteid = siteid;
-    }
-
-    public Integer getSensorid() {
-        return sensorid;
-    }
-
-    public void setSensorid(Integer sensorid) {
-        this.sensorid = sensorid;
     }
 
     public String getCoordinatename() {

@@ -37,8 +37,8 @@
           <a id="logout" href="#">注销</a>
         </div>
         <ul class="nav nav-justified">
-          <li ><a id="nav_li_a1" href="#">站点导航</a></li>
-          <li ><a id="nav_li_a2" href="#">多路视频</a></li>
+          <li ><a id="nav_li_a1" href="<%=basePath%>pages/index.jsp">站点导航</a></li>
+          <li ><a id="nav_li_a2" href="<%=basePath%>pages/multVideo.jsp">多路视频</a></li>
           <li ><a id="nav_li_a3" href="#">报警查询</a></li>
           <li ><a id="nav_li_a4" href="<%=basePath%>pages/siteCurve.jsp">站点数据</a></li>
           <li ><a id="nav_li_a5" href="#">设备管理</a></li>

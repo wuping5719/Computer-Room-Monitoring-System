@@ -10,6 +10,8 @@
  <img src="http://images.cnblogs.com/cnblogs_com/wp5719/831982/o_site2.png"  />
 * 2.Site Data
  <img src="http://images.cnblogs.com/cnblogs_com/wp5719/831982/o_siteData1.png"  />
+* 3.Site Video
+ <img src="http://images.cnblogs.com/cnblogs_com/wp5719/831982/o_video1.png"  />
 
 ##License 
   The MIT License (MIT)

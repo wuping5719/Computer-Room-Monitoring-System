@@ -21,8 +21,10 @@
 	</properties>
 	<modules>
 		<module>dcrm-parent</module>
-		<module>dcrm-client</module>
 		<module>dcrm-core</module>
+		<module>dcrm-client</module>
+		<module>dcrm-client-impl</module>
+		<module>dcrm-collect</module>
 		<module>dcrm-web</module>
 	</modules>
 </project>

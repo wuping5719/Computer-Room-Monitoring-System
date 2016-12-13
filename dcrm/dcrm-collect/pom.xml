@@ -28,7 +28,7 @@
 		
 		<dependency>
 			<groupId>com.ouc.dcrm.system</groupId>
-			<artifactId>dcrm-core</artifactId>
+			<artifactId>dcrm-client</artifactId>
 		</dependency>
 		
 		<dependency>

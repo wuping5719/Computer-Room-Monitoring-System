@@ -3,28 +3,28 @@ package com.ouc.dcrm.system.service.impl;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import com.ouc.dcrm.system.dao.UserDao;
 import com.ouc.dcrm.system.dto.UserDTO;
 import com.ouc.dcrm.system.model.User;
 import com.ouc.dcrm.system.service.UserServiceClient;
-import com.ouc.dcrm.system.service.UserService;
 import com.ouc.dcrm.system.util.PagingParameters;
 
 public class UserServiceClientImpl implements UserServiceClient {
+    
+    private UserDao userDao;
 
-    private UserService userService;
-
-    public UserService getUserService() {
-	return userService;
+    public UserDao getUserDao() {
+	return userDao;
     }
 
-    public void setUserService(UserService userService) {
-	this.userService = userService;
+    public void setUserDao(UserDao userDao) {
+	this.userDao = userDao;
     }
 
     @Override
     public UserDTO getUserById(Integer id) {
 	UserDTO userDTO = new UserDTO();
-	User user = userService.searchUserByPrimaryKey(id);
+	User user = userDao.selectByPrimaryKey(id);
 	userDTO.setId(user.getUserid());
 	userDTO.setName(user.getName());
 	return userDTO;
@@ -44,14 +44,14 @@ public class UserServiceClientImpl implements UserServiceClient {
 	System.out.println("用户注册：");
 	System.out.println("姓名：" + userDTO.getUsername());
 	
-	userService.saveUser(user);
+	userDao.insertSelective(user);
         return "success";
     }
  
     @Override
     public UserDTO getUserByUserName(String username) {
 	UserDTO userDTO = new UserDTO();
-	User user = userService.searchUserByUserName(username);
+	User user = userDao.selectByUserName(username);
 	userDTO.setId(user.getUserid());
 	userDTO.setName(user.getName());
 	userDTO.setUsername(user.getUsername());

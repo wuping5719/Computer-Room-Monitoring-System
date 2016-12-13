@@ -25,6 +25,7 @@
 	<bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDAO">
     	<property name="mapperInterface" value="com.ouc.dcrm.system.dao.UserDao" />
     </bean>
+    
     <dubbo:service interface="com.ouc.dcrm.system.service.UserServiceClient" ref="userServiceClient" registry="oucRegistry" />
 	<bean id="userServiceClient" class="com.ouc.dcrm.system.service.impl.UserServiceClientImpl">
 		<property name="userDao" ref="userDao"/>

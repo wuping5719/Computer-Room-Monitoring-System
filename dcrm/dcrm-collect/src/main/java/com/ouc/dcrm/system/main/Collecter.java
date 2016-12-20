@@ -8,7 +8,6 @@ package com.ouc.dcrm.system.main;
 public class Collecter {
 
     public static void main(String[] args) {
-	// TODO Auto-generated method stub
 
     }
 

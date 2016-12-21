@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ouc.dcrms.core.dao.ResourcesDao" >
+  <resultMap id="BaseResultMap" type="Resources" >
+    <id column="resId" property="resid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="CHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="visible" property="visible" jdbcType="TINYINT" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    resId, name, url, type, visible, description
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from resources
+    where resId = #{resid,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from resources
+    where resId = #{resid,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="Resources" >
+    insert into resources (resId, name, url, 
+      type, visible, description
+      )
+    values (#{resid,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, #{url,jdbcType=VARCHAR}, 
+      #{type,jdbcType=TINYINT}, #{visible,jdbcType=TINYINT}, #{description,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <insert id="insertSelective" parameterType="Resources" >
+    insert into resources
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resid != null" >
+        resId,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="visible != null" >
+        visible,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resid != null" >
+        #{resid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=CHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="visible != null" >
+        #{visible,jdbcType=TINYINT},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="Resources" >
+    update resources
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=CHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="visible != null" >
+        visible = #{visible,jdbcType=TINYINT},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where resId = #{resid,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="Resources" >
+    update resources
+    set name = #{name,jdbcType=CHAR},
+      url = #{url,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      visible = #{visible,jdbcType=TINYINT},
+      description = #{description,jdbcType=VARCHAR}
+    where resId = #{resid,jdbcType=INTEGER}
+  </update>
+</mapper>

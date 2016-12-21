@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">   
+<configuration>   
+    <settings>
+ 		 <setting name="cacheEnabled" value="true" />
+ 		 <setting name="jdbcTypeForNull" value="NULL" />
+ 	</settings> 
+ 	 
+    <typeAliases>
+        <typeAlias alias="Actiontype" type="com.ouc.dcrms.core.model.Actiontype"/>
+        <typeAlias alias="AlertRecord" type="com.ouc.dcrms.core.model.AlertRecord"/>
+        <typeAlias alias="City" type="com.ouc.dcrms.core.model.City"/>
+        <typeAlias alias="Coordinate" type="com.ouc.dcrms.core.model.Coordinate"/>
+        <typeAlias alias="Instrument" type="com.ouc.dcrms.core.model.Instrument"/>
+        <typeAlias alias="Logs" type="com.ouc.dcrms.core.model.Logs"/>
+        <typeAlias alias="Reason" type="com.ouc.dcrms.core.model.Reason"/>
+        <typeAlias alias="Resources" type="com.ouc.dcrms.core.model.Resources"/>
+        <typeAlias alias="Role" type="com.ouc.dcrms.core.model.Role"/>
+        <typeAlias alias="Sensor" type="com.ouc.dcrms.core.model.Sensor"/>
+        <typeAlias alias="SiteData" type="com.ouc.dcrms.core.model.SiteData"/>
+        <typeAlias alias="Site" type="com.ouc.dcrms.core.model.Site"/>
+        <typeAlias alias="User" type="com.ouc.dcrms.core.model.User"/>
+    </typeAliases> 
+</configuration>   

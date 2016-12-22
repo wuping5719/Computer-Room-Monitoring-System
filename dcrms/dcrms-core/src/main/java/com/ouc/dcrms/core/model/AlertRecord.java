@@ -13,6 +13,8 @@ public class AlertRecord {
 
     private Integer instrumentid;
 
+    private Integer solved;
+    
     public Long getAlertid() {
         return alertid;
     }
@@ -51,5 +53,13 @@ public class AlertRecord {
 
     public void setInstrumentid(Integer instrumentid) {
         this.instrumentid = instrumentid;
+    }
+
+    public Integer getSolved() {
+	return solved;
+    }
+
+    public void setSolved(Integer solved) {
+	this.solved = solved;
     }
 }

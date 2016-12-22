@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <Root_configure>
-  <Site SiteID="1" SiteName="明星大厅" Registertime="2016/09/15 21:42:04" Address="山东青岛崂山区" Longitude="110°23′33″E" Latitude="36°23′33″N" Description="明星大厅" ImagePath="D:\SiteImg\site1.png">
-    <Instrument InstrumentID="1" GlobalID="1" Name="采集器" Manufacturer="KLW8000" Model="KLW8000" Serialnumber="KLW8000" Description="KLW8000" Position="明星大厅" InstrumentType="2" ParameterNum="3" X="" Y="">
+  <Site SiteID="1" SiteName="明星大厅" Address="山东青岛崂山区" Longitude="110°23′33″E" Latitude="36°23′33″N" ImagePath="D:\SiteImg\site1.png">
+    <Instrument GlobalID="1" Name="采集器" Manufacturer="KLW8000" Model="KLW8000" Serialnumber="KLW8000" EnglishName="KLW8000-01" InstrumentType="2" ParameterNum="3" > 
       <Interface Standard="RS232">
         <Comport>62</Comport>
         <Baudrate>9600</Baudrate>

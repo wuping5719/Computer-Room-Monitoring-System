@@ -27,11 +27,11 @@
   </delete>
   
   <insert id="insert" parameterType="AlertRecord" >
-    insert into alertrecord (alertId, siteId, reasonId, 
+    insert into alertrecord (siteId, reasonId, 
       alertTime, instrumentId, solved)
-    values (#{alertid,jdbcType=BIGINT}, #{siteid,jdbcType=INTEGER}, 
-      #{reasonid,jdbcType=INTEGER}, #{alerttime,jdbcType=TIMESTAMP},
-      #{instrumentid,jdbcType=INTEGER}, #{solved,jdbcType=INTEGER})
+    values (#{siteid,jdbcType=INTEGER}, #{reasonid,jdbcType=INTEGER}, 
+      #{alerttime,jdbcType=TIMESTAMP}, #{instrumentid,jdbcType=INTEGER}, 
+      #{solved,jdbcType=INTEGER})
   </insert>
   
   <insert id="insertSelective" parameterType="AlertRecord" >

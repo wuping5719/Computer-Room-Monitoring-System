@@ -16,7 +16,7 @@ import org.springframework.beans.factory.InitializingBean;
  */
 
 public class SystemBootstrap implements InitializingBean {
-    private static final String CONFIG_FILE_PATH = "/env.properties";
+    private static final String CONFIG_FILE_PATH = "/app.properties";
     private static final Log LOG = LogFactory.getLog(SystemBootstrap.class);
 
     private HttpAdaptor httpAdaptor;

@@ -21,6 +21,9 @@
 	
 	<context:annotation-config />
 	<!--引入配置属性文件  -->
+	<!-- <bean class="com.ouc.dcrms.core.util.SystemBootstrap" init-method="init">
+     	<property name="httpAdaptor" ref="httpAdaptor" />
+    </bean> -->
 	<!-- <context:property-placeholder location="classpath:app.properties"/> -->
     <util:properties id="app" location="classpath:app.properties"/>
     

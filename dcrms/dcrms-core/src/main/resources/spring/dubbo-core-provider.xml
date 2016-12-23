@@ -26,4 +26,11 @@
 		<property name="userDao" ref="userDao"/>
 	</bean>
   
+    <bean id="alertRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDAO">
+    	<property name="mapperInterface" value="com.ouc.dcrms.core.dao.AlertRecordDao" />
+    </bean>
+    
+	<bean id="alertServiceCore" class="com.ouc.dcrms.core.service.impl.AlertServiceCoreImpl">
+		<property name="alertRecordDao" ref="alertRecordDao"/>
+	</bean>
 </beans>

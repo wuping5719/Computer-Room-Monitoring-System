@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
-<Root_configure>
-  <Site SiteID="1" SiteName="明星大厅" Address="山东青岛崂山区" Longitude="110°23′33″E" Latitude="36°23′33″N" ImagePath="D:\SiteImg\site1.png">
+<Root>
+  <Site SiteID="1" SiteName="明星大厅" Address="山东青岛崂山区" Longitude="110°23′33″E" Latitude="36°23′33″N" >
     <Instrument GlobalID="1" Name="采集器" Manufacturer="KLW8000" Model="KLW8000" Serialnumber="KLW8000" EnglishName="KLW8000-01" InstrumentType="2" ParameterNum="3" > 
       <Interface Standard="RS232">
         <Comport>62</Comport>
@@ -109,7 +109,7 @@
         </A>
       </Parameter>
     </Instrument>
-    <Instrument InstrumentID="2" GlobalID="2" Name="S31" Manufacturer="S31_3" Model="S31_3" Serialnumber="S31_3" Description="S31_3" Position="明星大厅" InstrumentType="1" ParameterNum="1" X="" Y="">
+    <Instrument GlobalID="2" Name="S31" Manufacturer="S31_3" Model="S31_3" Serialnumber="S31_3" Description="S31_3" Position="明星大厅" InstrumentType="1" ParameterNum="1" >
       <Interface Standard="RS232">
         <Comport>86</Comport>
         <Baudrate>1200</Baudrate>
@@ -137,7 +137,7 @@
         </A>
       </Parameter>
     </Instrument>
-    <Instrument InstrumentID="2" GlobalID="3" Name="S31" Manufacturer="S31_3" Model="S31_3" Serialnumber="S31_3" Description="S31_3" Position="明星大厅" InstrumentType="1" ParameterNum="7" X="" Y="">
+    <Instrument GlobalID="3" Name="S31" Manufacturer="S31_3" Model="S31_3" Serialnumber="S31_3" Description="S31_3" Position="明星大厅" InstrumentType="1" ParameterNum="7" >
       <Interface Standard="RS232">
         <Comport>86</Comport>
         <Baudrate>1200</Baudrate>
@@ -261,7 +261,7 @@
         </A>
       </Parameter>
     </Instrument>
-    <Instrument InstrumentID="2" GlobalID="4" Name="S31" Manufacturer="S31_3" Model="S31_3" Serialnumber="S31_3" Description="S31_3" Position="明星大厅" InstrumentType="1" ParameterNum="6" X="" Y="">
+    <Instrument GlobalID="4" Name="S31" Manufacturer="S31_3" Model="S31_3" Serialnumber="S31_3" Description="S31_3" Position="明星大厅" InstrumentType="1" ParameterNum="6" >
       <Interface Standard="RS232">
         <Comport>86</Comport>
         <Baudrate>1200</Baudrate>
@@ -369,7 +369,7 @@
         </A>
       </Parameter>
     </Instrument>
-    <Instrument InstrumentID="2" GlobalID="5" Name="S31" Manufacturer="S31_3" Model="S31_3" Serialnumber="S31_3" Description="S31_3" Position="明星大厅" InstrumentType="1" ParameterNum="2" X="" Y="">
+    <Instrument GlobalID="5" Name="S31" Manufacturer="S31_3" Model="S31_3" Serialnumber="S31_3" Description="S31_3" Position="明星大厅" InstrumentType="1" ParameterNum="2" >
       <Interface Standard="RS232">
         <Comport>86</Comport>
         <Baudrate>1200</Baudrate>
@@ -413,7 +413,7 @@
         </A>
       </Parameter>
     </Instrument>
-    <Instrument InstrumentID="2" GlobalID="6" Name="S31" Manufacturer="S31_3" Model="S31_3" Serialnumber="S31_3" Description="S31_3" Position="明星大厅" InstrumentType="1" ParameterNum="1" X="" Y="">
+    <Instrument GlobalID="6" Name="S31" Manufacturer="S31_3" Model="S31_3" Serialnumber="S31_3" Description="S31_3" Position="明星大厅" InstrumentType="1" ParameterNum="1" >
       <Interface Standard="RS232">
         <Comport>86</Comport>
         <Baudrate>1200</Baudrate>
@@ -441,7 +441,7 @@
         </A>
       </Parameter>
     </Instrument>
-    <Instrument InstrumentID="2" GlobalID="7" Name="S31" Manufacturer="S31_3" Model="S31_3" Serialnumber="S31_3" Description="S31_3" Position="明星大厅" InstrumentType="1" ParameterNum="3" X="" Y="">
+    <Instrument GlobalID="7" Name="S31" Manufacturer="S31_3" Model="S31_3" Serialnumber="S31_3" Description="S31_3" Position="明星大厅" InstrumentType="1" ParameterNum="3" >
       <Interface Standard="RS232">
         <Comport>86</Comport>
         <Baudrate>1200</Baudrate>
@@ -502,4 +502,4 @@
       </Parameter>
     </Instrument>
   </Site>
-</Root_configure>
+</Root>

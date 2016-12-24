@@ -21,257 +21,257 @@ public class InitialComm {
     public int comPort;
 
     public InitialComm(Instrument instrument) {
-	comPort = instrument.commInterface.comport;
+	comPort = instrument.getCommInterface().getComport();
 	String portName = "";
 	try {
-	    portName = "COM" + instrument.commInterface.comport;
+	    portName = "COM" + instrument.getCommInterface().getComport();
 	    portId = CommPortIdentifier.getPortIdentifier(portName);
 	    serialPort = (SerialPort) portId.open("Serial_Communication", 2000);
 
-	    switch (instrument.commInterface.dataBit) {
+	    switch (instrument.getCommInterface().getDataBit()) {
 	    case 5:
-		if (instrument.commInterface.stopBit == 1.0) {
-		    if (instrument.commInterface.parity.equals("NONE")) {
+		if (instrument.getCommInterface().getStopBit() == 1.0) {
+		    if (instrument.getCommInterface().getParity().equals("NONE")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_5, SerialPort.STOPBITS_1,
 				SerialPort.PARITY_NONE);
 		    }
-		    if (instrument.commInterface.parity.equals("ODD")) {
+		    if (instrument.getCommInterface().getParity().equals("ODD")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_5, SerialPort.STOPBITS_1,
 				SerialPort.PARITY_ODD);
 		    }
-		    if (instrument.commInterface.parity.equals("EVEN")) {
+		    if (instrument.getCommInterface().getParity().equals("EVEN")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_5, SerialPort.STOPBITS_1,
 				SerialPort.PARITY_EVEN);
 		    }
 		}
-		if (instrument.commInterface.stopBit == 1.5) {
-		    if (instrument.commInterface.parity.equals("NONE")) {
+		if (instrument.getCommInterface().getStopBit() == 1.5) {
+		    if (instrument.getCommInterface().getParity().equals("NONE")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_5, SerialPort.STOPBITS_1_5,
 				SerialPort.PARITY_NONE);
 		    }
-		    if (instrument.commInterface.parity.equals("ODD")) {
+		    if (instrument.getCommInterface().getParity().equals("ODD")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_5, SerialPort.STOPBITS_1_5,
 				SerialPort.PARITY_ODD);
 		    }
-		    if (instrument.commInterface.parity.equals("EVEN")) {
+		    if (instrument.getCommInterface().getParity().equals("EVEN")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_5, SerialPort.STOPBITS_1_5,
 				SerialPort.PARITY_EVEN);
 		    }
 		}
-		if (instrument.commInterface.stopBit == 2.0) {
-		    if (instrument.commInterface.parity.equals("NONE")) {
+		if (instrument.getCommInterface().getStopBit() == 2.0) {
+		    if (instrument.getCommInterface().getParity().equals("NONE")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_5, SerialPort.STOPBITS_2,
 				SerialPort.PARITY_NONE);
 		    }
-		    if (instrument.commInterface.parity.equals("ODD")) {
+		    if (instrument.getCommInterface().getParity().equals("ODD")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_5, SerialPort.STOPBITS_2,
 				SerialPort.PARITY_ODD);
 		    }
-		    if (instrument.commInterface.parity.equals("EVEN")) {
+		    if (instrument.getCommInterface().getParity().equals("EVEN")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_5, SerialPort.STOPBITS_2,
 				SerialPort.PARITY_EVEN);
 		    }
 		}
 		break;
 	    case 6:
-		if (instrument.commInterface.stopBit == 1.0) {
-		    if (instrument.commInterface.parity.equals("NONE")) {
+		if (instrument.getCommInterface().getStopBit() == 1.0) {
+		    if (instrument.getCommInterface().getParity().equals("NONE")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_6, SerialPort.STOPBITS_1,
 				SerialPort.PARITY_NONE);
 		    }
-		    if (instrument.commInterface.parity.equals("ODD")) {
+		    if (instrument.getCommInterface().getParity().equals("ODD")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_6, SerialPort.STOPBITS_1,
 				SerialPort.PARITY_ODD);
 		    }
-		    if (instrument.commInterface.parity.equals("EVEN")) {
+		    if (instrument.getCommInterface().getParity().equals("EVEN")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_6, SerialPort.STOPBITS_1,
 				SerialPort.PARITY_EVEN);
 		    }
 		}
-		if (instrument.commInterface.stopBit == 1.5) {
-		    if (instrument.commInterface.parity.equals("NONE")) {
+		if (instrument.getCommInterface().getStopBit() == 1.5) {
+		    if (instrument.getCommInterface().getParity().equals("NONE")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_6, SerialPort.STOPBITS_1_5,
 				SerialPort.PARITY_NONE);
 		    }
-		    if (instrument.commInterface.parity.equals("ODD")) {
+		    if (instrument.getCommInterface().getParity().equals("ODD")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_6, SerialPort.STOPBITS_1_5,
 				SerialPort.PARITY_ODD);
 		    }
-		    if (instrument.commInterface.parity.equals("EVEN")) {
+		    if (instrument.getCommInterface().getParity().equals("EVEN")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_6, SerialPort.STOPBITS_1_5,
 				SerialPort.PARITY_EVEN);
 		    }
 		}
-		if (instrument.commInterface.stopBit == 2.0) {
-		    if (instrument.commInterface.parity.equals("NONE")) {
+		if (instrument.getCommInterface().getStopBit() == 2.0) {
+		    if (instrument.getCommInterface().getParity().equals("NONE")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_6, SerialPort.STOPBITS_2,
 				SerialPort.PARITY_NONE);
 		    }
-		    if (instrument.commInterface.parity.equals("ODD")) {
+		    if (instrument.getCommInterface().getParity().equals("ODD")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_6, SerialPort.STOPBITS_2,
 				SerialPort.PARITY_ODD);
 		    }
-		    if (instrument.commInterface.parity.equals("EVEN")) {
+		    if (instrument.getCommInterface().getParity().equals("EVEN")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_6, SerialPort.STOPBITS_2,
 				SerialPort.PARITY_EVEN);
 		    }
 		}
 		break;
 	    case 7:
-		if (instrument.commInterface.stopBit == 1.0) {
-		    if (instrument.commInterface.parity.equals("NONE")) {
+		if (instrument.getCommInterface().getStopBit() == 1.0) {
+		    if (instrument.getCommInterface().getParity().equals("NONE")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_7, SerialPort.STOPBITS_1,
 				SerialPort.PARITY_NONE);
 		    }
-		    if (instrument.commInterface.parity.equals("ODD")) {
+		    if (instrument.getCommInterface().getParity().equals("ODD")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_7, SerialPort.STOPBITS_1,
 				SerialPort.PARITY_ODD);
 		    }
-		    if (instrument.commInterface.parity.equals("EVEN")) {
+		    if (instrument.getCommInterface().getParity().equals("EVEN")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_7, SerialPort.STOPBITS_1,
 				SerialPort.PARITY_EVEN);
 		    }
 		}
-		if (instrument.commInterface.stopBit == 1.5) {
-		    if (instrument.commInterface.parity.equals("NONE")) {
+		if (instrument.getCommInterface().getStopBit() == 1.5) {
+		    if (instrument.getCommInterface().getParity().equals("NONE")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_7, SerialPort.STOPBITS_1_5,
 				SerialPort.PARITY_NONE);
 		    }
-		    if (instrument.commInterface.parity.equals("ODD")) {
+		    if (instrument.getCommInterface().getParity().equals("ODD")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_7, SerialPort.STOPBITS_1_5,
 				SerialPort.PARITY_ODD);
 		    }
-		    if (instrument.commInterface.parity.equals("EVEN")) {
+		    if (instrument.getCommInterface().getParity().equals("EVEN")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_7, SerialPort.STOPBITS_1_5,
 				SerialPort.PARITY_EVEN);
 		    }
 		}
-		if (instrument.commInterface.stopBit == 2.0) {
-		    if (instrument.commInterface.parity.equals("NONE")) {
+		if (instrument.getCommInterface().getStopBit() == 2.0) {
+		    if (instrument.getCommInterface().getParity().equals("NONE")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_7, SerialPort.STOPBITS_2,
 				SerialPort.PARITY_NONE);
 		    }
-		    if (instrument.commInterface.parity.equals("ODD")) {
+		    if (instrument.getCommInterface().getParity().equals("ODD")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_7, SerialPort.STOPBITS_2,
 				SerialPort.PARITY_ODD);
 		    }
-		    if (instrument.commInterface.parity.equals("EVEN")) {
+		    if (instrument.getCommInterface().getParity().equals("EVEN")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_7, SerialPort.STOPBITS_2,
 				SerialPort.PARITY_EVEN);
 		    }
 		}
 		break;
 	    case 8:
-		if (instrument.commInterface.stopBit == 1.0) {
-		    if (instrument.commInterface.parity.equals("NONE")) {
+		if (instrument.getCommInterface().getStopBit() == 1.0) {
+		    if (instrument.getCommInterface().getParity().equals("NONE")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_8, SerialPort.STOPBITS_1,
 				SerialPort.PARITY_NONE);
 		    }
-		    if (instrument.commInterface.parity.equals("ODD")) {
+		    if (instrument.getCommInterface().getParity().equals("ODD")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_8, SerialPort.STOPBITS_1,
 				SerialPort.PARITY_ODD);
 		    }
-		    if (instrument.commInterface.parity.equals("EVEN")) {
+		    if (instrument.getCommInterface().getParity().equals("EVEN")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_8, SerialPort.STOPBITS_1,
 				SerialPort.PARITY_EVEN);
 		    }
 		}
-		if (instrument.commInterface.stopBit == 1.5) {
-		    if (instrument.commInterface.parity.equals("NONE")) {
+		if (instrument.getCommInterface().getStopBit() == 1.5) {
+		    if (instrument.getCommInterface().getParity().equals("NONE")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_8, SerialPort.STOPBITS_1_5,
 				SerialPort.PARITY_NONE);
 		    }
-		    if (instrument.commInterface.parity.equals("ODD")) {
+		    if (instrument.getCommInterface().getParity().equals("ODD")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_8, SerialPort.STOPBITS_1_5,
 				SerialPort.PARITY_ODD);
 		    }
-		    if (instrument.commInterface.parity.equals("EVEN")) {
+		    if (instrument.getCommInterface().getParity().equals("EVEN")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_8, SerialPort.STOPBITS_1_5,
 				SerialPort.PARITY_EVEN);
 		    }
 		}
-		if (instrument.commInterface.stopBit == 2.0) {
-		    if (instrument.commInterface.parity.equals("NONE")) {
+		if (instrument.getCommInterface().getStopBit() == 2.0) {
+		    if (instrument.getCommInterface().getParity().equals("NONE")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_8, SerialPort.STOPBITS_2,
 				SerialPort.PARITY_NONE);
 		    }
-		    if (instrument.commInterface.parity.equals("ODD")) {
+		    if (instrument.getCommInterface().getParity().equals("ODD")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_8, SerialPort.STOPBITS_2,
 				SerialPort.PARITY_ODD);
 		    }
-		    if (instrument.commInterface.parity.equals("EVEN")) {
+		    if (instrument.getCommInterface().getParity().equals("EVEN")) {
 			serialPort.setSerialPortParams(
-				instrument.commInterface.baudRate,
+				instrument.getCommInterface().getBaudRate(),
 				SerialPort.DATABITS_8, SerialPort.STOPBITS_2,
 				SerialPort.PARITY_EVEN);
 		    }

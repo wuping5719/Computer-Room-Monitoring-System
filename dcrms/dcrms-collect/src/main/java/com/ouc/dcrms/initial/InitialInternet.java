@@ -22,12 +22,12 @@ public class InitialInternet {
     public String IPAddress;
 
     public InitialInternet(Instrument instrument) {
-	this.port = instrument.commInterface.port;
-	this.IPAddress = instrument.commInterface.IPAddress;
+	this.port = instrument.getCommInterface().getPort();
+	this.IPAddress = instrument.getCommInterface().getIPAddress();
 
 	try {
-	    if (instrument.attribution.model.equals("DA100")
-		    || instrument.attribution.model.equals("MX100")) {
+	    if (instrument.getAttribution().getModel().equals("DA100")
+		    || instrument.getAttribution().getModel().equals("MX100")) {
 		server = null;
 	    } else {
 		server = new Socket(IPAddress, port);

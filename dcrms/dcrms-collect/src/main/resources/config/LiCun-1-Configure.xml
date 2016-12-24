@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>                 <!-- 版本和格式 -->
+<Root>                                                  <!-- 根节点 -->
+	<Instrument>                                        <!-- 设备节点 -->
+		<Attribution>								      <!-- 属性 -->
+			<GlobalID>1</GlobalID>						    <!-- 设备全局ID -->
+			<Name>采集器</Name>						        <!-- 设备的名称 -->
+			<EnglishName>KLW8000</EnglishName>		        <!-- 设备的英文名 -->
+			<Manufacturer>横河</Manufacturer>	                <!-- 设备的生产厂家 -->
+			<Model>KLW8000</Model>					        <!-- 设备的型号 -->
+			<ParameterNum>1</ParameterNum>		            <!-- 设备中传感器的个数 -->
+			<Serialnumber>C8000-001</Serialnumber>			<!-- 序列号 -->
+			<RelativeID>1</RelativeID>			            <!-- 相对ID -->
+			<InstrumentType>1</InstrumentType>			    <!-- 设备类型 -->
+		</Attribution>
+		<Interface>                                       <!-- 接口 -->
+			<RS485>                                         <!-- 接口类型 -->
+				<Comport>10</Comport>                        <!-- 接口接在PC的通讯端口 -->
+				<Baudrate>9600</Baudrate>                    <!-- 波特率 -->
+				<Databit>8</Databit>                         <!-- 字节数 -->
+				<Stopbit>1</Stopbit>                         <!-- 停止位 -->
+				<Parity>NONE</Parity>                        <!-- 校验方式 -->
+				<Address>0</Address>                         <!-- 接口本身的通讯地址 -->
+			</RS485>
+		</Interface>
+		<Parameter>                                        <!-- 传感器 -->
+			<A>
+				<GlobalID>1</GlobalID>                        <!-- 传感器全局ID -->
+				<Name>温度1</Name>                             <!-- 传感器名称 -->
+				<EnglishName>Temperature-1</EnglishName>      <!-- 传感器英文名 -->
+				<Unit>℃</Unit>                                <!-- 传感器数据单位 -->
+				<InternalIdentifier>0</InternalIdentifier>    <!-- 传感器内部标识 -->
+				<RelativeID>1</RelativeID>                    <!-- 传感器相对ID -->
+				<SensorType>0</SensorType>                    <!-- 传感器类型 -->
+				<UpperLimit>100</UpperLimit>                  <!-- 传感器数据上限 -->
+				<LowerLimit>-30</LowerLimit>                  <!-- 传感器数据下限 -->
+				<Accuracy>0.01</Accuracy>                     <!-- 传感器数据精度 -->
+				<Tolerance>±0.1</Tolerance>                   <!-- 传感器数据公差 -->
+				<Showable>0</Showable>                        <!-- 是否在界面显示 -->
+			</A>
+		</Parameter>
+	</Instrument>
+
+	<Instrument>                                        <!-- 设备节点 -->
+		<Attribution>								      <!-- 属性 -->
+			<GlobalID>2</GlobalID>						    <!-- 设备全局ID -->
+			<Name>采集器</Name>						        <!-- 设备的名称 -->
+			<EnglishName>KLW8000</EnglishName>		        <!-- 设备的英文名 -->
+			<Manufacturer>横河</Manufacturer>	                <!-- 设备的生产厂家 -->
+			<Model>KLW8000</Model>					        <!-- 设备的型号 -->
+			<ParameterNum>1</ParameterNum>		            <!-- 设备中传感器的个数 -->
+			<Serialnumber>C8000-002</Serialnumber>			<!-- 序列号 -->
+			<RelativeID>2</RelativeID>			            <!-- 相对ID -->
+			<InstrumentType>1</InstrumentType>			    <!-- 设备类型 -->
+		</Attribution>
+		<Interface>                                       <!-- 接口 -->
+			<RS232>                                         <!-- 接口类型 -->
+				<Comport>10</Comport>                        <!-- 接口接在PC的通讯端口 -->
+				<Baudrate>9600</Baudrate>                    <!-- 波特率 -->
+				<Databit>8</Databit>                         <!-- 字节数 -->
+				<Stopbit>1</Stopbit>                         <!-- 停止位 -->
+				<Parity>NONE</Parity>                        <!-- 校验方式 -->
+			</RS232>
+		</Interface>
+		<Parameter>                                        <!-- 传感器 -->
+			<A>
+				<GlobalID>2</GlobalID>
+				<Name>红外2</Name>
+				<EnglishName>HongWai</EnglishName>
+				<Unit>0</Unit>
+				<InternalIdentifier>4</InternalIdentifier>
+				<RelativeID>1</RelativeID>
+				<SensorType>0</SensorType>
+				<UpperLimit>0</UpperLimit>
+				<LowerLimit>2</LowerLimit>
+				<CureCoordinateID>0</CureCoordinateID>
+				<Accuracy>0</Accuracy>
+				<Tolerance>0</Tolerance>
+				<Showable>0</Showable>
+			</A>
+			<A>
+				<GlobalID>3</GlobalID>
+				<Name>火感1</Name>
+				<EnglishName>HuoGan</EnglishName>
+				<Unit>0</Unit>
+				<InternalIdentifier>3</InternalIdentifier>
+				<RelativeID>2</RelativeID>
+				<SensorType>0</SensorType>
+				<UpperLimit>0</UpperLimit>
+				<LowerLimit>2</LowerLimit>
+				<CureCoordinateID>0</CureCoordinateID>
+				<Accuracy>0</Accuracy>
+				<Tolerance>0</Tolerance>
+				<Showable>0</Showable>
+			</A>
+		</Parameter>
+	</Instrument>
+</Root>

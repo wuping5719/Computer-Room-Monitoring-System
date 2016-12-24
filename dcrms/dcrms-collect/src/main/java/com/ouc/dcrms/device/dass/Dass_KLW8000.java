@@ -30,7 +30,7 @@ public class Dass_KLW8000 implements VirtualDevice {
 	    initialInterface.commInstance.outputStream.write(cmd);
 	} catch (Exception e) {
 	    flag = "KLW8000 发命令失败!";
-	    System.out.println("站点" + instrument.attribution.siteID + "的"
+	    System.out.println("站点" + instrument.getAttribution().getSiteID() + "的"
 		    + flag);
 	}
 	return flag;
@@ -42,7 +42,7 @@ public class Dass_KLW8000 implements VirtualDevice {
 	String data = "";
 	String digital = "";
 	String simulation = "";
-	String strData = ""; // 保存数据变量
+	StringBuilder strData = new StringBuilder(); // 保存数据变量
 	String uData = "";
 	CommandProcessing cd = new CommandProcessing();
 	int sensorLenth = cd.getStrSpecialCharNum(sensorsList) + 1; // 传感器个数
@@ -60,21 +60,18 @@ public class Dass_KLW8000 implements VirtualDevice {
 	    data = cd.toHexString(receive);
 
 	    if (!data.equals("")) {
-		strData = "g";
+		strData = new StringBuilder("g");
 		digital = data.substring(6, 10);
 		simulation = data.substring(22, 54);
 		for (int i = 0; i < sensorLenth; i++) {
-		    for (int sensorNum = 0; sensorNum < instrument.sensorNumber; sensorNum++) {
-			if (Integer.parseInt(sensorArray[sensorCount]) == instrument.sensors[sensorNum].globalID) {
-			    if (instrument.sensors[sensorNum].internalIdentifier == 0) {
-
-				uData = String
-					.valueOf(currentData(
-						simulation,
-						instrument.sensors[sensorNum].relativeID,
-						1));
-				strData = strData + sensorArray[sensorCount]
-					+ ":" + uData + "@";
+		    for (int j = 0; j < instrument.getSensors().size(); j++) {
+			if (Integer.parseInt(sensorArray[sensorCount]) == instrument.getSensors().get(j).getGlobalID()) {
+			    if (instrument.getSensors().get(j).getInternalIdentifier() == 0) {
+				uData = String.valueOf(currentData(simulation, instrument.getSensors().get(j).getRelativeID(), 1));
+				strData.append(sensorArray[sensorCount]); 
+				strData.append(":");
+				strData.append(uData);
+				strData.append("@");
 				if ((Float.parseFloat(uData) < GlobalVariable.temp_min)
 					&& (Float.parseFloat(uData) > 0)) {
 				    // dbo.insertAlert(351,
@@ -87,14 +84,12 @@ public class Dass_KLW8000 implements VirtualDevice {
 				}
 			    }
 
-			    if (instrument.sensors[sensorNum].internalIdentifier == 1) {
-				uData = String
-					.valueOf(currentData(
-						simulation,
-						instrument.sensors[sensorNum].relativeID,
-						2));
-				strData = strData + sensorArray[sensorCount]
-					+ ":" + uData + "@";
+			    if (instrument.getSensors().get(j).getInternalIdentifier() == 1) {
+				uData = String.valueOf(currentData(simulation, instrument.getSensors().get(j).getRelativeID(), 2));
+				strData.append(sensorArray[sensorCount]); 
+				strData.append(":");
+				strData.append(uData);
+				strData.append("@");
 				if ((Float.parseFloat(uData) < GlobalVariable.humi_min)
 					&& (Float.parseFloat(uData) > 0)) {
 				    // dbo.insertAlert(353,
@@ -109,46 +104,38 @@ public class Dass_KLW8000 implements VirtualDevice {
 
 			    // 0-温度、1-湿度（内部标识）；2-烟感、3-火感、4-红外、5-水浸、6-稳压电源、7-门禁（内部标识）
 			    // 内部标识为1表示开关量
-			    if (instrument.sensors[sensorNum].internalIdentifier > 1) {
-				uData = String
-					.valueOf(getDigital(
-						digital,
-						instrument.sensors[sensorNum].relativeID)); // 开关量的值
-				if ((instrument.sensors[sensorNum].internalIdentifier == 4 || instrument.sensors[sensorNum].internalIdentifier == 7)
-					&& instrument.attribution.siteID != 1) {
-				    uData = String.valueOf((Integer
-					    .parseInt(uData) + 1) % 2);
+			    if (instrument.getSensors().get(j).getInternalIdentifier() > 1) {
+				uData = String.valueOf(getDigital(digital, instrument.getSensors().get(j).getRelativeID())); // 开关量的值
+				if ((instrument.getSensors().get(j).getInternalIdentifier() == 4 || instrument.getSensors().get(j).getInternalIdentifier() == 7)
+					&& instrument.getAttribution().getSiteID() != 1) {
+				    uData = String.valueOf((Integer.parseInt(uData) + 1) % 2);
 				}
 
-				strData = strData + sensorArray[sensorCount]
-					+ ":" + uData + "@";
-				if (uData.equals("0")
-					&& instrument.sensors[sensorNum].internalIdentifier == 2) {
+				strData.append(sensorArray[sensorCount]); 
+				strData.append(":");
+				strData.append(uData);
+				strData.append("@");
+				if (uData.equals("0") && instrument.getSensors().get(j).getInternalIdentifier() == 2) {
 				    // dbo.insertAlert(354,
 				    // instrument.attribution.globalID,instrument.attribution.siteID);
 				}
-				if (uData.equals("0")
-					&& instrument.sensors[sensorNum].internalIdentifier == 3) {
+				if (uData.equals("0") && instrument.getSensors().get(j).getInternalIdentifier() == 3) {
 				    // dbo.insertAlert(355,
 				    // instrument.attribution.globalID,instrument.attribution.siteID);
 				}
-				if (uData.equals("0")
-					&& instrument.sensors[sensorNum].internalIdentifier == 4) {
+				if (uData.equals("0") && instrument.getSensors().get(j).getInternalIdentifier() == 4) {
 				    // dbo.insertAlert(356,
 				    // instrument.attribution.globalID,instrument.attribution.siteID);
 				}
-				if (uData.equals("0")
-					&& instrument.sensors[sensorNum].internalIdentifier == 5) {
+				if (uData.equals("0") && instrument.getSensors().get(j).getInternalIdentifier() == 5) {
 				    // dbo.insertAlert(357,
 				    // instrument.attribution.globalID,instrument.attribution.siteID);
 				}
-				if (uData.equals("0")
-					&& instrument.sensors[sensorNum].internalIdentifier == 6) {
+				if (uData.equals("0") && instrument.getSensors().get(j).getInternalIdentifier() == 6) {
 				    // dbo.insertAlert(358,
 				    // instrument.attribution.globalID,instrument.attribution.siteID);
 				}
-				if (uData.equals("0")
-					&& instrument.sensors[sensorNum].internalIdentifier == 7) {
+				if (uData.equals("0") && instrument.getSensors().get(j).getInternalIdentifier() == 7) {
 				    // dbo.insertAlert(359,
 				    // instrument.attribution.globalID,instrument.attribution.siteID);
 				}
@@ -160,24 +147,26 @@ public class Dass_KLW8000 implements VirtualDevice {
 		}
 
 	    } else {
-		strData = "b";
+		strData = new StringBuilder("b");
 		for (int i = 0; i < sensorLenth; i++) {
-		    for (int sensorNum = 0; sensorNum < instrument.sensorNumber; sensorNum++) {
-			if (Integer.parseInt(sensorArray[sensorCount]) == instrument.attribution.globalID) {
+		    for (int j = 0; j < instrument.getSensors().size(); j++) {
+			if (Integer.parseInt(sensorArray[sensorCount]) == instrument.getAttribution().getGlobalID()) {
 			    uData = "888888";
-			    strData = strData + sensorArray[sensorCount] + ":"
-				    + uData + "@";
+			    strData.append(sensorArray[sensorCount]);
+			    strData.append(":");
+			    strData.append(uData);
+			    strData.append("@");
 			}
 		    }
 		    sensorCount++;
 		}
 	    }
 	} catch (Exception e) {
-	    strData = "KLW8000读取数据失败!";
-	    System.out.println("站点" + instrument.attribution.siteID + "的"
+	    strData = new StringBuilder("KLW8000读取数据失败!");
+	    System.out.println("站点" + instrument.getAttribution().getSiteID() + "的"
 		    + strData);
 	}
-	return strData;
+	return strData.toString();
     }
 
     // 将电流转为相对应的参数

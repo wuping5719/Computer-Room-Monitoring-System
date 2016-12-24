@@ -25,11 +25,11 @@ public class Dass_APC implements VirtualDevice {
 	cmd[5] = "P";
 	String init = "Y";
 	try {
-	    if (GlobalVariable.ct[instrument.attribution.globalID - 1] == 0) {
+	    if (GlobalVariable.ct[instrument.getAttribution().getGlobalID() - 1] == 0) {
 		initialInterface.commInstance.outputStream.write(init
 			.getBytes());
 		Thread.sleep(500);
-		GlobalVariable.ct[instrument.attribution.globalID - 1] = 1;
+		GlobalVariable.ct[instrument.getAttribution().getGlobalID() - 1] = 1;
 		byte[] receive = new byte[initialInterface.commInstance.inputStream
 			.available()];
 		while (initialInterface.commInstance.inputStream.available() > 0) {
@@ -38,19 +38,19 @@ public class Dass_APC implements VirtualDevice {
 	    }
 
 	    // 内部标识只能是0-5
-	    if (instrument.sensorNumber >= 0
-		    && instrument.sensors[0].internalIdentifier < 6) {
+	    if (instrument.getSensors().size() >= 0
+		    && instrument.getSensors().get(0).getInternalIdentifier() < 6) {
 		initialInterface.commInstance.outputStream
-			.write(cmd[instrument.sensors[0].internalIdentifier]
+			.write(cmd[instrument.getSensors().get(0).getInternalIdentifier()]
 				.getBytes());
 	    } else {
 		flag = "APC的internalIdentifier超出的界限";
 	    }
 
 	} catch (Exception e) {
-	    flag = "APC发送第" + instrument.sensors[0].internalIdentifier
+	    flag = "APC发送第" + instrument.getSensors().get(0).getInternalIdentifier()
 		    + "个命令失败";
-	    System.out.println("站点" + instrument.attribution.siteID + "的"
+	    System.out.println("站点" + instrument.getAttribution().getSiteID() + "的"
 		    + flag);
 	}
 	return flag;
@@ -59,7 +59,7 @@ public class Dass_APC implements VirtualDevice {
     @Override
     public String readData(String sensorsList, int sensorsLength,
 	    Instrument instrument, InitialInterface initialInterface) {
-	String strData = "";
+	StringBuilder strData = new StringBuilder();
 	CommandProcessing cd = new CommandProcessing();
 	int sensorLenth = cd.getStrSpecialCharNum(sensorsList) + 1;// 传感器个数
 	String[] sensorArray = new String[sensorLenth];
@@ -74,31 +74,34 @@ public class Dass_APC implements VirtualDevice {
 	    }
 	    String receivedata = new String(receive).trim();
 	    if (receivedata.length() > 0) {
-		if (instrument.sensors[0].internalIdentifier == 0) {
-		    strData = "g";
+		if (instrument.getSensors().get(0).getInternalIdentifier() == 0) {
+		    strData = new StringBuilder("g");
 		} else {
-		    strData = "m";
+		    strData = new StringBuilder("m");
 		}
 		for (int i = 0; i < sensorLenth; i++) {
-		    for (int sensorNum = 0; sensorNum < instrument.sensorNumber; sensorNum++) {
-			if (Integer.parseInt(sensorArray[sensorCount]) == instrument.sensors[sensorNum].globalID) {
-			    strData += instrument.sensors[sensorNum].globalID
-				    + ":" + receivedata + "@"; // 状态
+		    for (int j = 0; j < instrument.getSensors().size(); j++) {
+			if (Integer.parseInt(sensorArray[sensorCount]) == instrument.getSensors().get(j).getGlobalID()) {
+			    strData.append(instrument.getSensors().get(j).getGlobalID());
+			    strData.append(":");
+			    strData.append(receivedata);   // 状态
+			    strData.append("@");
 			}
 		    }
 		    sensorCount++;
 		}
 	    } else {
-		if (instrument.sensors[0].internalIdentifier == 0) {
-		    strData = "b";
+		if (instrument.getSensors().get(0).getInternalIdentifier() == 0) {
+		    strData = new StringBuilder("b");
 		} else {
-		    strData = "m";
+		    strData = new StringBuilder("m");
 		}
 		for (int i = 0; i < sensorLenth; i++) {
-		    for (int sensorNum = 0; sensorNum < instrument.sensorNumber; sensorNum++) {
-			if (Integer.parseInt(sensorArray[sensorCount]) == instrument.sensors[sensorNum].globalID) {
-			    strData = strData + sensorArray[sensorCount]
-				    + ":888888@";
+		    for (int j = 0; j < instrument.getSensors().size(); j++) {
+			if (Integer.parseInt(sensorArray[sensorCount]) == instrument.getSensors().get(j).getGlobalID()) {
+			    strData.append(strData);
+			    strData.append(sensorArray[sensorCount]);
+			    strData.append(":888888@");
 			}
 		    }
 		    sensorCount++;
@@ -106,16 +109,18 @@ public class Dass_APC implements VirtualDevice {
 	    }
 
 	} catch (Exception e) {
-	    if (instrument.sensors[0].internalIdentifier == 0) {
-		strData = "APC" + instrument.sensors[0].internalIdentifier
-			+ "获取数据失败";
+	    if (instrument.getSensors().get(0).getInternalIdentifier() == 0) {
+		strData.append("APC");
+		strData.append(instrument.getSensors().get(0).getInternalIdentifier());
+		strData.append("获取数据失败!");
 	    } else {
-		strData = "eAPC" + instrument.sensors[0].internalIdentifier
-			+ "获取数据失败";
+		strData.append("eAPC");
+		strData.append(instrument.getSensors().get(0).getInternalIdentifier());
+		strData.append("获取数据失败!");
 	    }
-	    System.out.println("站点" + instrument.attribution.siteID + "的"
+	    System.out.println("站点" + instrument.getAttribution().getSiteID() + "的"
 		    + strData);
 	}
-	return strData;
+	return strData.toString();
     }
 }

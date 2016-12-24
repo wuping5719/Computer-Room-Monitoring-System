@@ -50,10 +50,10 @@ public class Collecter extends TimerTask implements Runnable {
 	    alertRecord.setAlerttime(now);
 
 	    Random random = new Random();
-	    int insID = random.nextInt() % 2;
+	    int insID = random.nextInt(100) + 1;
 	    alertRecord.setInstrumentid(insID);
 	    alertRecord.setSiteid(1);
-	    int reasonID = random.nextInt() % 2;
+	    int reasonID = random.nextInt(50) + 1;
 	    alertRecord.setReasonid(reasonID);
 	    alertRecord.setSolved(0);
 	    alertServiceCore.insertAlertRecord(alertRecord);

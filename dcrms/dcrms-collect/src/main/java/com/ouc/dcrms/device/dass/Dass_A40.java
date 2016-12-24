@@ -15,7 +15,7 @@ public class Dass_A40 implements VirtualDevice {
 	String flag = "0";
 	CommandProcessing cd = new CommandProcessing();
 	String[] cmd = new String[2];
-	String address = String.valueOf(instrument.commInterface.address);
+	String address = String.valueOf(instrument.getCommInterface().getAddress());
 	if (address.length() == 1) {   //一位地址长度补齐为两位格式，如1补齐为01
 	    address = "0" + address;
 	}
@@ -26,18 +26,18 @@ public class Dass_A40 implements VirtualDevice {
 	}
 
 	try {
-	    if (instrument.sensorNumber >= 0
-		    && instrument.sensors[0].internalIdentifier < 2) // 内部标识只能是0-1
+	    if (instrument.getSensors().size() >= 0
+		    && instrument.getSensors().get(0).getInternalIdentifier() < 2) // 内部标识只能是0-1
 	    {
 		initialInterface.commInstance.outputStream.write(cd
-			.toByte(cmd[instrument.sensors[0].internalIdentifier]));
+			.toByte(cmd[instrument.getSensors().get(0).getInternalIdentifier()]));
 	    } else {
 		flag = "KSP1的internalIdentifier超出的界限";
 	    }
 	} catch (Exception e) {
-	    flag = "A40发送第" + instrument.sensors[0].internalIdentifier
+	    flag = "A40发送第" + instrument.getSensors().get(0).getInternalIdentifier()
 		    + "个命令失败";
-	    System.out.println("站点" + instrument.attribution.siteID + "的"
+	    System.out.println("站点" + instrument.getAttribution().getSiteID() + "的"
 		    + flag);
 	}
 	return flag;
@@ -46,7 +46,7 @@ public class Dass_A40 implements VirtualDevice {
     @Override
     public String readData(String sensorsList, int sensorsLength,
 	    Instrument instrument, InitialInterface initialInterface) {
-	String strData = "";
+	StringBuilder strData = new StringBuilder();
 	String recdata;
 	int flag = 0;
 	CommandProcessing cd = new CommandProcessing();
@@ -67,7 +67,7 @@ public class Dass_A40 implements VirtualDevice {
 
 	    if (recdata.length() == 410 && CRC16.checkCrc16(recdata)) {
 		flag = 1;
-		strData = "g";
+		strData = new StringBuilder("g");
 		float[] u = { 0, 0, 0 };
 		float[] a = { 0, 0, 0 };
 		float[] px = { 0, 0, 0 };
@@ -79,8 +79,8 @@ public class Dass_A40 implements VirtualDevice {
 		int ct;
 		float pt;
 
-		ct = GlobalVariable.ct[instrument.attribution.globalID - 1];
-		pt = GlobalVariable.pt[instrument.attribution.globalID - 1];
+		ct = GlobalVariable.ct[instrument.getAttribution().getGlobalID() - 1];
+		pt = GlobalVariable.pt[instrument.getAttribution().getGlobalID() - 1];
 
 		String iResponse = recdata.substring(6, 18);
 		String uResponse = recdata.substring(34, 46);
@@ -148,86 +148,123 @@ public class Dass_A40 implements VirtualDevice {
 		}
 
 		for (int i = 0; i < sensorLength; i++) {
-		    for (int sensorNum = 0; sensorNum < instrument.sensorNumber; sensorNum++) {
-			if (Integer.parseInt(sensorArray[sensorCount]) == instrument.sensors[sensorNum].globalID) {
-
-			    switch (instrument.sensors[sensorNum].relativeID) // A相
+		    for (int sensorNum = 0; sensorNum < instrument.getSensors().size(); sensorNum++) {
+			if (Integer.parseInt(sensorArray[sensorCount]) == instrument.getSensors().get(sensorNum).getGlobalID()) {
+			    switch (instrument.getSensors().get(sensorNum).getRelativeID()) // A相
 			    {
 			    case 1:
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":" + u[0] + "@";
+				strData.append(instrument.getSensors().get(sensorNum).getGlobalID());
+				strData.append(":");
+				strData.append(u[0]);
+				strData.append("@");
 				break;
 			    case 2:
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":" + u[1] + "@";
+				strData.append(instrument.getSensors().get(sensorNum).getGlobalID());
+				strData.append(":");
+				strData.append(u[1]);
+				strData.append("@");
 				break;
 			    case 3:
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":" + u[2] + "@";
+				strData.append(instrument.getSensors().get(sensorNum).getGlobalID());
+				strData.append(":");
+				strData.append(u[2]);
+				strData.append("@");
 				break;
 			    case 4:
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":" + a[0] + "@";
+				strData.append(instrument.getSensors().get(sensorNum).getGlobalID());
+				strData.append(":");
+				strData.append(a[0]);
+				strData.append("@");
 				break;
 			    case 5:
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":" + a[1] + "@";
+				strData.append(instrument.getSensors().get(sensorNum).getGlobalID());
+				strData.append(":");
+				strData.append(a[1]);
+				strData.append("@");
 				break;
 			    case 6:
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":" + a[2] + "@";
+				strData.append(instrument.getSensors().get(sensorNum).getGlobalID());
+				strData.append(":");
+				strData.append(a[2]);
+				strData.append("@");
 				break;
 			    case 7:
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":" + px[0] + "@";
+				strData.append(instrument.getSensors().get(sensorNum).getGlobalID());
+				strData.append(":");
+				strData.append(px[0]);
+				strData.append("@");
 				break;
 			    case 8:
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":" + px[1] + "@";
+				strData.append(instrument.getSensors().get(sensorNum).getGlobalID());
+				strData.append(":");
+				strData.append(px[1]);
+				strData.append("@");
 				break;
 			    case 9:
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":" + px[2] + "@";
+				strData.append(instrument.getSensors().get(sensorNum).getGlobalID());
+				strData.append(":");
+				strData.append(px[2]);
+				strData.append("@");
 				break;
 			    case 10:
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":" + py[0] + "@";
+				strData.append(instrument.getSensors().get(sensorNum).getGlobalID());
+				strData.append(":");
+				strData.append(py[0]);
+				strData.append("@");
 				break;
 			    case 11:
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":" + py[1] + "@";
+				strData.append(instrument.getSensors().get(sensorNum).getGlobalID());
+				strData.append(":");
+				strData.append(py[1]);
+				strData.append("@");
 				break;
 			    case 12:
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":" + py[2] + "@";
+				strData.append(instrument.getSensors().get(sensorNum).getGlobalID());
+				strData.append(":");
+				strData.append(py[2]);
+				strData.append("@");
 				break;
 			    case 13:
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":" + pz[0] + "@";
+				strData.append(instrument.getSensors().get(sensorNum).getGlobalID());
+				strData.append(":");
+				strData.append(pz[0]);
+				strData.append("@");
 				break;
 			    case 14:
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":" + pz[1] + "@";
+				strData.append(instrument.getSensors().get(sensorNum).getGlobalID());
+				strData.append(":");
+				strData.append(pz[1]);
+				strData.append("@");
 				break;
 			    case 15:
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":" + pz[2] + "@";
+				strData.append(instrument.getSensors().get(sensorNum).getGlobalID());
+				strData.append(":");
+				strData.append(pz[2]);
+				strData.append("@");
 				break;
 			    case 16:
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":" + pp[0] + "@";
+				strData.append(instrument.getSensors().get(sensorNum).getGlobalID());
+				strData.append(":");
+				strData.append(pp[0]);
+				strData.append("@");
 				break;
 			    case 17:
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":" + pp[1] + "@";
+				strData.append(instrument.getSensors().get(sensorNum).getGlobalID());
+				strData.append(":");
+				strData.append(pp[1]);
+				strData.append("@");
 				break;
 			    case 18:
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":" + pp[2] + "@";
+				strData.append(instrument.getSensors().get(sensorNum).getGlobalID());
+				strData.append(":");
+				strData.append(pp[2]);
+				strData.append("@");
 				break;
 			    case 19:
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":" + f + "@";
+				strData.append(instrument.getSensors().get(sensorNum).getGlobalID());
+				strData.append(":");
+				strData.append(f);
+				strData.append("@");
 				break;
 			    }
 			}
@@ -241,40 +278,40 @@ public class Dass_A40 implements VirtualDevice {
 	    // 从地址700读来的数据是没有考虑电流和电压变比的，所以需要乘这两个参数
 	    if (recdata.length() == 38 && CRC16.checkCrc16(recdata)) {
 		flag = 1;
-		strData = "m";
-
+		strData = new StringBuilder("m");
 		getCTAndPT(instrument, recdata);
 	    } else {
 		if (flag == 0) {
-		    if (instrument.sensors[0].internalIdentifier == 1) {
-			strData = "b";
+		    if (instrument.getSensors().get(0).getInternalIdentifier() == 1) {
+			strData = new StringBuilder("b");
 			// dbo.insertAlert(34, instrument.attribution.globalID,
 			// instrument.attribution.siteID);
 		    } else {
-			strData = "m";
+			strData = new StringBuilder("m");
 		    }
 		    for (int i = 0; i < sensorLength; i++) {
-			for (int sensorNum = 0; sensorNum < instrument.sensorNumber; sensorNum++) {
-			    if (Integer.parseInt(sensorArray[sensorCount]) == instrument.sensors[sensorNum].globalID) {
-				strData = strData + sensorArray[sensorCount]
-					+ ":888888@";
+			for (int sensorNum = 0; sensorNum < instrument.getSensors().size(); sensorNum++) {
+			    if (Integer.parseInt(sensorArray[sensorCount]) == instrument.getSensors().get(sensorNum).getGlobalID()) {
+				strData.append(sensorArray[sensorCount] + ":888888@");
 			    }
 			}
 			sensorCount++;
 		    }
 		}
 	    }
-	    System.out.println("A40:" + strData);
+	    System.out.println("A40:" + strData.toString());
 	} catch (Exception e) {
-	    if (instrument.sensors[0].internalIdentifier == 0) {
-		strData = "KSP1" + instrument.sensors[0].internalIdentifier
-			+ "获取数据失败";
+	    if (instrument.getSensors().get(0).getInternalIdentifier() == 0) {
+		strData.append("KSP1");
+		strData.append(instrument.getSensors().get(0).getInternalIdentifier());
+		strData.append("获取数据失败!");
 	    } else {
-		strData = "eKSP1" + instrument.sensors[0].internalIdentifier
-			+ "获取数据失败";
+		strData.append("eKSP1");
+		strData.append(instrument.getSensors().get(0).getInternalIdentifier());
+		strData.append("获取数据失败!");
 	    }
 	}
-	return strData;
+	return strData.toString();
     }
 
     private void getCTAndPT(Instrument instrument, String recdata) {
@@ -290,13 +327,13 @@ public class Dass_A40 implements VirtualDevice {
 	    pt = ptPrimary / ptSecondary;
 	}
 
-	GlobalVariable.pt[instrument.attribution.globalID - 1] = pt;
+	GlobalVariable.pt[instrument.getAttribution().getGlobalID() - 1] = pt;
 
 	int ctSecondary = 0, ctPrimary = 0;
 
 	ctSecondary = Integer.parseInt(recdata.substring(10, 14), 16);
 	ctPrimary = Integer.parseInt(recdata.substring(14, 18), 16);
 	int ct = ctPrimary / ctSecondary;
-	GlobalVariable.ct[instrument.attribution.globalID - 1] = ct;
+	GlobalVariable.ct[instrument.getAttribution().getGlobalID() - 1] = ct;
     }
 }

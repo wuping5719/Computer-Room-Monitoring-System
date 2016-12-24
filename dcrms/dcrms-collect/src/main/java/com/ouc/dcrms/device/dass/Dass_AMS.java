@@ -19,7 +19,7 @@ public class Dass_AMS implements VirtualDevice {
 	String[] cmd = new String[6];
 	CommandProcessing cd = new CommandProcessing();
 	String flag = "0";
-	String address = String.valueOf(instrument.commInterface.address);
+	String address = String.valueOf(instrument.getCommInterface().getAddress());
 	if (address.length() == 1) { // 一位地址长度补齐为两位格式，如1补齐为01
 	    address = "0" + address;
 	}
@@ -34,16 +34,16 @@ public class Dass_AMS implements VirtualDevice {
 	    cmd[i] = PostProtocol.transFormAsciiCommand(cmd[i]);
 	}
 	try {
-	    if (instrument.sensorNumber >= 0
-		    && instrument.sensors[0].internalIdentifier < 6) // 内部标识只能是0-4
+	    if (instrument.getSensors().size() >= 0
+		    && instrument.getSensors().get(0).getInternalIdentifier() < 6) // 内部标识只能是0-4
 	    {
 		initialInterface.commInstance.outputStream.write(cd
-			.toByte(cmd[instrument.sensors[0].internalIdentifier]));
+			.toByte(cmd[instrument.getSensors().get(0).getInternalIdentifier()]));
 	    } else {
 		flag = "AMS的internalIdentifier超出的界限";
 	    }
 	} catch (Exception e) {
-	    flag = "AMS发送第" + instrument.sensors[0].internalIdentifier
+	    flag = "AMS发送第" + instrument.getSensors().get(0).getInternalIdentifier()
 		    + "个命令失败";
 	}
 	return flag;
@@ -52,7 +52,7 @@ public class Dass_AMS implements VirtualDevice {
     @Override
     public String readData(String sensorsList, int sensorsLength,
 	    Instrument instrument, InitialInterface initialInterface) {
-	String strData = "";
+	StringBuilder strData = new StringBuilder();
 	String recdata;
 	int flag = 0;
 	CommandProcessing cd = new CommandProcessing();
@@ -71,29 +71,29 @@ public class Dass_AMS implements VirtualDevice {
 	    recdata = cd.toHexString(receive);
 
 	    if (recdata.length() == 248) {
-		if (instrument.sensors[0].internalIdentifier == 0) {
-		    strData = "g";
+		if (instrument.getSensors().get(0).getInternalIdentifier() == 0) {
+		    strData = new StringBuilder("g");
 		} else {
-		    strData = "m";
+		    strData = new StringBuilder("m");
 		}
 		flag = 1;
 		for (int i = 0; i < sensorLength; i++) {
-		    for (int sensorNum = 0; sensorNum < instrument.sensorNumber; sensorNum++) {
-			if (Integer.parseInt(sensorArray[sensorCount]) == instrument.sensors[sensorNum].globalID) {
+		    for (int j = 0; j < instrument.getSensors().size(); j++) {
+			if (Integer.parseInt(sensorArray[sensorCount]) == instrument.getSensors().get(j).getGlobalID()) {
 
-			    switch (instrument.sensors[sensorNum].relativeID)// A相
+			    switch (instrument.getSensors().get(j).getRelativeID())// A相
 			    {
 			    case 1:
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":"
-					+ stringToFloat(recdata.substring(34,
-						50)) + "@"; // 直流电压
-				break;
+				strData.append(instrument.getSensors().get(j).getGlobalID());
+				strData.append(":");
+				strData.append(stringToFloat(recdata.substring(34,50))); // 直流电压
+				strData.append("@");    
+				break;   
 			    case 2:
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":"
-					+ stringToFloat(recdata.substring(50,
-						66)) + "@"; // 直流电流
+				strData.append(instrument.getSensors().get(j).getGlobalID());
+				strData.append(":");
+				strData.append(stringToFloat(recdata.substring(50,66))); // 直流电流
+				strData.append("@");    
 				break;
 			    }
 			}
@@ -104,22 +104,22 @@ public class Dass_AMS implements VirtualDevice {
 	    }
 
 	    if (recdata.length() == 188) {
-		strData = "m";
+		strData = new StringBuilder("m");
 		flag = 1;
 		for (int i = 0; i < sensorLength; i++) {
-		    for (int sensorNum = 0; sensorNum < instrument.sensorNumber; sensorNum++) {
-			if (Integer.parseInt(sensorArray[sensorCount]) == instrument.sensors[sensorNum].globalID) {
+		    for (int j = 0; j < instrument.getSensors().size(); j++) {
+			if (Integer.parseInt(sensorArray[sensorCount]) == instrument.getSensors().get(j).getGlobalID()) {
 			    String chargeStr;
 			    chargeStr = recdata.substring(42, 46);// 充电状态
 			    if (chargeStr.equals("3030")) {
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":0@";
+				strData.append(instrument.getSensors().get(j).getGlobalID());
+				strData.append(":0@");
 			    } else if (chargeStr.equals("3031")) {
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":1@";
+				strData.append(instrument.getSensors().get(j).getGlobalID());
+				strData.append(":1@");
 			    } else if (chargeStr.equals("3032")) {
-				strData += instrument.sensors[sensorNum].globalID
-					+ ":2@";
+				strData.append(instrument.getSensors().get(j).getGlobalID());
+				strData.append(":2@");
 			    }
 			    chargeStr = null;
 			}
@@ -129,7 +129,7 @@ public class Dass_AMS implements VirtualDevice {
 	    }
 
 	    if (recdata.length() == 120) {
-		strData = "m";
+		strData = new StringBuilder("m");
 		flag = 1;
 		// 第1路交流输入告警量
 		String err;
@@ -193,7 +193,7 @@ public class Dass_AMS implements VirtualDevice {
 	    }
 
 	    if (recdata.length() == 200) {
-		strData = "m";
+		strData = new StringBuilder("m");
 		flag = 1;
 		if (recdata.substring(34, 38).equals("3031")) {
 		    // 直流电压低于下限
@@ -216,7 +216,7 @@ public class Dass_AMS implements VirtualDevice {
 	    }
 
 	    if (recdata.length() == 172) {
-		strData = "m";
+		strData = new StringBuilder("m");
 		flag = 1;
 		for (int i = 1; i <= 4; i++) {
 		    if (recdata.substring(34 + 32 * (i - 1), 38 + 32 * (i - 1))
@@ -229,16 +229,16 @@ public class Dass_AMS implements VirtualDevice {
 	    } else {
 		if (flag == 0) {
 
-		    if (instrument.sensors[0].internalIdentifier == 0) {
-			strData = "b";
+		    if (instrument.getSensors().get(0).getInternalIdentifier() == 0) {
+			strData = new StringBuilder("b");
 		    } else {
-			strData = "m";
+			strData = new StringBuilder("m");
 		    }
 		    for (int i = 0; i < sensorLength; i++) {
-			for (int sensorNum = 0; sensorNum < instrument.sensorNumber; sensorNum++) {
-			    if (Integer.parseInt(sensorArray[sensorCount]) == instrument.sensors[sensorNum].globalID) {
-				strData = strData + sensorArray[sensorCount]
-					+ ":888888@";
+			for (int j = 0; j < instrument.getSensors().size(); j++) {
+			    if (Integer.parseInt(sensorArray[sensorCount]) == instrument.getSensors().get(j).getGlobalID()) {
+				strData.append(sensorArray[sensorCount]);
+				strData.append(":888888@");
 			    }
 			}
 			sensorCount++;
@@ -246,15 +246,17 @@ public class Dass_AMS implements VirtualDevice {
 		}
 	    }
 	} catch (Exception e) {
-	    if (instrument.sensors[0].internalIdentifier == 0) {
-		strData = "AMS" + instrument.sensors[0].internalIdentifier
-			+ "获取数据失败";
+	    if (instrument.getSensors().get(0).getInternalIdentifier() == 0) {
+		strData.append("AMS");
+		strData.append(instrument.getSensors().get(0).getInternalIdentifier());
+		strData.append("获取数据失败!");
 	    } else {
-		strData = "eAMS" + instrument.sensors[0].internalIdentifier
-			+ "获取数据失败";
+		strData.append("eAMS");
+		strData.append(instrument.getSensors().get(0).getInternalIdentifier());
+		strData.append("获取数据失败!");
 	    }
 	}
-	return strData;
+	return strData.toString();
     }
 
     private float stringToFloat(String str) {

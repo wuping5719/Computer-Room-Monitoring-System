@@ -1,5 +1,7 @@
 package com.ouc.dcrms.util;
 
+import java.util.List;
+
 import com.ouc.dcrms.util.Attribution;
 import com.ouc.dcrms.util.CommInterface;
 import com.ouc.dcrms.util.Sensor;
@@ -10,19 +12,31 @@ import com.ouc.dcrms.util.Sensor;
  */
 
 public class Instrument {
-    public Attribution attribution;
-    public CommInterface commInterface;
-    public Sensor[] sensors;
-    public int sensorNumber = 0; // 定义传感器个数
+    private Attribution attribution;
+    private CommInterface commInterface;
+    private List<Sensor> sensors;
+    
+    public Attribution getAttribution() {
+	return attribution;
+    }
 
-    // 构造函数：根据传入参数n初始化拥有n个传感器的设备
-    public Instrument(int n) {
-	attribution = new Attribution();
-	commInterface = new CommInterface();
-	sensors = new Sensor[n];
-	for (int i = 0; i < n; i++) {
-	    sensors[i] = new Sensor();
-	}
-	sensorNumber = n;
+    public void setAttribution(Attribution attribution) {
+	this.attribution = attribution;
+    }
+
+    public CommInterface getCommInterface() {
+	return commInterface;
+    }
+
+    public void setCommInterface(CommInterface commInterface) {
+	this.commInterface = commInterface;
+    }
+
+    public List<Sensor> getSensors() {
+	return sensors;
+    }
+
+    public void setSensors(List<Sensor> sensors) {
+	this.sensors = sensors;
     }
 }

@@ -25,9 +25,9 @@ public class InitialInterface {
 
     public InitialInterface(Instrument instrument, int instrumentLenth)
 	    throws UnknownHostException, IOException {
-	instrumentModel = instrument.attribution.model;
+	instrumentModel = instrument.getAttribution().getModel();
 	instrumentID = new int[instrumentLenth];
-	this.interfaceName = instrument.commInterface.interfaceName;
+	this.interfaceName = instrument.getCommInterface().getInterfaceName();
 	switch (InterfaceType.valueOf(this.interfaceName)) {
 	  case Ethernet:
 	     internetInstance = new InitialInternet(instrument);

@@ -16,17 +16,17 @@ public class InitialInterface {
     public InitialInternet internetInstance;
     public InitialComm commInstance;
     public String instrumentModel;
-    public int[] instrumentID; // 设备的绝对ID号，用于设备找到相应的初始化接口对象
+    public int[] insIDArray; // 设备的绝对ID号，用于设备找到相应的初始化接口对象
     public String interfaceName;
 
     private enum InterfaceType {
 	Ethernet, GPIB, RS485, RS232, USB
     };
 
-    public InitialInterface(Instrument instrument, int instrumentLenth)
+    public InitialInterface(Instrument instrument, int instrumentNum)
 	    throws UnknownHostException, IOException {
 	instrumentModel = instrument.getAttribution().getModel();
-	instrumentID = new int[instrumentLenth];
+	insIDArray = new int[instrumentNum];
 	this.interfaceName = instrument.getCommInterface().getInterfaceName();
 	switch (InterfaceType.valueOf(this.interfaceName)) {
 	  case Ethernet:
@@ -43,6 +43,5 @@ public class InitialInterface {
 	  case USB:
 	     break;
 	}
-	System.out.println(this.interfaceName);
     }
 }

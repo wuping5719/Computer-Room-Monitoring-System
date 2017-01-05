@@ -10,6 +10,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Document;
@@ -28,6 +29,7 @@ public class ParseConfigureXML {
     private NodeList instrumentList;  //设备节点
     public int instrumentNum;         //设备节点个数
     public int siteID;                //该配置文件所属站点
+    public String siteName;           //该配置文件所属站点名称
     
     // 构造函数
     public ParseConfigureXML(int siteID, String filePath) throws ParserConfigurationException, SAXException, IOException{
@@ -40,8 +42,17 @@ public class ParseConfigureXML {
 	instrumentList = rootElement.getChildNodes();    
 	this.instrumentNum = instrumentList.getLength();  
 	this.siteID = siteID;
+	
+	NamedNodeMap map = rootElement.getAttributes();
+	Node nodeAttr = null;
+	for (int i = 0; i < map.getLength(); i++) {
+	    nodeAttr = map.item(i);
+	    if (nodeAttr.getNodeName().equals("SiteName")) {
+		this.siteName = nodeAttr.getNodeValue();
+	    }
+	}
     }
-
+    
     // 根据设备ID得到对应设备的信息
     public Instrument getInstrument(int instrumentID) {
 	Instrument instrument = new Instrument();

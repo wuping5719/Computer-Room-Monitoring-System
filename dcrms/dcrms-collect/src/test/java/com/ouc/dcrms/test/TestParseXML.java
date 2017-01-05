@@ -21,6 +21,7 @@ public class TestParseXML {
 	    String filePath = "config/LiCun-1-Configure.xml";
 	    ParseConfigureXML paseXml = new ParseConfigureXML(1, filePath);
 	    Instrument ins = paseXml.getInstrument(1);
+	    System.out.println("站点名称：" + paseXml.siteName);
 	    System.out.println("设备属性名称：" + ins.getAttribution().getName());
 	    System.out.println("设备接口：" + ins.getCommInterface().getInterfaceName());
 	    System.out.println("设备接口数据位：" + ins.getCommInterface().getDataBit());

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>                 <!-- 版本和格式 -->
-<Root>                                                  <!-- 根节点 -->
+<Root SiteID="1" SiteName="李村" Address="山东青岛李沧区" >                                                  <!-- 根节点 -->
 	<Instrument>                                        <!-- 设备节点 -->
 		<Attribution>								      <!-- 属性 -->
 			<GlobalID>1</GlobalID>						    <!-- 设备全局ID -->

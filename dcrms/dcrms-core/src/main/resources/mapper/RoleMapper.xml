@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ouc.dcrms.core.dao.RoleDao" >
+<mapper namespace="com.ouc.dcrms.core.dao.RoleDAO" >
   <resultMap id="BaseResultMap" type="Role" >
     <id column="roleId" property="roleid" jdbcType="INTEGER" />
     <result column="roleName" property="rolename" jdbcType="CHAR" />

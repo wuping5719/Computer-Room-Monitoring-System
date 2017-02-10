@@ -2,7 +2,7 @@ package com.ouc.dcrms.core.dao;
 
 import com.ouc.dcrms.core.model.Site;
 
-public interface SiteDao {
+public interface SiteDAO {
     int deleteByPrimaryKey(Integer siteid);
 
     int insert(Site record);

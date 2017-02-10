@@ -16,7 +16,7 @@ import com.ouc.dcrms.client.service.UserServiceClient;
  */
 
 @Controller
-public class UsersController {
+public class UserController {
 
     @Resource(name = "userServiceClient")
     private UserServiceClient userServiceClient;

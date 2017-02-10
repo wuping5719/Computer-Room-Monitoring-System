@@ -2,7 +2,7 @@ package com.ouc.dcrms.core.dao;
 
 import com.ouc.dcrms.core.model.Reason;
 
-public interface ReasonDao {
+public interface ReasonDAO {
     int deleteByPrimaryKey(Integer reasonid);
 
     int insert(Reason record);

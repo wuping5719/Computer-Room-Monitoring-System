@@ -2,7 +2,7 @@ package com.ouc.dcrms.core.dao;
 
 import com.ouc.dcrms.core.model.Resources;
 
-public interface ResourcesDao {
+public interface ResourcesDAO {
     int deleteByPrimaryKey(Integer resid);
 
     int insert(Resources record);

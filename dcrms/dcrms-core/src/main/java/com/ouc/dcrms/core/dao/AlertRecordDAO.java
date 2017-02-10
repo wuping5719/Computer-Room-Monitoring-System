@@ -2,7 +2,7 @@ package com.ouc.dcrms.core.dao;
 
 import com.ouc.dcrms.core.model.AlertRecord;
 
-public interface AlertRecordDao {
+public interface AlertRecordDAO {
     int deleteByPrimaryKey(Long alertid);
 
     int insert(AlertRecord record);

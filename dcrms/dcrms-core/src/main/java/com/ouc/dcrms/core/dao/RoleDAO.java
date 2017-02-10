@@ -2,7 +2,7 @@ package com.ouc.dcrms.core.dao;
 
 import com.ouc.dcrms.core.model.Role;
 
-public interface RoleDao {
+public interface RoleDAO {
     int deleteByPrimaryKey(Integer roleid);
 
     int insert(Role record);

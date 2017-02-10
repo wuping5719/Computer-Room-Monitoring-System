@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ouc.dcrms.core.dao.CityDao" >
+<mapper namespace="com.ouc.dcrms.core.dao.CityDAO" >
   <resultMap id="BaseResultMap" type="City" >
     <id column="cityId" property="cityid" jdbcType="INTEGER" />
     <result column="cityName" property="cityname" jdbcType="CHAR" />
@@ -12,6 +12,12 @@
   <sql id="Base_Column_List" >
     cityId, cityName, longitude, latitude, areaCode
   </sql>
+  
+  <select id="selectAllCity" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from city
+  </select>
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

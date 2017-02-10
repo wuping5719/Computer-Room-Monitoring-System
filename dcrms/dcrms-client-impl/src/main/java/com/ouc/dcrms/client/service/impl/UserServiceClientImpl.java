@@ -9,14 +9,6 @@ public class UserServiceClientImpl implements UserServiceClient {
     
     private UserServiceCore userServiceCore;
 
-    public UserServiceCore getUserServiceCore() {
-	return userServiceCore;
-    }
-
-    public void setUserServiceCore(UserServiceCore userServiceCore) {
-	this.userServiceCore = userServiceCore;
-    }
-    
     @Override
     public UserDTO getUserById(Integer id) {
 	UserDTO userDTO = new UserDTO();
@@ -56,4 +48,13 @@ public class UserServiceClientImpl implements UserServiceClient {
 	userDTO.setEmail(user.getEmail());
 	return userDTO;
     }
+    
+    public UserServiceCore getUserServiceCore() {
+	return userServiceCore;
+    }
+
+    public void setUserServiceCore(UserServiceCore userServiceCore) {
+	this.userServiceCore = userServiceCore;
+    }
+    
 }

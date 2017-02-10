@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ouc.dcrms.core.dao.SiteDao" >
+<mapper namespace="com.ouc.dcrms.core.dao.SiteDAO" >
   <resultMap id="BaseResultMap" type="Site" >
     <id column="siteId" property="siteid" jdbcType="INTEGER" />
     <result column="siteName" property="sitename" jdbcType="CHAR" />

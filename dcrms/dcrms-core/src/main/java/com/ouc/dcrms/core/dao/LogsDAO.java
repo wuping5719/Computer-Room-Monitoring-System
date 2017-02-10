@@ -2,7 +2,7 @@ package com.ouc.dcrms.core.dao;
 
 import com.ouc.dcrms.core.model.Logs;
 
-public interface LogsDao {
+public interface LogsDAO {
     int deleteByPrimaryKey(Integer logid);
 
     int insert(Logs record);

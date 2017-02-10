@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ouc.dcrm.system.dao.SiteDataDao" >
+<mapper namespace="com.ouc.dcrm.system.dao.SiteDataDAO" >
   <resultMap id="BaseResultMap" type="SiteData" >
     <id column="dataId" property="dataid" jdbcType="BIGINT" />
     <result column="gatherTime" property="gathertime" jdbcType="TIMESTAMP" />

@@ -1,6 +1,8 @@
 package com.ouc.dcrms.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.druid.support.json.JSONUtils;
+import com.ouc.dcrms.client.dto.CityDTO;
 import com.ouc.dcrms.client.dto.UserDTO;
+import com.ouc.dcrms.client.service.SiteServiceClient;
 import com.ouc.dcrms.client.service.UserServiceClient;
 import com.ouc.dcrms.utils.DecriptUtil;
 import com.ouc.dcrms.utils.SessionConstants;
@@ -27,6 +31,9 @@ public class LoginController {
 
     @Resource(name = "userServiceClient")
     private UserServiceClient userServiceClient;
+    
+    @Resource(name = "siteServiceClient")
+    private SiteServiceClient siteServiceClient;
 
     /**********************
      * 登录验证
@@ -64,6 +71,12 @@ public class LoginController {
 	    HttpServletResponse response) {
 	String userType = request.getParameter("userType");
 	System.out.println(userType);
+	
+	List<CityDTO> cityDTOList = new ArrayList<>();
+	cityDTOList = siteServiceClient.getAllCity();
+	
+	request.setAttribute("cityDTOList", cityDTOList);
+	
 	return "pages/index";
     }
 

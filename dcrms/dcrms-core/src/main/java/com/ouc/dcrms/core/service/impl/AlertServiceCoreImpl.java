@@ -1,30 +1,30 @@
 package com.ouc.dcrms.core.service.impl;
 
 import com.ouc.dcrms.core.service.AlertServiceCore;
-import com.ouc.dcrms.core.dao.AlertRecordDao;
+import com.ouc.dcrms.core.dao.AlertRecordDAO;
 import com.ouc.dcrms.core.model.AlertRecord;
 
 public class AlertServiceCoreImpl implements AlertServiceCore {
     
-    private AlertRecordDao alertRecordDao;
-
-    public AlertRecordDao getAlertRecordDao() {
-	return alertRecordDao;
-    }
-
-    public void setAlertRecordDao(AlertRecordDao alertRecordDao) {
-	this.alertRecordDao = alertRecordDao;
-    }
+    private AlertRecordDAO alertRecordDAO;
 
     @Override
     public String insertAlertRecord(AlertRecord alertRecord) {
 	String result = "";
 	try {
-	    alertRecordDao.insertSelective(alertRecord);
+	    alertRecordDAO.insertSelective(alertRecord);
 	    result = "success";
 	}catch(Exception e) {
 	    result = "failure";
 	}
 	return result;
+    }
+    
+    public AlertRecordDAO getAlertRecordDAO() {
+	return alertRecordDAO;
+    }
+
+    public void setAlertRecordDAO(AlertRecordDAO alertRecordDAO) {
+	this.alertRecordDAO = alertRecordDAO;
     }
 }

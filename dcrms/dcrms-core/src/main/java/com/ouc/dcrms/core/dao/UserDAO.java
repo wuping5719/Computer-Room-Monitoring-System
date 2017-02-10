@@ -2,7 +2,7 @@ package com.ouc.dcrms.core.dao;
 
 import com.ouc.dcrms.core.model.User;
 
-public interface UserDao {
+public interface UserDAO {
     int deleteByPrimaryKey(Integer userid);
 
     int insert(User record);

@@ -2,7 +2,7 @@ package com.ouc.dcrms.core.dao;
 
 import com.ouc.dcrms.core.model.Coordinate;
 
-public interface CoordinateDao {
+public interface CoordinateDAO {
     int deleteByPrimaryKey(Integer coordinateid);
 
     int insert(Coordinate record);

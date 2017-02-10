@@ -37,10 +37,10 @@
           <a id="logout" href="#">注销</a>
         </div>
         <ul class="nav nav-justified">
-          <li ><a id="nav_li_a1" href="<%=basePath%>pages/index.jsp">站点导航</a></li>
-          <li ><a id="nav_li_a2" href="<%=basePath%>pages/multVideo.jsp">多路视频</a></li>
+          <li ><a id="nav_li_a1" href="<%=basePath%>loadIndex.do">站点导航</a></li>
+          <li ><a id="nav_li_a2" href="<%=basePath%>loadMultVideo.do">多路视频</a></li>
           <li ><a id="nav_li_a3" href="#">报警查询</a></li>
-          <li ><a id="nav_li_a4" href="<%=basePath%>pages/siteCurve.jsp">站点数据</a></li>
+          <li ><a id="nav_li_a4" href="<%=basePath%>loadSiteCurve.do">站点数据</a></li>
           <li ><a id="nav_li_a5" href="#">设备管理</a></li>
           <li ><a id="nav_li_a6" href="#">用户管理</a></li>
           <li ><a id="nav_li_a7" href="#">权限管理</a></li>
@@ -50,21 +50,17 @@
       <div id="main">
         <div id="site">
            <ul class="siteList">
-				<li><a href="#"><img src="<%=basePath%>static/img/main/icon.png" >北京</a></li>
-				<li><a href="#"><img src="<%=basePath%>static/img/main/icon.png" >上海</a></li>
-				<li><a href="#"><img src="<%=basePath%>static/img/main/icon.png" >深圳</a></li>
-				<li><a href="#"><img src="<%=basePath%>static/img/main/icon.png" >广州</a></li>
-				<li><a href="#"><img src="<%=basePath%>static/img/main/icon.png" >青岛</a></li>
-			    <li><a href="#"><img src="<%=basePath%>static/img/main/icon.png" >成都</a></li>
-			    <li><a href="#"><img src="<%=basePath%>static/img/main/icon.png" >沈阳</a></li>
-			    <li><a href="#"><img src="<%=basePath%>static/img/main/icon.png" >重庆</a></li>
+				<c:forEach items="${cityDTOList}" var="cityDTO" >
+					<li><a href="#"><img src="<%=basePath%>static/img/main/icon.png" >${cityDTO.cityname}</a></li>
+				</c:forEach>
 			</ul>
 		</div>
         <div id="panel"></div>
+        
       </div>
 
       <div id="footer">
-        <p> Copyright  &copy;  2016  中国海洋大学     版权所有   </p>
+        <p> Copyright  &copy;  2017  中国海洋大学     版权所有   </p>
       </div>
     </div> 
     

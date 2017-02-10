@@ -2,7 +2,7 @@ package com.ouc.dcrms.core.dao;
 
 import com.ouc.dcrms.core.model.Sensor;
 
-public interface SensorDao {
+public interface SensorDAO {
     int deleteByPrimaryKey(Integer sensorid);
 
     int insert(Sensor record);

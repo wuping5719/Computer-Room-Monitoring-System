@@ -18,19 +18,28 @@
      http://www.springframework.org/schema/util
      http://www.springframework.org/schema/util/spring-util-3.1.xsd">
      
-    <bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDAO">
-    	<property name="mapperInterface" value="com.ouc.dcrms.core.dao.UserDao" />
+    <bean id="userDAO" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDAO">
+    	<property name="mapperInterface" value="com.ouc.dcrms.core.dao.UserDAO" />
+    </bean>
+    
+    <bean id="alertRecordDAO" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDAO">
+    	<property name="mapperInterface" value="com.ouc.dcrms.core.dao.AlertRecordDAO" />
+    </bean>
+    
+    <bean id="cityDAO" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDAO">
+    	<property name="mapperInterface" value="com.ouc.dcrms.core.dao.CityDAO" />
     </bean>
     
 	<bean id="userServiceCore" class="com.ouc.dcrms.core.service.impl.UserServiceCoreImpl">
-		<property name="userDao" ref="userDao"/>
+		<property name="userDAO" ref="userDAO"/>
 	</bean>
-  
-    <bean id="alertRecordDao" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDAO">
-    	<property name="mapperInterface" value="com.ouc.dcrms.core.dao.AlertRecordDao" />
-    </bean>
-    
+ 
 	<bean id="alertServiceCore" class="com.ouc.dcrms.core.service.impl.AlertServiceCoreImpl">
-		<property name="alertRecordDao" ref="alertRecordDao"/>
+		<property name="alertRecordDAO" ref="alertRecordDAO"/>
 	</bean>
+
+    <bean id="cityServiceCore" class="com.ouc.dcrms.core.service.impl.CityServiceCoreImpl">
+		<property name="cityDAO" ref="cityDAO"/>
+	</bean>
+	
 </beans>

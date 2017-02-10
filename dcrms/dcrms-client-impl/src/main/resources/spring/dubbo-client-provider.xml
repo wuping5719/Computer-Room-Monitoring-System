@@ -27,4 +27,9 @@
 		<property name="userServiceCore" ref="userServiceCore"/>
 	</bean>
 	
+	<dubbo:service interface="com.ouc.dcrms.client.service.SiteServiceClient" ref="siteServiceClient" registry="oucRegistry" owner="ouc" protocol="dubbo" />
+	<bean id="siteServiceClient" class="com.ouc.dcrms.client.service.impl.SiteServiceClientImpl">
+		<property name="cityServiceCore" ref="cityServiceCore"/>
+	</bean>
+	
 </beans>

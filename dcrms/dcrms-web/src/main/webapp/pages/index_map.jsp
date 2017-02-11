@@ -101,7 +101,9 @@
    	     n++;
   	  }
   	  function attribute(e){
-  		 window.location.href = "<%=basePath%>loadIndexCity.do?province=" + province;
+  		 //window.location.href = "<%=basePath%>loadIndexCity.do?province=" + province;
+  		 
+  		 window.location.href = "<%=basePath%>loadSite3dView.do?siteName=" + province;
   		 
   		 //var p = e.target;
 		 //alert("marker的位置是" + p.getPosition().lng + "," + p.getPosition().lat);    

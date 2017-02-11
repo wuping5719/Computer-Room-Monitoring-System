@@ -52,6 +52,20 @@
 				</c:forEach>
 		   </ul>
 		</div>
+		
+		<div style="margin:6px 1px">
+		    <label>当前所在城市：青岛  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 机房站点：</label>
+            <select style="width:120px" >
+			    <option value="金家岭">金家岭</option>
+			    <option value="李村">李村</option>
+			    <option value="明星大厅">明星大厅</option>
+			    <option value="人民一路">人民一路</option>
+			    <option value="浮山后">浮山后</option>
+			    <option value="王哥庄">王哥庄</option>
+		    </select>
+        </div>
+
         <div id="panel"></div>
       </div>
 

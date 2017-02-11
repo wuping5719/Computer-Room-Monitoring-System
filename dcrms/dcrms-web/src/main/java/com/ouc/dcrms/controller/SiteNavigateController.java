@@ -61,4 +61,18 @@ public class SiteNavigateController {
 	
 	return "pages/index_map";
     }
+    
+    @RequestMapping(value = "loadSite3dView.do", produces = "text/html;charset=UTF-8")
+    public String loadSite3dView(HttpServletRequest request,
+	    HttpServletResponse response) {
+	String siteName = request.getParameter("siteName");
+	
+	List<CityDTO> cityDTOList = new ArrayList<>();
+	cityDTOList = siteServiceClient.getAllCity();
+	
+	request.setAttribute("cityDTOList", cityDTOList);
+	request.setAttribute("siteName", siteName);
+	
+	return "pages/site_3d_view";
+    }
 }

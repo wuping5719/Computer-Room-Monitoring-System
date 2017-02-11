@@ -31,7 +31,7 @@ public class VideoController {
 	
 	request.setAttribute("cityDTOList", cityDTOList);
 	
-	return "pages/multVideo";
+	return "pages/mult_video";
     }
     
 }

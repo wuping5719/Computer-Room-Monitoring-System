@@ -31,7 +31,7 @@ public class SiteDataController {
 	
 	request.setAttribute("cityDTOList", cityDTOList);
 	
-	return "pages/siteCurve";
+	return "pages/site_curve";
     }
     
 }

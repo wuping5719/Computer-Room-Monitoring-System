@@ -33,4 +33,32 @@ public class SiteNavigateController {
 	
 	return "pages/index";
     }
+    
+    @RequestMapping(value = "loadIndexCity.do", produces = "text/html;charset=UTF-8")
+    public String loadIndexCity(HttpServletRequest request,
+	    HttpServletResponse response) {
+	String province = request.getParameter("province");
+	
+	List<CityDTO> cityDTOList = new ArrayList<>();
+	cityDTOList = siteServiceClient.getAllCity();
+	
+	request.setAttribute("cityDTOList", cityDTOList);
+	request.setAttribute("province", province);
+	
+	return "pages/index_city";
+    }
+    
+    @RequestMapping(value = "loadIndexMap.do", produces = "text/html;charset=UTF-8")
+    public String loadIndexMap(HttpServletRequest request,
+	    HttpServletResponse response) {
+	String province = request.getParameter("province");
+	
+	List<CityDTO> cityDTOList = new ArrayList<>();
+	cityDTOList = siteServiceClient.getAllCity();
+	
+	request.setAttribute("cityDTOList", cityDTOList);
+	request.setAttribute("province", province);
+	
+	return "pages/index_map";
+    }
 }

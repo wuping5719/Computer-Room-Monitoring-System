@@ -396,9 +396,8 @@
 						
 	myChart.on(ecConfig.EVENT.CLICK,
 		function(param) {
-		   if(param.name=='山东'){
-			  window.location.href = "<%=basePath%>pages/shanDong.jsp";
-		   }
+		  //window.location.href = "<%=basePath%>loadIndexCity.do?province=" + param.name;
+			window.location.href = "<%=basePath%>loadIndexMap.do?province=" + param.name;
 	});
 
     myChart.setOption(option);

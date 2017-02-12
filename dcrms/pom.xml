@@ -25,6 +25,7 @@
 		<module>dcrms-client</module>
 		<module>dcrms-client-impl</module>
 		<module>dcrms-collect</module>
+		<module>dcrms-task</module>
 		<module>dcrms-web</module>
 	</modules>
 </project>

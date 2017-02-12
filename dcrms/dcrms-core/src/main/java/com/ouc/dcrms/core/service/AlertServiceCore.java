@@ -10,5 +10,6 @@ public interface AlertServiceCore {
     
     public String insertAlertRecord(AlertRecord alertRecord);
     
+    public AlertRecord getLatestAlert();
 }
 

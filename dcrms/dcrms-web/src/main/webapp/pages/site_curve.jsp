@@ -53,7 +53,7 @@
 		   </ul>
 		</div>
 		
-		<div style="margin:6px 1px">
+		<div>
 		    <label>当前所在城市：青岛  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
             <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 机房站点：</label>
             <select style="width:120px" >
@@ -215,7 +215,7 @@
                 var res = [];
                 var len = 10;
                 while (len--) {
-                    res.push(Math.random() * 10 + 20);
+                    res.push((Math.random() * 10 + 20).toFixed(2));
                 }
                 return res;
             })()
@@ -229,7 +229,7 @@
                 var res = [];
                 var len = 0;
                 while (len < 10) {
-                    res.push(Math.random() * 10 + 30);
+                    res.push((Math.random() * 10 + 30).toFixed(2));
                     len++;
                 }
                 return res;
@@ -244,7 +244,7 @@
                   var res = [];
                   var len = 0;
                   while (len < 10) {
-                      res.push(Math.random() * 10 + 40);
+                      res.push((Math.random() * 10 + 40).toFixed(2));
                       len++;
                   }
                   return res;
@@ -259,7 +259,7 @@
                   var res = [];
                   var len = 0;
                   while (len < 10) {
-                      res.push(Math.random() * 10 + 215);
+                      res.push((Math.random() * 10 + 215).toFixed(2));
                       len++;
                   }
                   return res;
@@ -274,7 +274,7 @@
                   var res = [];
                   var len = 0;
                   while (len < 10) {
-                      res.push(Math.random() + 5);
+                      res.push((Math.random() + 5).toFixed(2));
                       len++;
                   }
                   return res;
@@ -291,15 +291,15 @@
        var vol = option.series[3].data;
        var cur = option.series[4].data;
        tmp1.shift();
-       tmp1.push(Math.random() * 10 + 20);
+       tmp1.push((Math.random() * 10 + 20).toFixed(2));
        tmp2.shift();
-       tmp2.push(Math.random() * 10 + 30);
+       tmp2.push((Math.random() * 10 + 30).toFixed(2));
        hums.shift();
-       hums.push(Math.random() * 10 + 40);
+       hums.push((Math.random() * 10 + 40).toFixed(2));
        vol.shift();
-       vol.push(Math.random() * 10 + 215);
+       vol.push((Math.random() * 10 + 215).toFixed(2));
        cur.shift();
-       cur.push(Math.random() + 5);
+       cur.push((Math.random() + 5).toFixed(2));
        
        option.xAxis[0].data.shift();
        option.xAxis[0].data.push(axisData);

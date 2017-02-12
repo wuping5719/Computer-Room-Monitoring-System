@@ -1,0 +1,33 @@
+<assembly xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/assembly-1.0.0.xsd">
+    <id>package</id>
+    <formats>
+        <format>tar</format>
+    </formats>
+    <includeBaseDirectory>true</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>src/main/bin</directory>
+            <outputDirectory>/bin</outputDirectory>
+        </fileSet>
+    </fileSets>
+    <files>
+    	<file>
+    		<source>src/main/conf/dubbo.properties</source>
+    		<filtered>true</filtered>
+    		<outputDirectory>/conf</outputDirectory>
+    	</file>
+    	<file>
+    		<source>src/main/conf/log4j.xml</source>
+    		<filtered>true</filtered>
+    		<outputDirectory>/conf</outputDirectory>
+    	</file>
+    </files>
+    <dependencySets>
+        <dependencySet>
+        	<unpack>false</unpack>  
+            <outputDirectory>/lib</outputDirectory>
+            <scope>runtime</scope>
+        </dependencySet>
+    </dependencySets>
+</assembly>

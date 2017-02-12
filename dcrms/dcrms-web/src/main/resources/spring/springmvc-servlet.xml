@@ -19,7 +19,7 @@
 	<mvc:annotation-driven />
 
 	<!-- 设置使用注解的类所在的jar包(自动扫描的包名) -->
-	<context:component-scan base-package="com.ouc.dcrms.controller" />
+	<context:component-scan base-package="com.ouc.dcrms.web.controller" />
 
 	<!--进行静态资源的访问 -->
 	<mvc:resources mapping="/static/**" location="/static/" />
@@ -56,7 +56,7 @@
 			<mvc:exclude-mapping path="/logout.do" />
             <mvc:exclude-mapping path="/userRegister.do" />
             
-			<bean class="com.ouc.dcrms.interceptor.UserSecurityInterceptor"></bean>
+			<bean class="com.ouc.dcrms.web.interceptor.UserSecurityInterceptor"></bean>
 
 		</mvc:interceptor>
 	</mvc:interceptors>

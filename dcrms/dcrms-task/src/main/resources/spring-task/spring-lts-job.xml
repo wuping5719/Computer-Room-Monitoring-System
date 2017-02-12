@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<bean id="realTimeAlertJob" class="com.github.ltsopensource.core.domain.Job">
+		<property name="taskId" value="${server.name}_real_time_alert_job" />
+		<property name="taskTrackerNodeGroup" value="${lts.taskTracker.nodeGroup}" />
+		<property name="cronExpression" value="0 0/10 * * * ?" />
+		<property name="replaceOnExist" value="true" />
+		<property name="needFeedback" value="true" />
+		<property name="maxRetryTimes" value="0" />
+	</bean>
+	
+	<bean id="ltsJobSubmitUtil" class="com.ouc.dcrms.task.util.LtsJobSubmitUtil"
+		init-method="initSubmitJobs">
+		<property name="jobClient" ref="jobClient" />
+		<property name="jobList">
+			<list>
+				<ref bean="realTimeAlertJob" />
+			</list>
+		</property>
+	</bean>
+</beans>

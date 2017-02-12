@@ -8,6 +8,8 @@ public class AlertRecord {
     private Integer siteid;
 
     private Integer reasonid;
+    
+    private Integer reasonlevel;
 
     private Date alerttime;
 
@@ -61,5 +63,13 @@ public class AlertRecord {
 
     public void setSolved(Integer solved) {
 	this.solved = solved;
+    }
+
+    public Integer getReasonlevel() {
+	return reasonlevel;
+    }
+
+    public void setReasonlevel(Integer reasonlevel) {
+	this.reasonlevel = reasonlevel;
     }
 }

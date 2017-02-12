@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration PUBLIC "-//log4j/log4j Configuration//EN" "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c.%M:%L - %m%n" />
+		</layout>
+	</appender>
+	<appender name="FILE" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="${loggingRoot}/${server.name}/logs/${server.name}.log" />
+		<!-- Keep one backup file -->
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c.%M:%L - %m%n" />
+		</layout>
+	</appender>
+	<!-- specify the logging level for loggers from other libraries -->
+	<logger name="com.opensymphony">
+		<level value="${loggingLevel}" />
+	</logger>
+	<logger name="org.apache.struts2">
+		<level value="${loggingLevel}" />
+	</logger>
+	<logger name="org.springframework">
+		<level value="${loggingLevel}" />
+	</logger>
+	<logger name="org.apache.ibatis">
+		<level value="${loggingLevel}" />
+	</logger>
+	<logger name="com.opensymphony.module.sitemesh">
+		<level value="${loggingLevel}" />
+	</logger>
+	<logger name="org.quartz">
+		<level value="${loggingLevel}"/>
+	</logger>
+	<logger name="net.spy.memcached">
+		<level value="${loggingLevel}"/>
+	</logger>
+	<logger name="org.dbunit">
+		<level value="INFO"/>
+	</logger>
+	<!-- for all other loggers log only info and above log messages -->
+	<root>
+		<priority value="${loggingLevel}" />
+		<appender-ref ref="FILE"/>
+		<appender-ref ref="STDOUT"/>
+	</root>
+</log4j:configuration> 

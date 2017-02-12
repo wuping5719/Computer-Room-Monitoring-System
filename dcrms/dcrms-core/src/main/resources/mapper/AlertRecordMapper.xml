@@ -5,13 +5,14 @@
     <id column="alertId" property="alertid" jdbcType="BIGINT" />
     <result column="siteId" property="siteid" jdbcType="INTEGER" />
     <result column="reasonId" property="reasonid" jdbcType="INTEGER" />
+    <result column="reasonLevel" property="reasonlevel" jdbcType="INTEGER" />
     <result column="alertTime" property="alerttime" jdbcType="TIMESTAMP" />
     <result column="instrumentId" property="instrumentid" jdbcType="INTEGER" />
     <result column="solved" property="solved" jdbcType="INTEGER" />
   </resultMap>
   
   <sql id="Base_Column_List" >
-    alertId, siteId, reasonId, alertTime, instrumentId, solved
+    alertId, siteId, reasonId, reasonLevel, alertTime, instrumentId, solved
   </sql>
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
@@ -21,17 +22,24 @@
     where alertId = #{alertid,jdbcType=BIGINT}
   </select>
   
+  <select id="selectLatestAlert" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from alertrecord
+    where solved = 0 order by reasonLevel asc limit 1
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from alertrecord
     where alertId = #{alertid,jdbcType=BIGINT}
   </delete>
   
   <insert id="insert" parameterType="AlertRecord" >
-    insert into alertrecord (siteId, reasonId, 
+    insert into alertrecord (siteId, reasonId, reasonLevel,
       alertTime, instrumentId, solved)
     values (#{siteid,jdbcType=INTEGER}, #{reasonid,jdbcType=INTEGER}, 
-      #{alerttime,jdbcType=TIMESTAMP}, #{instrumentid,jdbcType=INTEGER}, 
-      #{solved,jdbcType=INTEGER})
+      #{reasonlevel,jdbcType=INTEGER}, #{alerttime,jdbcType=TIMESTAMP}, 
+      #{instrumentid,jdbcType=INTEGER}, #{solved,jdbcType=INTEGER})
   </insert>
   
   <insert id="insertSelective" parameterType="AlertRecord" >
@@ -45,6 +53,9 @@
       </if>
       <if test="reasonid != null" >
         reasonId,
+      </if>
+      <if test="reasonlevel != null" >
+        reasonLevel,
       </if>
       <if test="alerttime != null" >
         alertTime,
@@ -65,6 +76,9 @@
       </if>
       <if test="reasonid != null" >
         #{reasonid,jdbcType=INTEGER},
+      </if>
+      <if test="reasonlevel != null" >
+        #{reasonlevel,jdbcType=INTEGER},
       </if>
       <if test="alerttime != null" >
         #{alerttime,jdbcType=TIMESTAMP},
@@ -87,6 +101,9 @@
       <if test="reasonid != null" >
         reasonId = #{reasonid,jdbcType=INTEGER},
       </if>
+      <if test="reasonlevel != null" >
+        reasonLevel = #{reasonid,jdbcType=INTEGER},
+      </if>
       <if test="alerttime != null" >
         alertTime = #{alerttime,jdbcType=TIMESTAMP},
       </if>
@@ -104,6 +121,7 @@
     update alertrecord
     set siteId = #{siteid,jdbcType=INTEGER},
       reasonId = #{reasonid,jdbcType=INTEGER},
+      reasonLevel = #{reasonlevel,jdbcType=INTEGER},
       alertTime = #{alerttime,jdbcType=TIMESTAMP},
       instrumentId = #{instrumentid,jdbcType=INTEGER},
       solved = #{solved,jdbcType=INTEGER}

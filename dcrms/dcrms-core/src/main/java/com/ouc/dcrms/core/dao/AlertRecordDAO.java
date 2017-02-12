@@ -11,6 +11,8 @@ public interface AlertRecordDAO {
 
     AlertRecord selectByPrimaryKey(Long alertid);
 
+    AlertRecord selectLatestAlert();
+    
     int updateByPrimaryKeySelective(AlertRecord record);
 
     int updateByPrimaryKey(AlertRecord record);

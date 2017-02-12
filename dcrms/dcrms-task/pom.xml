@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>dcrms-task</artifactId>
+	<name>dcrms-task</name>
+	<parent>
+		<artifactId>dcrms-parent</artifactId>
+		<groupId>com.ouc.dcrms</groupId>
+		<version>1.0</version>
+		<relativePath>../dcrms-parent/pom.xml</relativePath>
+	</parent>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>com.ouc.dcrms</groupId>
+			<artifactId>dcrms-core</artifactId>
+		</dependency>
+		<!-- lts -->
+		<dependency>
+			<groupId>com.github.ltsopensource</groupId>
+			<artifactId>lts-tasktracker</artifactId>
+			<version>1.6.9</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.ltsopensource</groupId>
+			<artifactId>lts-jobclient</artifactId>
+			<version>1.6.9</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.ltsopensource</groupId>
+			<artifactId>lts-spring</artifactId>
+			<version>1.6.9</version>
+		</dependency>
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mapdb</groupId>
+			<artifactId>mapdb</artifactId>
+			<version>2.0-beta13</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<!-- NOTE: We don't need a groupId specification because the group is 
+					org.apache.maven.plugins ...which is assumed by default. -->
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<descriptor>src/main/assemble/service-impl-jar-with-dependency.xml</descriptor>
+					<!-- <archive> 
+					       <manifest> 
+						      <addClasspath>true</addClasspath> 
+							  <classpathPrefix>lib/</classpathPrefix> 
+						      <mainClass>com.alibaba.dubbo.container.Main</mainClass> 
+					       </manifest> 
+				    </archive> -->
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id> <!-- this is used for inheritance merges -->
+						<phase>package</phase> <!-- bind to the packaging phase -->
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

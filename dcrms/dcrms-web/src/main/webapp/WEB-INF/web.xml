@@ -36,7 +36,7 @@
   </filter-mapping>
   <filter>
     <filter-name>encodingFilter</filter-name>
-    <filter-class>com.ouc.dcrms.filter.SetCodeFilter</filter-class>
+    <filter-class>com.ouc.dcrms.web.filter.SetCodeFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>encodingFilter</filter-name>

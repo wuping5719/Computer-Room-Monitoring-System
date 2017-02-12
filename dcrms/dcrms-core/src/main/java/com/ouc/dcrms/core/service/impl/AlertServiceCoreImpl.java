@@ -20,6 +20,12 @@ public class AlertServiceCoreImpl implements AlertServiceCore {
 	return result;
     }
     
+    @Override
+    public AlertRecord getLatestAlert() {
+	AlertRecord alertRecord = alertRecordDAO.selectLatestAlert();
+	return alertRecord;
+    }
+    
     public AlertRecordDAO getAlertRecordDAO() {
 	return alertRecordDAO;
     }

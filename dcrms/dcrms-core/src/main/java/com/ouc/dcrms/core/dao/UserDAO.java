@@ -1,5 +1,9 @@
 package com.ouc.dcrms.core.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.ouc.dcrms.core.model.User;
 
 public interface UserDAO {
@@ -16,4 +20,12 @@ public interface UserDAO {
     int updateByPrimaryKey(User record);
     
     User selectByUserName(String username);
+    
+    int selectTotalNum(@Param("username") String username,
+	    @Param("name") String name);
+    
+    List<User> selectUsers(@Param("username") String username,
+	    @Param("name") String name,
+	    @Param("startIndex") int startIndex, 
+	    @Param("pageSize") int pageSize);
 }

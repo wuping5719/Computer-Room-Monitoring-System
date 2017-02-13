@@ -1,5 +1,8 @@
 package com.ouc.dcrms.core.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.ouc.dcrms.core.service.UserServiceCore;
 import com.ouc.dcrms.core.dao.UserDAO;
 import com.ouc.dcrms.core.model.User;
@@ -24,6 +27,19 @@ public class UserServiceCoreImpl implements UserServiceCore {
     public User searchUserByUserName(String username) {
 	User user = userDAO.selectByUserName(username);
 	return user;
+    }
+    
+    @Override
+    public int getTotalNum(String username, String name) {
+	return userDAO.selectTotalNum(username, name);
+    }
+    
+    @Override
+    public List<User> getUsers(String username, String name,
+	    int startIndex, int pageSize){
+	List<User> userList = new ArrayList<>();
+	userList = userDAO.selectUsers(username, name, startIndex, pageSize);
+	return userList;
     }
     
     public UserDAO getUserDAO() {

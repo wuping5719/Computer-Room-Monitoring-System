@@ -13,7 +13,7 @@
 <html>
 
 <head>
-<title>站点曲线</title>
+<title>报警信息</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">   <!-- 初始化移动浏览显示  -->
 

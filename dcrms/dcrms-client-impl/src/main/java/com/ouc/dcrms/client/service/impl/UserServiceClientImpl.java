@@ -1,5 +1,13 @@
 package com.ouc.dcrms.client.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import com.ouc.dcrms.client.dto.UserDTO;
 import com.ouc.dcrms.client.service.UserServiceClient;
 import com.ouc.dcrms.core.service.UserServiceCore;
@@ -47,6 +55,56 @@ public class UserServiceClientImpl implements UserServiceClient {
 	userDTO.setTelephone(user.getTelephone());
 	userDTO.setEmail(user.getEmail());
 	return userDTO;
+    }
+    
+    @Override
+    public String getUsersList(String loginName, String trueName, int pageNum) {
+	int totalNum = 0;   // 总记录数
+	int totalPage = 1;  // 总页数
+	int pageSize = 20;
+	int startIndex = 0; // 开始索引
+	
+	totalNum = userServiceCore.getTotalNum(loginName, trueName);
+	
+	totalPage = totalNum % pageSize == 0 
+		? totalNum / pageSize
+		: totalNum / pageSize + 1;
+	
+	if (totalNum > 0) {
+	    if (pageNum <= 1) {
+		startIndex = 0;
+	    } else {
+		startIndex = pageNum * pageSize - pageSize;
+	    }
+	}
+	
+	List<User> usersList = new ArrayList<>();
+	usersList = userServiceCore.getUsers(loginName, trueName, startIndex, pageSize);
+
+	int n = startIndex + 1;  // 设置序号
+	JSONArray jsonArray = new JSONArray();
+	for(User user: usersList) {
+	    JSONObject jsonObject = new JSONObject();
+	    jsonObject.put("sortIndex", n);
+	    jsonObject.put("loginName", user.getUsername());
+	    jsonObject.put("trueName", user.getName());
+	    jsonObject.put("email", user.getEmail());
+	    jsonObject.put("mobilePhone", user.getTelephone());
+	    if(user.getSex()==0) {
+		jsonObject.put("sex", "男");
+	    }else {
+		jsonObject.put("sex", "女");
+	    }
+	    jsonObject.put("id", user.getUserid());
+	    jsonArray.add(jsonObject);
+	    n++;
+	}
+
+	Map<String, Object> result = new HashMap<String, Object>(3);
+	result.put("userDTOsList", jsonArray);
+	result.put("userTotalNum", totalNum);
+	result.put("userTotalPage", totalPage);
+	return JSONObject.fromObject(result).toString();
     }
     
     public UserServiceCore getUserServiceCore() {

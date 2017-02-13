@@ -66,7 +66,7 @@
 		</fieldset>
 		<fieldset id="actions">
 			<input type="button" id="submit" value="登　录" onkeyup="submitByEnter(event)"> 
-			<a href="">忘记密码？</a>   <a href="pages/authority/users_register.jsp">注册</a>
+			<a href="">忘记密码？</a>   <a href="pages/users_register.jsp">注册</a>
 		</fieldset>
 	</form>
 </body>

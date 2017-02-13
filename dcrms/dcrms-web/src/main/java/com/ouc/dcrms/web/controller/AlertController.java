@@ -52,6 +52,6 @@ public class AlertController {
 	
 	request.setAttribute("cityDTOList", cityDTOList);
 	
-	return "pages/alertInfos";
+	return "pages/alert_infos";
     }
 }

@@ -1,5 +1,8 @@
 package com.ouc.dcrms.web.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ouc.dcrms.client.dto.CityDTO;
 import com.ouc.dcrms.client.dto.UserDTO;
+import com.ouc.dcrms.client.service.SiteServiceClient;
 import com.ouc.dcrms.client.service.UserServiceClient;
 
 /*
@@ -21,14 +26,9 @@ public class UserController {
     @Resource(name = "userServiceClient")
     private UserServiceClient userServiceClient;
 
-    // ----------加载用户注册界面--------------
-    @RequestMapping(value = "loadUserRegister.do")
-    public String loadUserRegister(HttpServletRequest request,
-	    HttpServletResponse response) {
-	request.setAttribute("corpNameList", "");
-	return "userRegisterHtml5";
-    }
-
+    @Resource(name = "siteServiceClient")
+    private SiteServiceClient siteServiceClient;
+    
     // 用户注册
     @RequestMapping(value = "userRegister.do", produces = "text/html;charset=UTF-8")
     public void userRegister(HttpServletRequest request,
@@ -55,4 +55,26 @@ public class UserController {
 	userServiceClient.saveUser(userDTO);
     }
     
+    @RequestMapping(value = "loadUserList.do", produces = "text/html;charset=UTF-8")
+    public String loadUserList(HttpServletRequest request,
+	    HttpServletResponse response) {
+	List<CityDTO> cityDTOList = new ArrayList<>();
+	cityDTOList = siteServiceClient.getAllCity();
+	
+	request.setAttribute("cityDTOList", cityDTOList);
+	
+	return "pages/user_list";
+    }
+    
+    @RequestMapping(value = "searchUsers.do", produces = "text/html;charset=UTF-8")
+    public @ResponseBody String searchUsers(HttpServletRequest request,
+	    HttpServletResponse response) {
+	String username = request.getParameter("loginName");  // 用户名(登录名)
+	String trueName = request.getParameter("trueName");  // 姓名
+	int pageNum = Integer.parseInt(request.getParameter("pageNum")); // 当前页号
+
+	String result = userServiceClient.getUsersList(username, trueName, pageNum);
+
+	return result;
+    }
 }

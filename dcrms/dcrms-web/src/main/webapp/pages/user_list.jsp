@@ -13,12 +13,110 @@
 <html>
 <head>
 	<meta content="text/html; charset=UTF-8" http-equiv="content-type" />
-	<title>用户信息列表</title>
+	<title>用户列表</title>
+	<link href="<%=basePath%>static/bootstrap-3.3.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+    <link href="<%=basePath%>static/css/sweet-alert.css" rel="stylesheet" type="text/css" />
+    <link href="<%=basePath%>static/css/main-style.css" rel="stylesheet" >
 	<link href="<%=basePath%>static/css/users-layout.css" rel="stylesheet" type="text/css" />
-	<link href="<%=basePath%>static/css/sweet-alert.css" rel="stylesheet" type="text/css" />
+	
 	<script src="<%=basePath%>static/js/jquery-1.9.1.min.js" type="text/javascript" ></script>
 	<script src="<%=basePath%>static/js/sweet-alert.min.js" type="text/javascript" ></script>
-	<script>
+	<script src="<%=basePath%>static/js/main.js" type="text/javascript" ></script>
+</head>
+   
+<body>
+    <div id="container">
+      <div id="head">
+        <div id="title">
+          <span id="usrSpan">当前用户： </span>
+          <a id="user" href="#">admin</a>
+          <a id="logout" href="#">注销</a>
+        </div>
+        <ul class="nav nav-justified">
+          <li ><a id="nav_li_a1" href="<%=basePath%>loadIndex.do">站点导航</a></li>
+          <li ><a id="nav_li_a2" href="<%=basePath%>loadMultVideo.do">多路视频</a></li>
+          <li ><a id="nav_li_a3" href="<%=basePath%>loadAlertInfos.do">报警查询</a></li>
+          <li ><a id="nav_li_a4" href="<%=basePath%>loadSiteCurve.do">站点数据</a></li>
+          <li ><a id="nav_li_a5" href="#">设备管理</a></li>
+          <li ><a id="nav_li_a6" href="<%=basePath%>loadUserList.do">用户管理</a></li>
+          <li ><a id="nav_li_a7" href="#">权限管理</a></li>
+        </ul>
+      </div>
+
+      <div id="main">
+        <div id="site">
+           <ul class="siteList">
+				<c:forEach items="${cityDTOList}" var="cityDTO" >
+					<li><a href="#"><img src="<%=basePath%>static/img/main/icon.png" >${cityDTO.cityname}</a></li>
+				</c:forEach>
+		   </ul>
+		</div>
+        <div id="panel">
+            <div id="queryBar" >
+			   <label style="margin-left:600px;">登录名：</label>
+               <input id="loginName" style="width:120px;" type="text" />
+               <label>姓名：</label>
+               <input id="trueName" style="width:120px;" type="text" />
+               <img id="usersSearch" class="usersSkip" src="<%=basePath%>static/img/search.png" />
+			</div>
+			
+			<div id="userListTable" >
+				<table id="usersTab">
+					<tr style="font-weight:bold; background-color:#e1ebf5; text-align:center;">
+						<td style="width:50px">序号</td>
+						<td style="width:120px">登录名</td>
+						<td style="width:100px">姓名</td>
+						<td style="width:120px">邮箱</td>
+						<td style="width:120px">手机</td>
+						<td style="width:60px">性别</td>
+						<td style="display:none">主键ID</td>
+					</tr>
+				</table>
+				
+				<table id="usersPage">
+					<tr style="height:5px;">
+                        <td style="width :20px;"></td>
+                        <td style="width:50px;" ></td>
+                        <td style="width:40px;">
+                            <img id="usersFirst" class="usersSkip" src="<%=basePath%>static/img/first.png" />
+                        </td>
+                        <td style="width:40px;">
+                            <img id="usersPrevious" class="usersSkip" src="<%=basePath%>static/img/left.png" />
+                        </td>
+                        <td id="usersCenterBar" style="width:60px;" >
+                            <input id="usersCurPageNum" readonly="readonly" style="width:30px;"/>
+                            <label>/</label>
+                            <input id="usersTotalPage" readonly="readonly" style="width:30px;" />
+                            <label>页</label>
+                        </td>
+                        <td style="width:40px;">
+                            <img id="usersNext" class="usersSkip" src="<%=basePath%>static/img/right.png" />
+                        </td>
+                        <td style="width:40px;">
+                            <img id="usersEnd" class="usersSkip" src="<%=basePath%>static/img/end.png" />
+                        </td>
+                        <td style="width:60px;" >
+                            <label>跳转到</label>
+                            <input id ="usersCurNo" style="width:40px;" type="text" />
+                            <label>页</label>
+                        </td>
+                        <td style="width:40px;" >
+                            <img id="usersJumpN" class="usersSkip" src="<%=basePath%>static/img/sureBtn.png" />
+                        </td>
+                        <td style="width:60px;"></td>
+                    </tr>
+				</table>
+		   </div>
+		  
+        </div>
+      </div>
+
+      <div id="footer">
+        <p> Copyright  &copy;  2017  中国海洋大学     版权所有   </p>
+      </div>
+    </div> 
+    
+    <script>
 	 $(document).ready(function () {
 		 //ajax发请求
          $.ajax({
@@ -27,7 +125,7 @@
              success : function(msg) {
                  var msgRes = JSON.parse(msg);//返回json对象
                  //更新记录总数
-                 document.getElementById("midPage").rows[0].cells[1].innerHTML = "总计"+msgRes.userTotalNum+"条记录";
+                 document.getElementById("usersPage").rows[0].cells[1].innerHTML = "总计"+msgRes.userTotalNum+"条记录";
                  $("#usersCurPageNum").attr("value", 1);
                  $("#usersTotalPage").attr("value", msgRes.userTotalPage);
                  $("#usersCurNo").attr("value", 1);
@@ -37,8 +135,8 @@
                  var rowNum = usersTB.rows.length;
                  for (var i=1; i<rowNum; i++){
                 	 usersTB.deleteRow(i);
-                     rowNum=rowNum-1;
-                     i=i-1;
+                     rowNum = rowNum-1;
+                     i = i-1;
                  }
 
                  //插入行数据
@@ -119,7 +217,7 @@
                  success : function(msg) {
                      var msgRes = JSON.parse(msg);//返回json对象
                      //更新记录总数
-                     document.getElementById("midPage").rows[0].cells[1].innerHTML = "总计"+msgRes.userTotalNum+"条记录";
+                     document.getElementById("usersPage").rows[0].cells[1].innerHTML = "总计"+msgRes.userTotalNum+"条记录";
                      $("#usersCurPageNum").attr("value", usersPageNum);
                      $("#usersTotalPage").attr("value", msgRes.userTotalPage);
                      $("#usersCurNo").attr("value", usersPageNum);
@@ -129,8 +227,8 @@
                      var rowNum = usersTB.rows.length;
                      for (var i=1; i<rowNum; i++){
                     	 usersTB.deleteRow(i);
-                         rowNum=rowNum-1;
-                         i=i-1;
+                         rowNum = rowNum-1;
+                         i = i-1;
                      }
 
                      //插入行数据
@@ -167,92 +265,5 @@
          });
 	  });
 	</script>
-</head>
-
-<body>
-	<div id="container">
-		<div id="headerLayout">
-			<div id="authTop">
-				<span id="mes1">欢迎来到通用权限管理平台</span> 
-				<span id="mes2"><a href="#">帮助中心</a></span> 
-				<span id="mes3"><a href="<%=basePath%>pages/authority/auth_main.jsp">返回首页</a></span> 
-				<span id="mes4"><a href="#">当前用户：admin</a></span> 
-				<span id="mes5"><a href="#">注销</a></span>
-			</div>
-			<div id="authMid">
-				<div id="comLog">
-					<a href="#" ><img src="<%=basePath%>static/img/main/ouc1.png" /></a>
-				</div>
-				<div id="authMenu">
-					<ul>
-						<li id="u1"><a id="usersManage">用户管理</a></li>
-						<li id="u2"><a id="rolesManage">角色管理</a></li>
-						<li id="u4"><a id="resourcesManage" href="#">资源管理</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-		<div id="layoutBody">
-			<div id="midTitle">
-			   <img src="<%=basePath%>static/img/chartmark.png" style="height:20px; width:20px;" />
-			   <span>用户列表</span> 
-			</div>
-			<div id="midTabQuery" >
-			   <label style="margin-left:680px;">登录名：</label>
-               <input id ="loginName" style="width:120px;" type="text" />
-               <label>姓名：</label>
-               <input id ="trueName" style="width:120px;" type="text" />
-               <img id="usersSearch" class="usersSkip" src="<%=basePath%>static/img/search.png" />
-			</div>
-			<div id="midTable" >
-				<table id="usersTab">
-					<tr style="font-weight:bold; background-color:#e1ebf5; text-align:center;">
-						<td style="width:50px">序号</td>
-						<td style="width:120px">登录名</td>
-						<td style="width:100px">姓名</td>
-						<td style="width:120px">邮箱</td>
-						<td style="width:120px">手机</td>
-						<td style="width:60px">性别</td>
-						<td style="display:none">主键ID</td>
-					</tr>
-				</table>
-				
-				<table id="midPage">
-					<tr style="height:5px;">
-                        <td style="width :20px;"></td>
-                        <td id="userstotalNum" style="width:50px;" ></td>
-                        <td style="width:40px;">
-                            <img id="usersFirst" class="usersSkip" src="<%=basePath%>static/img/first.png" />
-                        </td>
-                        <td style="width:40px;">
-                            <img id="usersPrevious" class="usersSkip" src="<%=basePath%>static/img/left.png" />
-                        </td>
-                        <td id="usersCenterBar" style="width:60px;" >
-                            <input id="usersCurPageNum" readonly="readonly" style="width:30px;"/>
-                            <label>/</label>
-                            <input id="usersTotalPage" readonly="readonly" style="width:30px;" />
-                            <label>页</label>
-                        </td>
-                        <td style="width:40px;">
-                            <img id="usersNext" class="usersSkip" src="<%=basePath%>static/img/right.png" />
-                        </td>
-                        <td style="width:40px;">
-                            <img id="usersEnd" class="usersSkip" src="<%=basePath%>static/img/end.png" />
-                        </td>
-                        <td style="width:60px;" >
-                            <label>跳转到</label>
-                            <input id ="usersCurNo" style="width:40px;" type="text" />
-                            <label>页</label>
-                        </td>
-                        <td style="width:40px;" >
-                            <img id="usersJumpN" class="usersSkip" src="<%=basePath%>static/img/sureBtn.png" />
-                        </td>
-                        <td style="width:60px;"></td>
-                    </tr>
-				</table>
-		   </div>
-	   </div>	
-	</div>
-</body>
+  </body>
 </html>

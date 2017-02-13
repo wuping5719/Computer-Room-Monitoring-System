@@ -16,6 +16,12 @@ public class CityServiceCoreImpl implements CityServiceCore {
 	return cityList;
     }
 
+    @Override
+    public City selectByPrimaryKey(Integer cityid) {
+	City city = cityDAO.selectByPrimaryKey(cityid);
+	return city;
+    }
+    
     public CityDAO getCityDAO() {
 	return cityDAO;
     }

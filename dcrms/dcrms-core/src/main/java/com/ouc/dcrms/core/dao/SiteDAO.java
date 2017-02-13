@@ -10,6 +10,8 @@ public interface SiteDAO {
     int insertSelective(Site record);
 
     Site selectByPrimaryKey(Integer siteid);
+    
+    int selectIdBySiteName(String sitename);
 
     int updateByPrimaryKeySelective(Site record);
 

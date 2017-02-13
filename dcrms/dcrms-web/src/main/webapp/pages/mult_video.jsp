@@ -36,7 +36,7 @@
         <ul class="nav nav-justified">
           <li ><a id="nav_li_a1" href="<%=basePath%>loadIndex.do">站点导航</a></li>
           <li ><a id="nav_li_a2" href="<%=basePath%>loadMultVideo.do">多路视频</a></li>
-          <li ><a id="nav_li_a3" href="#">报警查询</a></li>
+          <li ><a id="nav_li_a3" href="<%=basePath%>loadAlertInfos.do">报警查询</a></li>
           <li ><a id="nav_li_a4" href="<%=basePath%>loadSiteCurve.do">站点数据</a></li>
           <li ><a id="nav_li_a5" href="#">设备管理</a></li>
           <li ><a id="nav_li_a6" href="#">用户管理</a></li>
@@ -120,11 +120,11 @@
       
       <script type="text/javascript">  
         //创建播放器对象  
-        var player = new SWFObject('<%=basePath%>static/video/player.swf','jw','100%','100%','9','#000000');  
+        var player = new SWFObject('<%=basePath%>/static/video/player.swf','jw','100%','100%','9','#000000');  
         player.addParam('allowfullscreen','true');  
         player.addParam('allowscriptaccess','always');  
         player.addParam('wmode','opaque');  
-        player.addParam('flashvars','file=<%=basePath%>static/video/IMG_1189.flv&bufferlength=20&stretching=uniform&repeat=always&autostart=false');    
+        player.addParam('flashvars','file=<%=basePath%>/static/video/IMG_1189.flv&bufferlength=20&stretching=uniform&repeat=always&autostart=false');    
         player.write('video1'); 
         player.write('video2');  
         player.write('video3');  

@@ -30,6 +30,18 @@
     	<property name="mapperInterface" value="com.ouc.dcrms.core.dao.CityDAO" />
     </bean>
     
+    <bean id="siteDAO" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDAO">
+    	<property name="mapperInterface" value="com.ouc.dcrms.core.dao.SiteDAO" />
+    </bean>
+    
+    <bean id="instrumentDAO" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDAO">
+    	<property name="mapperInterface" value="com.ouc.dcrms.core.dao.InstrumentDAO" />
+    </bean>
+    
+    <bean id="reasonDAO" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDAO">
+    	<property name="mapperInterface" value="com.ouc.dcrms.core.dao.ReasonDAO" />
+    </bean>
+    
 	<bean id="userServiceCore" class="com.ouc.dcrms.core.service.impl.UserServiceCoreImpl">
 		<property name="userDAO" ref="userDAO"/>
 	</bean>
@@ -40,6 +52,18 @@
 
     <bean id="cityServiceCore" class="com.ouc.dcrms.core.service.impl.CityServiceCoreImpl">
 		<property name="cityDAO" ref="cityDAO"/>
+	</bean>
+	
+	<bean id="siteServiceCore" class="com.ouc.dcrms.core.service.impl.SiteServiceCoreImpl">
+		<property name="siteDAO" ref="siteDAO"/>
+	</bean>
+	
+	<bean id="instrumentServiceCore" class="com.ouc.dcrms.core.service.impl.InstrumentServiceCoreImpl">
+		<property name="instrumentDAO" ref="instrumentDAO"/>
+	</bean>
+	
+	<bean id="reasonServiceCore" class="com.ouc.dcrms.core.service.impl.ReasonServiceCoreImpl">
+		<property name="reasonDAO" ref="reasonDAO"/>
 	</bean>
 	
 </beans>

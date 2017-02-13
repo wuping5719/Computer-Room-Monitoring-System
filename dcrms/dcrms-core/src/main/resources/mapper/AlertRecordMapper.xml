@@ -29,6 +29,40 @@
     where solved = 0 order by reasonLevel asc limit 1
   </select>
   
+  <select id="selectTotalNum" resultType="Integer" >
+    select count(*) from alertrecord
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+		<if test="siteid != null and siteid != -1 ">
+			and siteId = #{siteid,jdbcType=INTEGER}
+		</if>
+		<if test="reasonlevel != null and reasonlevel != -1 ">
+			and reasonLevel = #{reasonlevel,jdbcType=INTEGER}
+		</if>
+		<if test="startTime != null and endTime != null ">
+			and alertTime between #{startTime} and #{endTime}
+		</if>
+	</trim>
+  </select>
+  
+  <select id="selectAlertRecords" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from alertrecord
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+		<if test="siteid != null and siteid != -1 ">
+			and siteId = #{siteid,jdbcType=INTEGER}
+		</if>
+		<if test="reasonlevel != null and reasonlevel != -1 ">
+			and reasonLevel = #{reasonlevel,jdbcType=INTEGER}
+		</if>
+		<if test="startTime != null and endTime != null ">
+			and alertTime between #{startTime} and #{endTime}
+		</if>
+	</trim>
+	Order by alertTime Desc
+	Limit #{startIndex},#{pageSize}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from alertrecord
     where alertId = #{alertid,jdbcType=BIGINT}

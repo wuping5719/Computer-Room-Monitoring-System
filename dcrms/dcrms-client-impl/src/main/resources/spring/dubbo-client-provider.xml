@@ -32,4 +32,13 @@
 		<property name="cityServiceCore" ref="cityServiceCore"/>
 	</bean>
 	
+	<dubbo:service interface="com.ouc.dcrms.client.service.AlertServiceClient" ref="alertServiceClient" registry="oucRegistry" owner="ouc" protocol="dubbo" />
+	<bean id="alertServiceClient" class="com.ouc.dcrms.client.service.impl.AlertServiceClientImpl">
+		<property name="alertServiceCore" ref="alertServiceCore"/>
+		<property name="siteServiceCore" ref="siteServiceCore"/>
+		<property name="instrumentServiceCore" ref="instrumentServiceCore"/>
+		<property name="cityServiceCore" ref="cityServiceCore"/>
+		<property name="reasonServiceCore" ref="reasonServiceCore"/>
+	</bean>
+	
 </beans>

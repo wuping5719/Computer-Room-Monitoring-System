@@ -156,8 +156,11 @@ img {
 	height: 450px;
 }
 #usersTab tr {
-	height: 5px;
+  height: 5px;
 }
+#usersTab td{
+  border:1px solid #fff;
+} 
 
 #midPage {
 	width: 95%;

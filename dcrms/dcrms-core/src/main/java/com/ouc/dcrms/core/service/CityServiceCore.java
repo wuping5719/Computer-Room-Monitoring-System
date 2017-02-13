@@ -13,5 +13,6 @@ public interface CityServiceCore {
     
     public List<City> searchAllCity();
     
+    public City selectByPrimaryKey(Integer cityid);
 }
 

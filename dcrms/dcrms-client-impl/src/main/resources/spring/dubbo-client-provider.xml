@@ -25,6 +25,7 @@
     <dubbo:service interface="com.ouc.dcrms.client.service.UserServiceClient" ref="userServiceClient" registry="oucRegistry" owner="ouc" protocol="dubbo" />
 	<bean id="userServiceClient" class="com.ouc.dcrms.client.service.impl.UserServiceClientImpl">
 		<property name="userServiceCore" ref="userServiceCore"/>
+		<property name="roleServiceCore" ref="roleServiceCore"/>
 	</bean>
 	
 	<dubbo:service interface="com.ouc.dcrms.client.service.SiteServiceClient" ref="siteServiceClient" registry="oucRegistry" owner="ouc" protocol="dubbo" />
@@ -39,6 +40,11 @@
 		<property name="instrumentServiceCore" ref="instrumentServiceCore"/>
 		<property name="cityServiceCore" ref="cityServiceCore"/>
 		<property name="reasonServiceCore" ref="reasonServiceCore"/>
+	</bean>
+	
+	<dubbo:service interface="com.ouc.dcrms.client.service.AuthorityServiceClient" ref="authorityServiceClient" registry="oucRegistry" owner="ouc" protocol="dubbo" />
+	<bean id="authorityServiceClient" class="com.ouc.dcrms.client.service.impl.AuthorityServiceClientImpl">
+		<property name="roleServiceCore" ref="roleServiceCore"/>
 	</bean>
 	
 </beans>

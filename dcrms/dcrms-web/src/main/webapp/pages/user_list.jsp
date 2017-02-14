@@ -39,7 +39,7 @@
           <li ><a id="nav_li_a4" href="<%=basePath%>loadSiteCurve.do">站点数据</a></li>
           <li ><a id="nav_li_a5" href="#">设备管理</a></li>
           <li ><a id="nav_li_a6" href="<%=basePath%>loadUserList.do">用户管理</a></li>
-          <li ><a id="nav_li_a7" href="#">权限管理</a></li>
+          <li ><a id="nav_li_a7" href="<%=basePath%>loadRoleList.do">权限管理</a></li>
         </ul>
       </div>
 
@@ -54,9 +54,9 @@
         <div id="panel">
             <div id="queryBar" >
 			   <label style="margin-left:600px;">登录名：</label>
-               <input id="loginName" style="width:120px;" type="text" />
+               <input id="loginName" style="width:120px; height:24px;" type="text" />
                <label>姓名：</label>
-               <input id="trueName" style="width:120px;" type="text" />
+               <input id="trueName" style="width:120px; height:24px;" type="text" />
                <img id="usersSearch" class="usersSkip" src="<%=basePath%>static/img/search.png" />
 			</div>
 			
@@ -64,11 +64,13 @@
 				<table id="usersTab">
 					<tr style="font-weight:bold; background-color:#e1ebf5; text-align:center;">
 						<td style="width:50px">序号</td>
-						<td style="width:120px">登录名</td>
-						<td style="width:100px">姓名</td>
+						<td style="width:100px">登录名</td>
+						<td style="width:90px">姓名</td>
 						<td style="width:120px">邮箱</td>
-						<td style="width:120px">手机</td>
-						<td style="width:60px">性别</td>
+						<td style="width:100px">手机</td>
+						<td style="width:40px">性别</td>
+						<td style="width:100px">最后修改日期</td>
+						<td style="width:100px">角色</td>
 						<td style="display:none">主键ID</td>
 					</tr>
 				</table>
@@ -150,6 +152,8 @@
 				               <td >" + result.email + "</td>\
 				               <td >" + result.mobilePhone + "</td>\
 				               <td >" + result.sex + "</td>\
+				               <td >" + result.gmtModified + "</td>\
+				               <td ><a href=\"#\">" + result.roleName + "</a></td>\
 				               <td style=\"display:none\">" + result.id + "</td></tr>";
                          $("#usersTab").append(usersItem);
                      }
@@ -161,6 +165,8 @@
 				             <td >" + result.email + "</td>\
 				             <td >" + result.mobilePhone + "</td>\
 				             <td >" + result.sex + "</td>\
+				             <td >" + result.gmtModified + "</td>\
+				             <td ><a href=\"#\">" + result.roleName + "</a></td>\
 				             <td style=\"display:none\">" + result.id + "</td></tr>";
                          $("#usersTab").append(usersItem);
                      }
@@ -171,7 +177,7 @@
              }
       });
       
-     /*问题改善跟踪  首页、下一页、上一页、末页按钮*/
+     /* 首页、下一页、上一页、末页按钮*/
      $(".usersSkip").click(function(){
           var usersCurPageNum = Number(document.getElementById("usersCurPageNum").value);//当前页码
           var usersPageNum = 1;  //将要跳转的页码
@@ -242,6 +248,8 @@
 					               <td >" + result.email + "</td>\
 					               <td >" + result.mobilePhone + "</td>\
 					               <td >" + result.sex + "</td>\
+					               <td >" + result.gmtModified + "</td>\
+					               <td ><a href=\"#\">" + result.roleName + "</a></td>\
 					               <td style=\"display:none\">" + result.id + "</td></tr>";
                              $("#usersTab").append(usersItem);
                          }
@@ -253,6 +261,8 @@
 					             <td >" + result.email + "</td>\
 					             <td >" + result.mobilePhone + "</td>\
 					             <td >" + result.sex + "</td>\
+					             <td >" + result.gmtModified + "</td>\
+					             <td ><a href=\"#\">" + result.roleName + "</a></td>\
 					             <td style=\"display:none\">" + result.id + "</td></tr>";
                              $("#usersTab").append(usersItem);
                          }

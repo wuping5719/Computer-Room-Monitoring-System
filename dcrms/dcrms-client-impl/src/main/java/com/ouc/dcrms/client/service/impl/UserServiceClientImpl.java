@@ -1,5 +1,6 @@
 package com.ouc.dcrms.client.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,12 +12,15 @@ import net.sf.json.JSONObject;
 import com.ouc.dcrms.client.dto.UserDTO;
 import com.ouc.dcrms.client.service.UserServiceClient;
 import com.ouc.dcrms.core.service.UserServiceCore;
+import com.ouc.dcrms.core.service.RoleServiceCore;
 import com.ouc.dcrms.core.model.User;
 
 public class UserServiceClientImpl implements UserServiceClient {
     
     private UserServiceCore userServiceCore;
 
+    private RoleServiceCore roleServiceCore;
+    
     @Override
     public UserDTO getUserById(Integer id) {
 	UserDTO userDTO = new UserDTO();
@@ -58,7 +62,7 @@ public class UserServiceClientImpl implements UserServiceClient {
     }
     
     @Override
-    public String getUsersList(String loginName, String trueName, int pageNum) {
+    public String getUserList(String loginName, String trueName, int pageNum) {
 	int totalNum = 0;   // 总记录数
 	int totalPage = 1;  // 总页数
 	int pageSize = 20;
@@ -81,6 +85,8 @@ public class UserServiceClientImpl implements UserServiceClient {
 	List<User> usersList = new ArrayList<>();
 	usersList = userServiceCore.getUsers(loginName, trueName, startIndex, pageSize);
 
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
 	int n = startIndex + 1;  // 设置序号
 	JSONArray jsonArray = new JSONArray();
 	for(User user: usersList) {
@@ -95,7 +101,12 @@ public class UserServiceClientImpl implements UserServiceClient {
 	    }else {
 		jsonObject.put("sex", "女");
 	    }
+	    jsonObject.put("gmtModified", sdf.format(user.getGmtModified()));
 	    jsonObject.put("id", user.getUserid());
+	    
+	    String roleName = roleServiceCore.selectByPrimaryKey(Integer.parseInt(user.getRoleid())).getRolename();
+	    jsonObject.put("roleName", roleName);
+	    
 	    jsonArray.add(jsonObject);
 	    n++;
 	}
@@ -113,6 +124,14 @@ public class UserServiceClientImpl implements UserServiceClient {
 
     public void setUserServiceCore(UserServiceCore userServiceCore) {
 	this.userServiceCore = userServiceCore;
+    }
+
+    public RoleServiceCore getRoleServiceCore() {
+	return roleServiceCore;
+    }
+
+    public void setRoleServiceCore(RoleServiceCore roleServiceCore) {
+	this.roleServiceCore = roleServiceCore;
     }
     
 }

@@ -29,5 +29,6 @@
     <dubbo:reference id="userServiceClient" interface="com.ouc.dcrms.client.service.UserServiceClient" check="false" registry="localRegistry" protocol="dubbo" timeout="100000" owner="ouc"/>
     <dubbo:reference id="siteServiceClient" interface="com.ouc.dcrms.client.service.SiteServiceClient" check="false" registry="localRegistry" protocol="dubbo" timeout="100000" owner="ouc"/>
     <dubbo:reference id="alertServiceClient" interface="com.ouc.dcrms.client.service.AlertServiceClient" check="false" registry="localRegistry" protocol="dubbo" timeout="100000" owner="ouc"/>
+    <dubbo:reference id="authorityServiceClient" interface="com.ouc.dcrms.client.service.AuthorityServiceClient" check="false" registry="localRegistry" protocol="dubbo" timeout="100000" owner="ouc"/>
     
 </beans>

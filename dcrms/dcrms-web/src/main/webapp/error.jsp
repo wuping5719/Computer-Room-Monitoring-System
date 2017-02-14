@@ -19,7 +19,7 @@
 
 <script type="text/javascript">
   function returnFirst() {  
-	  top.location.href = "reloadHome.do";
+	  top.location.href = "loadHome.do";
   }
   
   $(function(){
@@ -29,7 +29,7 @@
 	  	var num = parseInt(timeDom.html());
 	  	function countDown(){
 	  		if(num<=1){
-	  			top.location.href="reloadHome.do";
+	  			top.location.href="loadHome.do";
 	  			return false;	
 	  		}
 	  		window.setTimeout(function(){

@@ -1,5 +1,7 @@
 package com.ouc.dcrms.core.model;
 
+import java.util.Date;
+
 public class Role {
     private Integer roleid;
 
@@ -10,6 +12,14 @@ public class Role {
     private String usersequence;
 
     private String ressequence;
+    
+    private Date gmtCreate;
+    
+    private Date gmtModified;
+    
+    private String createBy;
+    
+    private String lastModifedBy;
 
     public Integer getRoleid() {
         return roleid;
@@ -49,5 +59,37 @@ public class Role {
 
     public void setRessequence(String ressequence) {
         this.ressequence = ressequence == null ? null : ressequence.trim();
+    }
+
+    public Date getGmtCreate() {
+	return gmtCreate;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+	this.gmtCreate = gmtCreate;
+    }
+
+    public Date getGmtModified() {
+	return gmtModified;
+    }
+
+    public void setGmtModified(Date gmtModified) {
+	this.gmtModified = gmtModified;
+    }
+
+    public String getCreateBy() {
+	return createBy;
+    }
+
+    public void setCreateBy(String createBy) {
+	this.createBy = createBy;
+    }
+
+    public String getLastModifedBy() {
+	return lastModifedBy;
+    }
+
+    public void setLastModifedBy(String lastModifedBy) {
+	this.lastModifedBy = lastModifedBy;
     }
 }

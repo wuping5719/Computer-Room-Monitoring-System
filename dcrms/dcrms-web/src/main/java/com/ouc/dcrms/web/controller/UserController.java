@@ -73,7 +73,7 @@ public class UserController {
 	String trueName = request.getParameter("trueName");  // 姓名
 	int pageNum = Integer.parseInt(request.getParameter("pageNum")); // 当前页号
 
-	String result = userServiceClient.getUsersList(username, trueName, pageNum);
+	String result = userServiceClient.getUserList(username, trueName, pageNum);
 
 	return result;
     }

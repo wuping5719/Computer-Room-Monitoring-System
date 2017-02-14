@@ -1,5 +1,7 @@
 package com.ouc.dcrms.core.model;
 
+import java.util.Date;
+
 public class User {
     private Integer userid;
 
@@ -20,6 +22,8 @@ public class User {
     private String roleid;
 
     private Byte sex;
+    
+    private Date gmtModified;
 
     public Integer getUserid() {
         return userid;
@@ -99,5 +103,13 @@ public class User {
 
     public void setSex(Byte sex) {
         this.sex = sex;
+    }
+
+    public Date getGmtModified() {
+	return gmtModified;
+    }
+
+    public void setGmtModified(Date gmtModified) {
+	this.gmtModified = gmtModified;
     }
 }

@@ -14,6 +14,6 @@ public interface UserServiceClient {
     
     public UserDTO getUserByUserName(String username);
     
-    public String getUsersList(String loginName, String trueName, int pageNum);
+    public String getUserList(String loginName, String trueName, int pageNum);
 }
 

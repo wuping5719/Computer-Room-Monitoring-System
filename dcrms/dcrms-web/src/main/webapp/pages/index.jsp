@@ -43,7 +43,7 @@
           <li ><a id="nav_li_a4" href="<%=basePath%>loadSiteCurve.do">站点数据</a></li>
           <li ><a id="nav_li_a5" href="#">设备管理</a></li>
           <li ><a id="nav_li_a6" href="<%=basePath%>loadUserList.do">用户管理</a></li>
-          <li ><a id="nav_li_a7" href="#">权限管理</a></li>
+          <li ><a id="nav_li_a7" href="<%=basePath%>loadRoleList.do">权限管理</a></li>
         </ul>
       </div>
 
@@ -238,14 +238,23 @@
 		},
 		
 		data : [ 
-		   [ {name : '北京'}, {name : '深圳'} ], [ {name : '深圳'}, {name : '北京'} ],
-		   [ {name : '青岛'}, {name : '重庆'} ], [ {name : '重庆'}, {name : '青岛'} ], 
-		   [ {name : '哈尔滨'}, {name : '乌鲁木齐'} ], [ {name : '乌鲁木齐'}, {name : '哈尔滨'} ], 
-		   [ {name : '成都'}, {name : '大连'} ], [ {name : '大连'}, {name : '成都'} ],
+		   [ {name : '北京'}, {name : '沈阳'} ], [ {name : '沈阳'}, {name : '北京'} ],
+		   [ {name : '沈阳'}, {name : '哈尔滨'} ], [ {name : '哈尔滨'}, {name : '沈阳'} ],
+		   [ {name : '北京'}, {name : '武汉'} ], [ {name : '武汉'}, {name : '北京'} ],
+		   [ {name : '北京'}, {name : '青岛'} ], [ {name : '青岛'}, {name : '北京'} ],
+		   [ {name : '上海'}, {name : '青岛'} ], [ {name : '青岛'}, {name : '上海'} ],
+		   [ {name : '青岛'}, {name : '大连'} ], [ {name : '大连'}, {name : '青岛'} ], 
+		   [ {name : '青岛'}, {name : '西安'} ], [ {name : '西安'}, {name : '青岛'} ], 
+		   [ {name : '西安'}, {name : '乌鲁木齐'} ], [ {name : '乌鲁木齐'}, {name : '西安'} ], 
+		   [ {name : '成都'}, {name : '西安'} ], [ {name : '西安'}, {name : '成都'} ],
 		   [ {name : '上海'}, {name : '广州'} ], [ {name : '广州'}, {name : '上海'} ], 
-		   [ {name : '杭州'}, {name : '西安'} ], [ {name : '西安'}, {name : '杭州'} ], 
-		   [ {name : '沈阳'}, {name : '长沙'} ], [ {name : '长沙'}, {name : '沈阳'} ], 
-		   [ {name : '贵阳'}, {name : '长春'} ], [ {name : '长春'}, {name : '贵阳'} ] ]},
+		   [ {name : '杭州'}, {name : '上海'} ], [ {name : '上海'}, {name : '杭州'} ], 
+		   [ {name : '武汉'}, {name : '长沙'} ], [ {name : '长沙'}, {name : '武汉'} ], 
+		   [ {name : '重庆'}, {name : '武汉'} ], [ {name : '武汉'}, {name : '重庆'} ], 
+		   [ {name : '重庆'}, {name : '成都'} ], [ {name : '成都'}, {name : '重庆'} ],
+		   [ {name : '广州'}, {name : '深圳'} ], [ {name : '深圳'}, {name : '广州'} ], 
+		   [ {name : '武汉'}, {name : '上海'} ], [ {name : '上海'}, {name : '武汉'} ], 
+		   [ {name : '长沙'}, {name : '深圳'} ], [ {name : '深圳'}, {name : '长沙'} ] ]},
 	    
 		geoCoord : {
 			'北京' : [ 116.4551, 40.2539 ], '深圳' : [ 114.5435, 22.5439 ],
@@ -254,10 +263,10 @@
 			'成都' : [ 103.9526, 30.7617 ], '大连' : [ 122.2229, 39.4409 ],
 			'上海' : [ 121.4648, 31.2891 ], '广州' : [ 113.5107, 23.2196 ],
 			'杭州' : [ 119.5313, 29.8773 ], '西安' : [ 109.1162, 34.2004 ],
-			'贵阳' : [ 106.6992, 26.7682 ], '长春' : [ 125.8154, 44.2584 ],
-			'沈阳' : [ 123.1238, 42.1216 ], 
+			'沈阳' : [ 123.1238, 42.1216 ], '武汉': [114.3896,30.6628],  
 
 			/* 
+			'贵阳' : [ 106.6992, 26.7682 ], '长春' : [ 125.8154, 44.2584 ],
 			'东莞' : [ 113.8953, 22.901 ], '兰州' : [ 103.5901, 36.3043 ], 
 			'包头' : [ 110.3467, 41.4899 ], '南京' : [ 118.8062, 31.9208 ],
 			'南宁' : [ 108.479, 23.1152 ], '南昌' : [ 116.0046, 28.6633 ], 
@@ -318,22 +327,40 @@
 				}
 			},
 			
-			data : [ [ {name : '北京'}, {name : '深圳', value : 90} ], 
-			         [ {name : '深圳'}, {name : '北京', value : 90} ], 
-			         [ {name : '青岛'}, {name : '重庆', value : 30} ], 
-			         [ {name : '重庆'}, {name : '青岛', value : 30} ], 
-			         [ {name : '哈尔滨'}, {name : '乌鲁木齐', value : 10} ], 
-			         [ {name : '乌鲁木齐'}, {name : '哈尔滨', value : 10} ], 
-			         [ {name : '成都'}, {name : '大连', value : 56} ], 
-			         [ {name : '大连'}, {name : '成都', value : 56} ], 
-			         [ {name : '上海'}, {name : '广州', value : 88} ],
-			         [ {name : '广州'}, {name : '上海', value : 88} ], 
-			         [ {name : '杭州'}, {name : '西安', value : 66} ], 
-			         [ {name : '西安'}, {name : '杭州', value : 66} ], 
-			         [ {name : '沈阳'}, {name : '长沙', value : 18} ], 
-			         [ {name : '长沙'}, {name : '沈阳', value : 18} ], 
-			         [ {name : '贵阳'}, {name : '长春', value : 40} ], 
-			         [ {name : '长春'}, {name : '贵阳', value : 40} ] ]
+			data : [ [ {name : '北京'}, {name : '沈阳', value : 35} ], 
+			         [ {name : '沈阳'}, {name : '北京', value : 32} ], 
+			         [ {name : '沈阳'}, {name : '哈尔滨', value : 28} ], 
+			         [ {name : '哈尔滨'}, {name : '沈阳', value : 26} ], 
+			         [ {name : '北京'}, {name : '武汉', value : 56} ], 
+			         [ {name : '武汉'}, {name : '北京', value : 68} ], 
+			         [ {name : '北京'}, {name : '青岛', value : 58} ], 
+			         [ {name : '青岛'}, {name : '北京', value : 60} ], 
+			         [ {name : '上海'}, {name : '青岛', value : 72} ],
+			         [ {name : '青岛'}, {name : '上海', value : 68} ], 
+			         [ {name : '青岛'}, {name : '大连', value : 18} ], 
+			         [ {name : '大连'}, {name : '青岛', value : 16} ], 
+			         [ {name : '青岛'}, {name : '西安', value : 36} ], 
+			         [ {name : '西安'}, {name : '青岛', value : 32} ], 
+			         [ {name : '西安'}, {name : '乌鲁木齐', value : 12} ], 
+			         [ {name : '乌鲁木齐'}, {name : '西安', value : 10} ], 
+			         [ {name : '成都'}, {name : '西安', value : 28} ], 
+			         [ {name : '西安'}, {name : '成都', value : 32} ], 
+			         [ {name : '上海'}, {name : '广州', value : 88} ], 
+			         [ {name : '广州'}, {name : '上海', value : 82} ], 
+			         [ {name : '杭州'}, {name : '上海', value : 52} ], 
+			         [ {name : '上海'}, {name : '杭州', value : 48} ], 
+			         [ {name : '武汉'}, {name : '长沙', value : 32} ], 
+			         [ {name : '长沙'}, {name : '武汉', value : 36} ], 
+			         [ {name : '重庆'}, {name : '武汉', value : 45} ], 
+			         [ {name : '武汉'}, {name : '重庆', value : 42} ],
+			         [ {name : '重庆'}, {name : '成都', value : 36} ],
+			         [ {name : '成都'}, {name : '重庆', value : 36} ],
+			         [ {name : '长沙'}, {name : '深圳', value : 72} ],
+			         [ {name : '深圳'}, {name : '长沙', value : 69} ],
+			         [ {name : '广州'}, {name : '深圳', value : 66} ],
+			         [ {name : '深圳'}, {name : '广州', value : 62} ],
+			         [ {name : '武汉'}, {name : '上海', value : 68} ],
+			         [ {name : '上海'}, {name : '武汉', value : 76} ] ]
 			},
 			markPoint : {
 				//symbol : 'diamond',
@@ -375,11 +402,11 @@
 			data : [ {name : '北京', value : 95}, {name : '深圳', value : 80}, 
 			         {name : '青岛', value : 30}, {name : '重庆', value : 32}, 
 			         {name : '哈尔滨', value : 10}, {name : '乌鲁木齐', value : 6}, 
-			         {name : '成都', value : 20}, {name : '大连', value : 18}, 
+			         {name : '成都', value : 36}, {name : '大连', value : 18}, 
 			         {name : '上海', value : 76}, {name : '广州', value : 68},
-			         {name : '杭州', value : 56}, {name : '西安', value : 36},
-			         {name : '沈阳', value : 22}, {name : '长沙', value : 12},
-			         {name : '贵阳', value : 9}, {name : '长春', value : 5}]
+			         {name : '杭州', value : 42}, {name : '西安', value : 36},
+			         {name : '沈阳', value : 22}, {name : '武汉', value : 62}, 
+			         {name : '长沙', value : 12}]
 			}
 		} ]
 	};

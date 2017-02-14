@@ -7,10 +7,15 @@
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="userSequence" property="usersequence" jdbcType="VARCHAR" />
     <result column="resSequence" property="ressequence" jdbcType="VARCHAR" />
+    <result column="gmtCreate" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmtModified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="createBy" property="createBy" jdbcType="VARCHAR" />
+    <result column="lastModifedBy" property="lastModifedBy" jdbcType="VARCHAR" />
   </resultMap>
   
   <sql id="Base_Column_List" >
-    roleId, roleName, description, userSequence, resSequence
+    roleId, roleName, description, userSequence, resSequence, 
+    gmtCreate, gmtModified, createBy, lastModifedBy
   </sql>
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -20,16 +25,44 @@
     where roleId = #{roleid,jdbcType=INTEGER}
   </select>
   
+  <select id="selectTotalNum" resultType="Integer" >
+    select count(*) from role
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+		<if test="rolename != null and rolename != '' ">
+			and roleName = #{rolename,jdbcType=VARCHAR}
+		</if>
+		<if test="description != null and description != '' ">
+			and description = #{description,jdbcType=VARCHAR}
+		</if>
+	</trim>
+  </select>
+  
+  <select id="selectRoles" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+		<if test="rolename != null and rolename != '' ">
+			and roleName = #{rolename,jdbcType=VARCHAR}
+		</if>
+		<if test="description != null and description != '' ">
+			and description = #{description,jdbcType=VARCHAR}
+		</if>
+	</trim>
+	Limit #{startIndex},#{pageSize}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from role
     where roleId = #{roleid,jdbcType=INTEGER}
   </delete>
   
   <insert id="insert" parameterType="Role" >
-    insert into role (roleId, roleName, description, 
-      userSequence, resSequence)
+    insert into role (roleId, roleName, description, userSequence, 
+      resSequence, gmtCreate, gmtModified, createBy, lastModifedBy)
     values (#{roleid,jdbcType=INTEGER}, #{rolename,jdbcType=CHAR}, #{description,jdbcType=VARCHAR}, 
-      #{usersequence,jdbcType=VARCHAR}, #{ressequence,jdbcType=VARCHAR})
+      #{usersequence,jdbcType=VARCHAR}, #{ressequence,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP},
+      #{gmtModified,jdbcType=TIMESTAMP}, #{createBy,jdbcType=VARCHAR}, #{lastModifedBy,jdbcType=VARCHAR})
   </insert>
   
   <insert id="insertSelective" parameterType="Role" >
@@ -94,7 +127,11 @@
     set roleName = #{rolename,jdbcType=CHAR},
       description = #{description,jdbcType=VARCHAR},
       userSequence = #{usersequence,jdbcType=VARCHAR},
-      resSequence = #{ressequence,jdbcType=VARCHAR}
+      resSequence = #{ressequence,jdbcType=VARCHAR},
+      gmtCreate = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmtModified = #{gmtModified,jdbcType=TIMESTAMP},
+      createBy = #{createBy,jdbcType=VARCHAR},
+      lastModifedBy = #{lastModifedBy,jdbcType=VARCHAR}
     where roleId = #{roleid,jdbcType=INTEGER}
   </update>
 </mapper>

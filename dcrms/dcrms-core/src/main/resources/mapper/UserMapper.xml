@@ -15,10 +15,11 @@
     <result column="type" property="type" jdbcType="TINYINT" />
     <result column="roleId" property="roleid" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="TINYINT" />
+    <result column="gmtModified" property="gmtModified" jdbcType="TIMESTAMP" />
   </resultMap>
   
   <sql id="Base_Column_List" >
-    userId, siteId, name, userName, password, telephone, email, type, roleId, sex
+    userId, siteId, name, userName, password, telephone, email, type, roleId, sex, gmtModified
   </sql>
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -71,12 +72,11 @@
   <insert id="insert" parameterType="User" >
     insert into user (userId, siteId, name, 
       userName, password, telephone, 
-      email, type, roleId, 
-      sex)
+      email, type, roleId, sex, gmtModified)
     values (#{userid,jdbcType=INTEGER}, #{siteid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
       #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{telephone,jdbcType=CHAR}, 
       #{email,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, #{roleid,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=TINYINT})
+      #{sex,jdbcType=TINYINT}, #{gmtModified,jdbcType=TIMESTAMP})
   </insert>
   
   <insert id="insertSelective" parameterType="User" >

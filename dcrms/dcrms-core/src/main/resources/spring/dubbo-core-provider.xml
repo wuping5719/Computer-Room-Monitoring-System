@@ -42,6 +42,10 @@
     	<property name="mapperInterface" value="com.ouc.dcrms.core.dao.ReasonDAO" />
     </bean>
     
+    <bean id="roleDAO" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="baseDAO">
+    	<property name="mapperInterface" value="com.ouc.dcrms.core.dao.RoleDAO" />
+    </bean>
+    
 	<bean id="userServiceCore" class="com.ouc.dcrms.core.service.impl.UserServiceCoreImpl">
 		<property name="userDAO" ref="userDAO"/>
 	</bean>
@@ -66,4 +70,7 @@
 		<property name="reasonDAO" ref="reasonDAO"/>
 	</bean>
 	
+	<bean id="roleServiceCore" class="com.ouc.dcrms.core.service.impl.RoleServiceCoreImpl">
+		<property name="roleDAO" ref="roleDAO"/>
+	</bean>
 </beans>

@@ -42,7 +42,7 @@
           <li ><a id="nav_li_a3" href="<%=basePath%>loadAlertInfos.do">报警查询</a></li>
           <li ><a id="nav_li_a4" href="<%=basePath%>loadSiteCurve.do">站点数据</a></li>
           <li ><a id="nav_li_a5" href="#">设备管理</a></li>
-          <li ><a id="nav_li_a6" href="#">用户管理</a></li>
+          <li ><a id="nav_li_a6" href="<%=basePath%>loadUserList.do">用户管理</a></li>
           <li ><a id="nav_li_a7" href="#">权限管理</a></li>
         </ul>
       </div>

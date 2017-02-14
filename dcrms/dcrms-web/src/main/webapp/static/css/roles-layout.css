@@ -1,144 +1,31 @@
 @charset "utf-8";
 
-body,div,span,h1,h2,h3,h4,h5,h6,p,img,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td
-{
-	margin: 0;
-	padding: 0;
-	margin: 0 auto;
-	position: relative;
-}
-
-a {
-	text-decoration: none;
-	color: #000;
-}
-
-li {
-	list-style-type: none;
-}
-
-img {
-   vertical-align:middle;
-}
-
-#container {
+#queryBar {
+	margin: 5px 0 1px 0;
 	width: 100%;
-	height: 680px;
-	margin: 0 auto;
+	height: 30px;
 }
 
-#headerLayout {
-	background:#f4f4f4;
-	width:100%;
-	height:70px;
-	top:0;
-	position:absolute;
-}
-
-#authTop {
+#roleListTable {
 	width: 100%;
-	height: 20px;
-	text-align: center;
-	vertical-align: middle;
+	height: 500px;
+	text-align:center;
 }
 
-#authTop span {
-	float: left;
-	font-size: 15px;
+#rolesTab {
+	margin: 2px 20px 10px 20px;
+	width: 96%;
+	height: 400px;
 }
-
-#authTop a {
-	color: #000;
+#rolesTab tr {
+  height: 5px;
 }
+#rolesTab td{
+  border:1px solid #fff;
+} 
 
-#mes1 {
-	margin-left: 50px;
-}
-
-#mes2 {
-	margin-left: 30px;
-}
-
-#mes3 {
-	margin-left: 30px;
-}
-
-#mes4 {
-	margin-left: 680px;
-}
-
-#mes5 {
-	margin-left: 30px;
-	width: auto;
-}
-
-#authMid {
+#rolesPage {
 	width: 100%;
-	background-color: #005aaa;
-	height: 46px
+	height: 30px;
+	text-align:center;
 }
-
-#comLog {
-	float: left;
-	height: 40px;
-}
-
-#comLog img {
-	height: 28px;
-	margin-left: 100px;
-	margin-top: 8px;
-}
-
-#authMenu {
-	float: left;
-	height: 46px;
-	margin-left: 60px;
-}
-
-#authMenu ul {
-	width: 600px;
-	height: 46px;
-	display: inline;
-}
-
-#authMenu li {
-	float: left;
-	cursor: pointer;
-	background: none;
-	line-height: 46px;
-	display: inline;
-	height: 46px;
-	text-align: center;
-	font-size: 15px;
-	font-weight: bold;
-	width: 100px;
-}
-
-#authMenu li:hover {
-	background: darkblue;
-}
-
-#authMenu li a {
-	color: #fff;
-	text-decoration: none;
-}
-
-#layoutBody {
-	width:100%;
-	height:600px;
-	background:#f4f4f4;
-	top:70px;
-	bottom:30px;
-	position:relative;
-}
-
-#midTitle {
-	margin-left:120px;
-}
-
-#roleTable {
-	width: 1000px;
-	heigth: 400px; 
-	margin-left:120px;
-}
-

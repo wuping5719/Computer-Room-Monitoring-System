@@ -67,10 +67,10 @@
 		         </select>
               </div>
               <div id="deviceMenu" style="float:left; height:8%; width:100%; ">
-                  <input type="button" id="as4" value="精密空调" style="margin:30px 12px; height:24px;" />
-                  <input type="button" id="as1" value="UPS" style="margin:30px 12px; height:24px;" />
-                  <input type="button" id="as2" value="机柜" style="margin:30px 12px; height:24px;" />
-                  <input type="button" id="as3" value="采集配置" style="margin:30px 12px; height:24px;" />
+                  <input type="button" id="conditionerBtn" value="精密空调" style="margin:30px 12px; height:24px;" />
+                  <input type="button" id="upsBtn" value="UPS" style="margin:30px 12px; height:24px;" />
+                  <input type="button" id="jiguiBtn" value="机柜" style="margin:30px 12px; height:24px;" />
+                  <input type="button" id="acquistionBtn" value="采集配置" style="margin:30px 12px; height:24px;" />
               </div>
               <div id="deviceName" style="float:left; height:2%; width:100%; "><label style="margin-top:30px;" >精密空调</label></div>
               <div id="devicePic" style="float:left; height:88%; width:100%; background: center no-repeat; background-size:85%;"></div>
@@ -94,7 +94,7 @@
                   <div style="float:left; height:10%; width:100%;">
                      <input type="button" id="operateHum" value="空调运行及报警状态监测" style="margin:10px; height:24px;" />
                   </div>                  
-                  <div style="float:left; margin-top:8px; height:10%; width:45%;">
+                  <div style="float:left; margin-top:10px; height:10%; width:45%;">
                      <div style="float:left; text-align:right; height:100%; width:50%;">
                        <label>空调制冷：</label>
                      </div>
@@ -102,7 +102,7 @@
                        <input id="hum" value="是" style="width:160px; height:24px; background-color:#f5f5f5;" type="text" />
                      </div>
                   </div>
-                  <div style="float:left; margin-top:8px; height:10%; width:45%;">
+                  <div style="float:left; margin-top:10px; height:10%; width:45%;">
                      <div style="float:left; text-align:right; height:100%; width:50%;">
                        <label>空调加热：</label>
                      </div>
@@ -268,6 +268,18 @@
       $(document).ready(function() {
     	  var currentImg = '<%=basePath%>static/img/device/aimosheng.png';
           document.getElementById("devicePic").style.backgroundImage="url("+ currentImg +")";
+      });
+      
+      $("#conditionerBtn").click(function(){
+    	  window.location.href = "<%=basePath%>loadDeviceManage.do";
+      });
+      
+      $("#upsBtn").click(function(){
+    	  window.location.href = "<%=basePath%>loadDeviceManageUPS.do";
+      });
+      
+      $("#acquistionBtn").click(function(){
+    	  window.location.href = "<%=basePath%>loadDeviceAcquisitionConfig.do";
       });
       
       var tempChart = echarts.init(document.getElementById('temperature'));

@@ -31,6 +31,28 @@ public class DeviceController {
 	
 	request.setAttribute("cityDTOList", cityDTOList);
 	
-	return "pages/device_manage";
+	return "pages/device_manage_conditioner";
+    }
+    
+    @RequestMapping(value = "loadDeviceManageUPS.do", produces = "text/html;charset=UTF-8")
+    public String loadDeviceManageUPS(HttpServletRequest request,
+	    HttpServletResponse response) {
+	List<CityDTO> cityDTOList = new ArrayList<>();
+	cityDTOList = siteServiceClient.getAllCity();
+	
+	request.setAttribute("cityDTOList", cityDTOList);
+	
+	return "pages/device_manage_ups";
+    }
+    
+    @RequestMapping(value = "loadDeviceAcquisitionConfig.do", produces = "text/html;charset=UTF-8")
+    public String loadDeviceAcquisitionConfig(HttpServletRequest request,
+	    HttpServletResponse response) {
+	List<CityDTO> cityDTOList = new ArrayList<>();
+	cityDTOList = siteServiceClient.getAllCity();
+	
+	request.setAttribute("cityDTOList", cityDTOList);
+	
+	return "pages/device_acquisition_config";
     }
 }

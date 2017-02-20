@@ -22,7 +22,7 @@ public class NeteaseSms {
      * 发送POST方法的请求
      * @return 所代表远程资源的响应结果
      */
-    public static String sendMsg() {
+    public String sendMsg(String telephone, String siteName, String reason) {
 	String appKey = "1686974c7ffa5bf61f7ab4cd752b1fed";
 	String appSecret = "444dc898f580";
 	String nonce = "Nick";    // 随机数(最大长度128个字符)
@@ -40,12 +40,14 @@ public class NeteaseSms {
 	String result = "";
 	try {
 	    String url = "https://api.netease.im/sms/sendtemplate.action";
-	    String telephone = URLEncoder.encode("18765951838", "utf-8");
-	    String siteName = URLEncoder.encode("李村", "utf-8");
-	    String reason = URLEncoder.encode("烟感1异常", "utf-8");  // url编码, 防止不识别中文
+	    String encodeTelephone = URLEncoder.encode(telephone, "utf-8");
+	    String encodeSiteName = URLEncoder.encode(siteName, "utf-8");
+	    String encodeReason = URLEncoder.encode(reason, "utf-8");  // url编码, 防止不识别中文
 	    
-	    String params = "templateid=1007&mobiles=[\"" + telephone + "\"]"
-		    + "&params=" + "[\"" + siteName + "\",\"" + reason + "\"]";
+	    //String templateID = "3056068";
+	    String templateID = "100001";
+	    String params = "templateid=" + templateID + "&mobiles=[\"" + encodeTelephone + "\"]"
+		    + "&params=" + "[\"" + sdf.format(now) + "\",\"" + encodeSiteName + "\",\"" + encodeReason + "\"]";
 	    System.out.println("params" + params);
 
 	    URL realUrl = new URL(url);

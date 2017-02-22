@@ -27,5 +27,6 @@
 		<module>dcrms-collect</module>
 		<module>dcrms-task</module>
 		<module>dcrms-web</module>
+		<module>dcrms-video</module>
 	</modules>
 </project>

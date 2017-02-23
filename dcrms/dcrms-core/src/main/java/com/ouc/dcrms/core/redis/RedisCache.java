@@ -1,4 +1,4 @@
-package com.ouc.dcrms.core.cache;
+package com.ouc.dcrms.core.redis;
 
 import java.util.Set;
 import java.util.concurrent.locks.ReadWriteLock;
@@ -52,10 +52,13 @@ public class RedisCache implements Cache {
         if (id == null) {
             throw new IllegalArgumentException("必须传入ID");
         }
-        context = new ClassPathXmlApplicationContext("spring-redis.xml");
+        context = new ClassPathXmlApplicationContext("classpath:spring/spring-redis.xml");
         JedisPoolConfig jedisPoolConfig = (JedisPoolConfig) context.getBean("jedisPoolConfig");
-        jedisPool = new JedisPool(jedisPoolConfig, "192.168.12.90", 7504);
-        System.out.println("--MybatisRedisCache:id=" + id);
+        
+        jedisPool = new JedisPool(jedisPoolConfig, RedisUtil.ADDR, 
+        	RedisUtil.PORT, RedisUtil.TIMEOUT, RedisUtil.AUTH);
+        
+        // System.out.println("--mybatisRedisCache: id = " + id);
         this.id = id;
     }
 
@@ -77,7 +80,7 @@ public class RedisCache implements Cache {
             if (null != keys && !keys.isEmpty()) {
                 result = keys.size();
             }
-            System.out.println(this.id + "-->总缓存数:" + result);
+            // System.out.println(this.id + "-->总缓存数:" + result);
         } catch (Exception e) {
             borrowOrOprSuccess = false;
             if (jedis != null)
@@ -100,7 +103,7 @@ public class RedisCache implements Cache {
 
             byte[] keys = getKey(key).getBytes(UTF8);
             jedis.set(keys, SerializeUtil.serialize(value));
-            System.out.println("--添加缓存:" + this.id);
+            // System.out.println("--添加缓存:" + this.id);
         } catch (Exception e) {
             borrowOrOprSuccess = false;
             if (jedis != null)
@@ -121,7 +124,7 @@ public class RedisCache implements Cache {
             jedis = jedisPool.getResource();
             jedis.select(DB_INDEX);
             value = SerializeUtil.unSerialize(jedis.get(getKey(key).getBytes(UTF8)));
-            System.out.println("--从缓存中获取:" + this.id);
+            // System.out.println("--从缓存中获取:" + this.id);
         } catch (Exception e) {
             borrowOrOprSuccess = false;
             if (jedis != null)
@@ -143,7 +146,7 @@ public class RedisCache implements Cache {
             jedis = jedisPool.getResource();
             jedis.select(DB_INDEX);
             value = jedis.del(getKey(key).getBytes(UTF8));
-            System.out.println("--LRU算法从缓存中移除:" + this.id);
+            // System.out.println("--LRU算法从缓存中移除:" + this.id);
         } catch (Exception e) {
             borrowOrOprSuccess = false;
             if (jedis != null)
@@ -166,7 +169,7 @@ public class RedisCache implements Cache {
             // 如果有删除操作，会影响到整个表中的数据，因此要清空一个mapper的缓存
             // （一个mapper的不同数据操作对应不同的key）
             Set<byte[]> keys = jedis.keys(getKeys().getBytes(UTF8));
-            System.out.println("--出现CUD操作, 清空对应Mapper缓存:" + keys.size());
+            // System.out.println("--出现CUD操作, 清空对应Mapper缓存:" + keys.size());
             for (byte[] key : keys) {
                 jedis.del(key);
             }

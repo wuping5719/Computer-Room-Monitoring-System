@@ -1,6 +1,11 @@
 package com.ouc.dcrms.core.model;
 
-public class Actiontype {
+import java.io.Serializable;
+
+public class Actiontype implements Serializable {
+
+    private static final long serialVersionUID = -3987805807556339367L;
+
     private Integer actionid;
 
     private String name;

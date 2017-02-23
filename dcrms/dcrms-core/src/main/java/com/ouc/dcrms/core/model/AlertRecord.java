@@ -1,8 +1,12 @@
 package com.ouc.dcrms.core.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class AlertRecord {
+public class AlertRecord implements Serializable {
+
+    private static final long serialVersionUID = 8933925573746363700L;
+
     private Long alertid;
 
     private Integer siteid;

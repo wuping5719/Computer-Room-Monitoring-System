@@ -1,8 +1,12 @@
 package com.ouc.dcrms.core.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Logs {
+public class Logs implements Serializable {
+
+    private static final long serialVersionUID = 225303465410282142L;
+
     private Integer logid;
 
     private Integer userid;

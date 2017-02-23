@@ -1,8 +1,12 @@
 package com.ouc.dcrms.core.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class SiteData {
+public class SiteData implements Serializable {
+
+    private static final long serialVersionUID = -1933743000271371263L;
+
     private Long dataid;
 
     private Date gathertime;

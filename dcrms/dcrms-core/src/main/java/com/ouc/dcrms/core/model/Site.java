@@ -1,6 +1,11 @@
 package com.ouc.dcrms.core.model;
 
-public class Site {
+import java.io.Serializable;
+
+public class Site implements Serializable {
+    
+    private static final long serialVersionUID = -2442364172575845122L;
+
     private Integer siteid;
 
     private String sitename;

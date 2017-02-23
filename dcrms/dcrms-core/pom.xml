@@ -25,14 +25,7 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>dubbo</artifactId>
 		</dependency>
-		
-		<!-- 
-		<dependency> 
-		    <groupId>redis.clients</groupId> 
-		    <artifactId>jedis</artifactId> 
-		</dependency> 
-		-->
-	
+				
 		<dependency>
 			<groupId>net.sf.json-lib</groupId>
 			<artifactId>json-lib</artifactId>
@@ -67,10 +60,14 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jms</artifactId>
 		</dependency>
+		
+		<!-- oracle -->
+		<!-- 
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc14</artifactId>
-		</dependency>
+		</dependency> 
+		-->
 
 		<!-- mysql连接 -->
 		<dependency>
@@ -98,7 +95,8 @@
 			<groupId>aopalliance</groupId>
 			<artifactId>aopalliance</artifactId>
 		</dependency>
-		<!-- XStream -->
+		
+		<!-- xStream -->
 		<dependency>
 			<groupId>com.thoughtworks.xstream</groupId>
 			<artifactId>xstream</artifactId>
@@ -124,6 +122,8 @@
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
 		</dependency>
+		
+		<!-- quartz -->
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
@@ -132,6 +132,7 @@
 			<groupId>org.terracotta.quartz</groupId>
 			<artifactId>quartz-terracotta</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
@@ -144,23 +145,32 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 		</dependency>
+		
+		<!-- ehcache -->
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
 			<artifactId>ehcache</artifactId>
 			<type>pom</type>
 		</dependency>
+		
+		<!-- log4j12 -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 		</dependency>
+		
+		<!-- druid -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
 		</dependency>
+		
+		<!-- dangdang -->
 		<dependency>
 			<groupId>com.dangdang</groupId>
 			<artifactId>config-toolkit-easyzk</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>mx4j</groupId>
 			<artifactId>mx4j</artifactId>
@@ -185,22 +195,25 @@
 			<artifactId>httpclient</artifactId>
 		</dependency>
 		
+		<!-- fastjson -->
 	    <dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 		</dependency>
-		<!-- Mybatis_Pagehelper -->
+		
+		<!-- mybatis_pagehelper -->
 		<dependency>
     		<groupId>com.github.pagehelper</groupId>
     		<artifactId>pagehelper</artifactId>
 		</dependency>
+		
 		<!-- commons-fileupload -->
 		<dependency>
 		    <groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
 		</dependency>
 		
-		<!-- RabbitMQ -->
+		<!-- rabbitMQ -->
 		<dependency>
             <groupId>com.rabbitmq</groupId>
             <artifactId>amqp-client</artifactId>
@@ -219,5 +232,6 @@
             <groupId>redis.clients</groupId>  
             <artifactId>jedis</artifactId>   
         </dependency> 
+        
 	</dependencies>
 </project>

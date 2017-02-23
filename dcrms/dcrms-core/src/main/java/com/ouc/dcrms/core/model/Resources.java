@@ -1,6 +1,11 @@
 package com.ouc.dcrms.core.model;
 
-public class Resources {
+import java.io.Serializable;
+
+public class Resources implements Serializable {
+
+    private static final long serialVersionUID = 8169168311556858264L;
+
     private Integer resid;
 
     private String name;

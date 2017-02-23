@@ -9,14 +9,14 @@ import java.security.MessageDigest;
 
 public class CheckSumBuilder {
     // 计算并获取CheckSum
-    public static String getCheckSum(String appSecret, String nonce,
+    public static String getCheckSum(String secret, String nonce,
 	    String curTime) {
-	return encode("sha1", appSecret + nonce + curTime);
+	return encode("sha1", secret + nonce + curTime);
     }
 
     // 计算并获取md5值
-    public static String getMD5(String requestBody) {
-	return encode("md5", requestBody);
+    public static String getMD5(String str) {
+	return encode("md5", str);
     }
 
     private static String encode(String algorithm, String value) {

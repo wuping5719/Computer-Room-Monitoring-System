@@ -1,6 +1,11 @@
 package com.ouc.dcrms.core.model;
 
-public class Reason {
+import java.io.Serializable;
+
+public class Reason implements Serializable {
+
+    private static final long serialVersionUID = 5455328018985540237L;
+
     private Integer reasonid;
 
     private String description;

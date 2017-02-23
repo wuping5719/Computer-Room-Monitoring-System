@@ -1,6 +1,11 @@
 package com.ouc.dcrms.core.model;
 
-public class Instrument {
+import java.io.Serializable;
+
+public class Instrument implements Serializable {
+    
+    private static final long serialVersionUID = -7292966742307945005L;
+
     private Integer insid;
 
     private Integer siteid;

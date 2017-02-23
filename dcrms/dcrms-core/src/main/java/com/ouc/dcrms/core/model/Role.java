@@ -1,8 +1,12 @@
 package com.ouc.dcrms.core.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Role {
+public class Role implements Serializable {
+  
+    private static final long serialVersionUID = 6247739169332243696L;
+
     private Integer roleid;
 
     private String rolename;

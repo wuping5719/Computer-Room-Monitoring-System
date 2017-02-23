@@ -1,6 +1,11 @@
 package com.ouc.dcrms.core.model;
 
-public class Coordinate {
+import java.io.Serializable;
+
+public class Coordinate implements Serializable {
+    
+    private static final long serialVersionUID = 2385122626114187416L;
+
     private Integer coordinateid;
 
     private String coordinatename;

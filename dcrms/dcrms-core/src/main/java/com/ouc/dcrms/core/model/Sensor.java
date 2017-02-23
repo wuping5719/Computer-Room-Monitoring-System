@@ -1,6 +1,11 @@
 package com.ouc.dcrms.core.model;
 
-public class Sensor {
+import java.io.Serializable;
+
+public class Sensor implements Serializable {
+
+    private static final long serialVersionUID = 8760846405470733094L;
+
     private Integer sensorid;
 
     private Integer insid;

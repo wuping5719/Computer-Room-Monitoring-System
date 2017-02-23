@@ -72,6 +72,7 @@
 				<artifactId>dcrms-core</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			
 		    <dependency>
 			   <groupId>net.sf.json-lib</groupId>
 			   <artifactId>json-lib</artifactId>
@@ -83,6 +84,8 @@
 				<artifactId>wlfullclient</artifactId>
 				<version>10.3.6</version>
 			</dependency>
+			
+			<!-- zookeeper -->
 			<dependency>
 				<groupId>com.github.sgroschupf</groupId>
 				<artifactId>zkclient</artifactId>
@@ -93,6 +96,8 @@
 				<artifactId>zookeeper</artifactId>
 				<version>3.4.5</version>
 			</dependency>
+			
+			<!-- dubbo -->
 			<dependency>
 				<groupId>com.alibaba</groupId>
 				<artifactId>dubbo</artifactId>
@@ -108,6 +113,8 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
+			
+			<!-- junit -->
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
@@ -126,6 +133,8 @@
 				<version>3.1</version>
 				<scope>test</scope>
 			</dependency>
+			
+			<!-- struts2 -->
 			<dependency>
 				<groupId>org.apache.struts</groupId>
 				<artifactId>struts2-core</artifactId>
@@ -137,6 +146,8 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
+			
+			<!-- mybatis -->
 			<dependency>
 				<groupId>org.mybatis</groupId>
 				<artifactId>mybatis-spring</artifactId>
@@ -152,6 +163,8 @@
 				<artifactId>mybatis-generator-core</artifactId>
 				<version>1.3.2</version>
 			</dependency>
+			
+			<!-- 日志 log4j和slf4j -->
 			<dependency>
 				<groupId>log4j</groupId>
 				<artifactId>log4j</artifactId>
@@ -167,6 +180,8 @@
 				<artifactId>slf4j-log4j12</artifactId>
 				<version>1.7.5</version>
 			</dependency>
+			
+			<!-- spring -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-core</artifactId>
@@ -218,6 +233,7 @@
 				<artifactId>spring-context-support</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
+			
 			<dependency>
 				<groupId>org.hamcrest</groupId>
 				<artifactId>hamcrest-all</artifactId>
@@ -230,6 +246,8 @@
 				<version>2.4.9</version>
 				<scope>test</scope>
 			</dependency>
+			
+			<!-- quartz -->
 			<dependency>
 				<groupId>org.quartz-scheduler</groupId>
 				<artifactId>quartz</artifactId>
@@ -242,6 +260,12 @@
 				</exclusions>
 			</dependency>
 			<dependency>
+				<groupId>org.terracotta.quartz</groupId>
+				<artifactId>quartz-terracotta</artifactId>
+				<version>2.3.1</version>
+			</dependency>
+			
+			<dependency>
 				<groupId>org.aspectj</groupId>
 				<artifactId>aspectjweaver</artifactId>
 				<version>1.7.2</version>
@@ -251,6 +275,7 @@
 				<artifactId>cglib</artifactId>
 				<version>2.2.2</version>
 			</dependency>
+			
 			<!-- ehcache -->
 			<dependency>
 				<groupId>net.sf.ehcache</groupId>
@@ -258,12 +283,8 @@
 				<version>2.6.2</version>
 				<type>pom</type>
 			</dependency>
-			<dependency>
-				<groupId>org.terracotta.quartz</groupId>
-				<artifactId>quartz-terracotta</artifactId>
-				<version>2.3.1</version>
-			</dependency>
-
+			
+            <!-- jms -->
 			<dependency>
 				<groupId>javax.jms</groupId>
 				<artifactId>jms-api</artifactId>
@@ -274,6 +295,8 @@
 				<artifactId>spring-jms</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
+			
+			<!-- oracle -->
 			<dependency>
 				<groupId>com.oracle</groupId>
 				<artifactId>ojdbc14</artifactId>
@@ -296,13 +319,13 @@
 				<artifactId>commons-dbcp</artifactId>
 				<version>1.4</version>
 			</dependency>
-
 			<dependency>
 				<groupId>aopalliance</groupId>
 				<artifactId>aopalliance</artifactId>
 				<version>1.0</version>
 			</dependency>
-			<!-- XStream -->
+			
+			<!-- xStream -->
 			<dependency>
 				<groupId>com.thoughtworks.xstream</groupId>
 				<artifactId>xstream</artifactId>
@@ -343,7 +366,8 @@
 				<artifactId>freemarker</artifactId>
 				<version>2.3.19</version>
 			</dependency>
-
+			
+            <!-- json -->
 			<dependency>
 				<groupId>json</groupId>
 				<artifactId>json-lib</artifactId>
@@ -364,6 +388,7 @@
 				<artifactId>imageinfo</artifactId>
 				<version>1.9</version>
 			</dependency>
+			
 			<!-- cas -->
 			<dependency>
 				<groupId>org.jasig.cas.client</groupId>
@@ -376,7 +401,8 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
-			<!-- DataSource -->
+			
+			<!-- dataSource -->
 			<dependency>
 				<groupId>com.alibaba</groupId>
 				<artifactId>druid</artifactId>
@@ -392,6 +418,7 @@
 				<artifactId>config-toolkit-easyzk</artifactId>
 				<version>2.0.3-RELEASE</version>
 			</dependency>
+			
 			<!-- mx4j -->
 			<dependency>
 				<groupId>mx4j</groupId>
@@ -403,6 +430,8 @@
 				<artifactId>mx4j-tools</artifactId>
 				<version>3.0.1</version>
 			</dependency>
+			
+			<!-- spring-boot -->
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-web</artifactId>
@@ -413,6 +442,8 @@
 				<artifactId>spring-boot-actuator</artifactId>
 				<version>${spring.boot.version}</version>
 			</dependency>
+			
+			<!-- hibernate -->
 			<dependency>
 				<groupId>org.hibernate</groupId>
 				<artifactId>hibernate-validator</artifactId>
@@ -423,6 +454,7 @@
 				<artifactId>validation-api</artifactId>
 				<version>1.1.0.Final</version>
 			</dependency>
+			
 			<!-- lts -->
 			<dependency>
 				<groupId>com.lts</groupId>
@@ -449,6 +481,7 @@
 				<artifactId>leveldbjni-all</artifactId>
 				<version>${leveldbjni.version}</version>
 			</dependency>
+			
 			<!-- httpclient -->
 			<dependency>
 				<groupId>org.apache.httpcomponents</groupId>
@@ -460,32 +493,21 @@
 				<artifactId>httpcore</artifactId>
 				<version>4.4.4</version>
 			</dependency>
-
 			<!-- commons-httpclient -->
 			<dependency>
 				<groupId>commons-httpclient</groupId>
 				<artifactId>commons-httpclient</artifactId>
 				<version>3.1</version>
 			</dependency>
-			<!-- httpclient -->
-			<dependency>
-				<groupId>org.apache.httpcomponents</groupId>
-				<artifactId>httpcore</artifactId>
-				<version>4.3.2</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.httpcomponents</groupId>
-				<artifactId>httpclient</artifactId>
-				<version>4.3.2</version>
-			</dependency>
-
+			
 			<!-- alibaba fastjson -->
 			<dependency>
 				<groupId>com.alibaba</groupId>
 				<artifactId>fastjson</artifactId>
 				<version>1.1.41</version>
 			</dependency>
-			<!-- Mybatis_Pagehelper -->
+			
+			<!-- mybatis_pagehelper -->
 			<dependency>
 				<groupId>com.github.pagehelper</groupId>
 				<artifactId>pagehelper</artifactId>
@@ -499,7 +521,7 @@
 				<version>1.2.2</version>
 			</dependency>
 			
-			<!-- RabbitMQ -->
+			<!-- rabbitMQ -->
 			<dependency>
                 <groupId>com.rabbitmq</groupId>
                 <artifactId>amqp-client</artifactId>
@@ -548,6 +570,7 @@
 			<artifactId>spring-test</artifactId>
 		</dependency>
 	</dependencies>
+	
 	<build>
 		<filters>
 			<filter>../dcrms-parent/src/main/filters/filter-${env}.properties</filter>

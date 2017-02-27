@@ -1,5 +1,5 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();
 	// 获得本项目的地址(例如: http://localhost:8080/MyApp/)赋值给basePath变量    
@@ -69,7 +69,7 @@
               <div id="deviceMenu" style="float:left; height:8%; width:100%; ">
                   <input type="button" id="conditionerBtn" value="精密空调" style="margin:30px 12px; height:24px;" />
                   <input type="button" id="upsBtn" value="UPS" style="margin:30px 12px; height:24px;" />
-                  <input type="button" id="jiguiBtn" value="机柜" style="margin:30px 12px; height:24px;" />
+                  <input type="button" id="cabinetBtn" value="机柜" style="margin:30px 12px; height:24px;" />
                   <input type="button" id="acquistionBtn" value="采集配置" style="margin:30px 12px; height:24px;" />
               </div>
               <div id="deviceName" style="float:left; height:2%; width:100%; "><label style="margin-top:30px;" >山特UPS</label></div>
@@ -218,6 +218,10 @@
       
       $("#acquistionBtn").click(function(){
     	  window.location.href = "<%=basePath%>loadDeviceAcquisitionConfig.do";
+      });
+      
+      $("#cabinetBtn").click(function(){
+    	  window.location.href = "<%=basePath%>loadDeviceManageCabinet.do";
       });
       
       var mainsVoltageData = [218, 236, 252];
@@ -519,7 +523,7 @@
         	            symbolSize: 8,
         	            hoverAnimation: false,
         	            data: [
-        	                25,30,32,36,32,28,26,29,31,36
+        	                5,6,8,12,10,8,9,12,7,11
         	            ]
         	        }
         	    ]

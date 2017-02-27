@@ -55,4 +55,15 @@ public class DeviceController {
 	
 	return "pages/device_acquisition_config";
     }
+    
+    @RequestMapping(value = "loadDeviceManageCabinet.do", produces = "text/html;charset=UTF-8")
+    public String loadDeviceManageCabinet(HttpServletRequest request,
+	    HttpServletResponse response) {
+	List<CityDTO> cityDTOList = new ArrayList<>();
+	cityDTOList = siteServiceClient.getAllCity();
+	
+	request.setAttribute("cityDTOList", cityDTOList);
+	
+	return "pages/device_manage_cabinet";
+    }
 }

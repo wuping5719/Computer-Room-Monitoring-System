@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>通用权限管理平台—欢迎登录</title>
+<title>分布式机房监控云服务系统—欢迎登录</title>
 <link rel="stylesheet" type="text/css" href="static/css/login-style.css" />
 <link rel="stylesheet" type="text/css" href="static/css/sweet-alert.css" />
 </head>

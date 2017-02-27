@@ -1,0 +1,32 @@
+@charset "utf-8";
+
+#queryBar {
+	margin: 5px 0 1px 0;
+	width: 100%;
+	height: 30px;
+}
+
+#resListTable {
+	width: 100%;
+	height: 500px;
+	text-align:center;
+}
+
+#resTab {
+	margin: 2px 20px 10px 20px;
+	width: 96%;
+	height: 400px;
+}
+#resTab tr {
+  height: 5px;
+}
+#resTab td{
+  border:1px solid #fff;
+} 
+
+#resPage {
+	width: 100%;
+	height: 30px;
+	text-align:center;
+}
+

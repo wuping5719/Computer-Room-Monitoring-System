@@ -45,6 +45,7 @@
 	<dubbo:service interface="com.ouc.dcrms.client.service.AuthorityServiceClient" ref="authorityServiceClient" registry="oucRegistry" owner="ouc" protocol="dubbo" />
 	<bean id="authorityServiceClient" class="com.ouc.dcrms.client.service.impl.AuthorityServiceClientImpl">
 		<property name="roleServiceCore" ref="roleServiceCore"/>
+		<property name="resourceServiceCore" ref="resourceServiceCore"/>
 	</bean>
 	
 </beans>

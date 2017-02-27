@@ -71,6 +71,7 @@
                <input id="reason" style="width:120px; height:24px;" type="text" />
                <label style="margin-left:10px;">报警级别：</label>
                <select id="level" style="width:80px; height:24px;" >
+			      <option value="默认">默认</option>
 			      <option value="紧急报警">紧急报警</option>
 			      <option value="重要报警">重要报警</option>
 			      <option value="一般报警">一般报警</option>

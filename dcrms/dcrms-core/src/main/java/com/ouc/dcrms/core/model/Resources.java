@@ -1,6 +1,7 @@
 package com.ouc.dcrms.core.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Resources implements Serializable {
 
@@ -17,6 +18,10 @@ public class Resources implements Serializable {
     private Byte visible;
 
     private String description;
+    
+    private Date gmtCreate; 
+    
+    private Date gmtModified;
 
     public Integer getResid() {
         return resid;
@@ -64,5 +69,21 @@ public class Resources implements Serializable {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
+    }
+
+    public Date getGmtCreate() {
+	return gmtCreate;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+	this.gmtCreate = gmtCreate;
+    }
+
+    public Date getGmtModified() {
+	return gmtModified;
+    }
+
+    public void setGmtModified(Date gmtModified) {
+	this.gmtModified = gmtModified;
     }
 }

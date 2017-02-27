@@ -176,8 +176,9 @@
                  sweetAlert("网页发生错误：", e, "error");
              }
       });
-      
-     /* 首页、下一页、上一页、末页按钮*/
+	 });
+	 
+	 /* 首页、下一页、上一页、末页按钮*/
      $(".usersSkip").click(function(){
           var usersCurPageNum = Number(document.getElementById("usersCurPageNum").value);//当前页码
           var usersPageNum = 1;  //将要跳转的页码
@@ -271,9 +272,8 @@
                  error:function(e){
                      sweetAlert("网页发生错误：", e, "error");
                  }
-             });
-         });
-	  });
+          });
+      });
 	</script>
   </body>
 </html>

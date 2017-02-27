@@ -8,10 +8,12 @@
     <result column="type" property="type" jdbcType="TINYINT" />
     <result column="visible" property="visible" jdbcType="TINYINT" />
     <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="gmtCreate" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmtModified" property="gmtModified" jdbcType="TIMESTAMP" />
   </resultMap>
   
   <sql id="Base_Column_List" >
-    resId, name, url, type, visible, description
+    resId, name, url, type, visible, description, gmtCreate, gmtModified
   </sql>
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -21,18 +23,45 @@
     where resId = #{resid,jdbcType=INTEGER}
   </select>
   
+  <select id="selectTotalNum" resultType="Integer" >
+    select count(*) from resources
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+		<if test="name != null and name != '' ">
+			and name = #{name,jdbcType=VARCHAR}
+		</if>
+		<if test="type != null and type != -1 ">
+			and type = #{type,jdbcType=TINYINT}
+		</if>
+	</trim>
+  </select>
+  
+  <select id="selectResources" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from resources
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+		<if test="name != null and name != '' ">
+			and name = #{name,jdbcType=VARCHAR}
+		</if>
+		<if test="type != null and type != -1 ">
+			and type = #{type,jdbcType=TINYINT}
+		</if>
+	</trim>
+	Limit #{startIndex},#{pageSize}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from resources
     where resId = #{resid,jdbcType=INTEGER}
   </delete>
   
   <insert id="insert" parameterType="Resources" >
-    insert into resources (resId, name, url, 
-      type, visible, description
+    insert into resources (resId, name, url, type, 
+      visible, description, gmtCreate, gmtModified
       )
     values (#{resid,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, #{url,jdbcType=VARCHAR}, 
-      #{type,jdbcType=TINYINT}, #{visible,jdbcType=TINYINT}, #{description,jdbcType=VARCHAR}
-      )
+      #{type,jdbcType=TINYINT}, #{visible,jdbcType=TINYINT}, #{description,jdbcType=VARCHAR},
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
   </insert>
   
   <insert id="insertSelective" parameterType="Resources" >

@@ -44,7 +44,7 @@ public class LoginController {
 	// 获取前台传来的用户名和密码
 	String username = request.getParameter("username");
 	String passWord = request.getParameter("password"); // 明文密码
-	System.out.println("当前登录用户：" + username);
+	//System.out.println("当前登录用户：" + username);
 
 	// 设置登录反馈信息变量：1—成功；2—用户名不存在；3—密码无效登录失败。
 	String msg = null;
@@ -69,8 +69,8 @@ public class LoginController {
     @RequestMapping(value = "loadHome.do", method = RequestMethod.GET)
     public String loadHome(HttpServletRequest request,
 	    HttpServletResponse response) {
-	String userType = request.getParameter("userType");
-	System.out.println(userType);
+	//String userType = request.getParameter("userType");
+	//System.out.println(userType);
 	
 	List<CityDTO> cityDTOList = new ArrayList<>();
 	cityDTOList = siteServiceClient.getAllCity();

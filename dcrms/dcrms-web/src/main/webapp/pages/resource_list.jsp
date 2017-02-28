@@ -65,7 +65,7 @@
 			      <option value="组件资源">组件资源</option>
 			      <option value="虚拟资源">虚拟资源</option>
 		       </select>
-               <img id="resSearch" class="rolesSkip" src="<%=basePath%>static/img/search.png" />
+               <img id="resSearch" class="resSkip" src="<%=basePath%>static/img/search.png" />
 			   <input type="button" id="newRes" value="新建资源" style="margin-left:10px; height:24px;" />
 			</div>
 			
@@ -240,7 +240,7 @@
              //ajax发请求
              $.ajax({
                  type : "GET",
-                 url : "<%=basePath%>searchRes.do?resName=" + resName + "&resType=" + resType + "&pageNum=" + pageNum,
+                 url : "<%=basePath%>searchRes.do?resName=" + resName + "&resType=" + resType + "&pageNum=" + resPageNum,
                  success : function(msg) {
                      var msgRes = JSON.parse(msg);//返回json对象
                      //更新记录总数
@@ -273,7 +273,7 @@
   				                 <td ><a href=\"#\">修改</a></td>\
   				                 <td ><a href=\"#\"><font color=\"red\">删除</font></a></td>\
   				                 <td style=\"display:none\">" + result.resId + "</td></tr>";
-                             $("#rolesTab").append(resItem);
+                             $("#resTab").append(resItem);
                          }
                          else{
                         	 resItem = "<tr style=\"background-color:#f5f5f5\">\

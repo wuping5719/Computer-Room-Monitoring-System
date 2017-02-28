@@ -29,10 +29,10 @@
     select count(*) from role
     <trim prefix="WHERE" prefixOverrides="AND|OR">
 		<if test="rolename != null and rolename != '' ">
-			and roleName = #{rolename,jdbcType=VARCHAR}
+			and roleName like CONCAT(CONCAT('%', #{rolename}),'%')
 		</if>
 		<if test="description != null and description != '' ">
-			and description = #{description,jdbcType=VARCHAR}
+			and description like CONCAT(CONCAT('%', #{description}),'%')
 		</if>
 	</trim>
   </select>
@@ -43,10 +43,10 @@
     from role
     <trim prefix="WHERE" prefixOverrides="AND|OR">
 		<if test="rolename != null and rolename != '' ">
-			and roleName = #{rolename,jdbcType=VARCHAR}
+			and roleName like CONCAT(CONCAT('%', #{rolename}),'%')
 		</if>
 		<if test="description != null and description != '' ">
-			and description = #{description,jdbcType=VARCHAR}
+			and description like CONCAT(CONCAT('%', #{description}),'%')
 		</if>
 	</trim>
 	Limit #{startIndex},#{pageSize}

@@ -56,7 +56,7 @@ public class AuthorityController {
 	    HttpServletResponse response) {
 	List<CityDTO> cityDTOList = new ArrayList<>();
 	cityDTOList = siteServiceClient.getAllCity();
-	
+
 	request.setAttribute("cityDTOList", cityDTOList);
 	
 	return "pages/resource_list";

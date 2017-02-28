@@ -220,7 +220,7 @@
              //ajax发请求
              $.ajax({
                  type : "GET",
-                 url : "<%=basePath%>searchUsers.do?loginName=" + loginName + "&trueName=" + trueName + "&pageNum=" + pageNum,
+                 url : "<%=basePath%>searchUsers.do?loginName=" + loginName + "&trueName=" + trueName + "&pageNum=" + usersPageNum,
                  success : function(msg) {
                      var msgRes = JSON.parse(msg);//返回json对象
                      //更新记录总数

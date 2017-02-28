@@ -235,7 +235,7 @@
              //ajax发请求
              $.ajax({
                  type : "GET",
-                 url : "<%=basePath%>searchRoles.do?roleName=" + roleName + "&description=" + description + "&pageNum=" + pageNum,
+                 url : "<%=basePath%>searchRoles.do?roleName=" + roleName + "&description=" + description + "&pageNum=" + rolesPageNum,
                  success : function(msg) {
                      var msgRes = JSON.parse(msg);//返回json对象
                      //更新记录总数

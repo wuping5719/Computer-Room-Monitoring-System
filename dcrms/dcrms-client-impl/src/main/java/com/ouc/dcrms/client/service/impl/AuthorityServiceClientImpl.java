@@ -87,6 +87,7 @@ public class AuthorityServiceClientImpl implements AuthorityServiceClient {
 	}else {
 	    type = -1;
 	}
+	
 	totalNum = resourceServiceCore.getTotalNum(resName, type);
 	
 	totalPage = totalNum % pageSize == 0 
@@ -117,9 +118,9 @@ public class AuthorityServiceClientImpl implements AuthorityServiceClient {
 	    if (res.getType() == 1) {
 		jsonObject.put("resType", "组件资源");
 	    }else if (res.getType() == 2) {
-		jsonObject.put("resType", "URL资源");
-	    }else {
 		jsonObject.put("resType", "虚拟资源");
+	    }else {
+		jsonObject.put("resType", "URL资源");
 	    }
 	    jsonObject.put("gmtCreate", sdf.format(res.getGmtCreate()));
 	    jsonObject.put("gmtModified", sdf.format(res.getGmtModified()));

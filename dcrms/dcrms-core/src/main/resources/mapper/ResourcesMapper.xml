@@ -27,7 +27,7 @@
     select count(*) from resources
     <trim prefix="WHERE" prefixOverrides="AND|OR">
 		<if test="name != null and name != '' ">
-			and name = #{name,jdbcType=VARCHAR}
+			and name like CONCAT(CONCAT('%', #{name}),'%')
 		</if>
 		<if test="type != null and type != -1 ">
 			and type = #{type,jdbcType=TINYINT}
@@ -41,7 +41,7 @@
     from resources
     <trim prefix="WHERE" prefixOverrides="AND|OR">
 		<if test="name != null and name != '' ">
-			and name = #{name,jdbcType=VARCHAR}
+			and name like CONCAT(CONCAT('%', #{name}),'%')
 		</if>
 		<if test="type != null and type != -1 ">
 			and type = #{type,jdbcType=TINYINT}

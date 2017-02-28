@@ -35,18 +35,18 @@ public class UserSecurityInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest req, HttpServletResponse res,
 	    Object obj) throws Exception {
-	System.out.println("---在Action之前执行,如果返回true,则继续向后执行---");
+	//System.out.println("---在Action之前执行,如果返回true,则继续向后执行---");
 	// 请求的路径
 	String contextPath = req.getContextPath();
 	String url = req.getServletPath().toString();
-	System.out.println(contextPath);
+	//System.out.println(contextPath);
 	HttpSession session = req.getSession();
 	String userName = (String) session.getAttribute(SessionConstants.KEY_USER_NAME);
-	String trueName = (String) session.getAttribute(SessionConstants.KEY_True_NAME);
-	String userId = (String) session.getAttribute(SessionConstants.KEY_USER_ID);
-	System.out.println("用户ID：" + userId);
-	System.out.println("用户名：" + userName);
-	System.out.println("真实姓名：" + trueName);
+	//String trueName = (String) session.getAttribute(SessionConstants.KEY_True_NAME);
+	//String userId = (String) session.getAttribute(SessionConstants.KEY_USER_ID);
+	//System.out.println("用户ID：" + userId);
+	//System.out.println("用户名：" + userName);
+	//System.out.println("真实姓名：" + trueName);
 
 	// 这里可以根据session的用户来判断角色的权限，根据权限来重定向不同的页面，简单起见，这里只是做了一个重定向
 	if (StringUtils.isEmpty(userName)) {
@@ -68,7 +68,7 @@ public class UserSecurityInterceptor implements HandlerInterceptor {
     public void afterCompletion(HttpServletRequest arg0,
 	    HttpServletResponse arg1, Object arg2, Exception ex)
 	    throws Exception {
-	System.out.println("---在Action方法执行完毕之后,无论是否抛出异常,通常用来进行异常处理---");
+	//System.out.println("---在Action方法执行完毕之后,无论是否抛出异常,通常用来进行异常处理---");
     }
 
     /**
@@ -86,7 +86,7 @@ public class UserSecurityInterceptor implements HandlerInterceptor {
     @Override
     public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1,
 	    Object arg2, ModelAndView arg3) throws Exception {
-	System.out.println("---在Action方法执行完毕之后,执行(没有抛异常的话)---");
+	//System.out.println("---在Action方法执行完毕之后,执行(没有抛异常的话)---");
     }
 
     protected boolean isLogin(HttpServletRequest httpServletRequest) {

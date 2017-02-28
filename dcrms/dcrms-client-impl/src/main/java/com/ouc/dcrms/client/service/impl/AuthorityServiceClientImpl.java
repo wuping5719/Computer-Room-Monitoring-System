@@ -136,6 +136,28 @@ public class AuthorityServiceClientImpl implements AuthorityServiceClient {
 	return JSONObject.fromObject(result).toString();
     }
     
+    @Override
+    public String getAllResources() {
+	List<Resources> resourceList = new ArrayList<Resources>();
+	resourceList = resourceServiceCore.getAllResource();
+	JSONArray jsonNodes = new JSONArray();
+	for (Resources res : resourceList) {
+	    JSONObject jsonObject = new JSONObject();
+	    jsonObject.put("id", res.getResid());
+	    jsonObject.put("pId", res.getParentId());
+	    jsonObject.put("name", res.getName());
+	    if (res.getParentId() == 0) {
+		jsonObject.put("checked", true);
+		jsonObject.put("open", true);
+	    } else {
+		jsonObject.put("open", false);
+	    }
+	    jsonNodes.add(jsonObject);
+	}
+	
+	return jsonNodes.toString();
+    }
+    
     public RoleServiceCore getRoleServiceCore() {
 	return roleServiceCore;
     }

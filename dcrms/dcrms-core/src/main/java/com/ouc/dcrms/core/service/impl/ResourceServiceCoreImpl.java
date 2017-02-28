@@ -30,6 +30,11 @@ public class ResourceServiceCoreImpl implements ResourceServiceCore {
 	return resList;
     }
     
+    @Override
+    public List<Resources> getAllResource(){
+	return resourcesDAO.selectAllResource();
+    }
+    
     public ResourcesDAO getResourcesDAO() {
 	return resourcesDAO;
     }

@@ -10,10 +10,11 @@
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="gmtCreate" property="gmtCreate" jdbcType="TIMESTAMP" />
     <result column="gmtModified" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="parentId" property="parentId" jdbcType="INTEGER" />
   </resultMap>
   
   <sql id="Base_Column_List" >
-    resId, name, url, type, visible, description, gmtCreate, gmtModified
+    resId, name, url, type, visible, description, gmtCreate, gmtModified, parentId
   </sql>
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -50,6 +51,12 @@
 	Limit #{startIndex},#{pageSize}
   </select>
   
+  <select id="selectAllResource" resultMap="BaseResultMap" >
+      select 
+        <include refid="Base_Column_List" />
+      from resources
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from resources
     where resId = #{resid,jdbcType=INTEGER}
@@ -57,11 +64,10 @@
   
   <insert id="insert" parameterType="Resources" >
     insert into resources (resId, name, url, type, 
-      visible, description, gmtCreate, gmtModified
-      )
+      visible, description, gmtCreate, gmtModified, parentId)
     values (#{resid,jdbcType=INTEGER}, #{name,jdbcType=CHAR}, #{url,jdbcType=VARCHAR}, 
       #{type,jdbcType=TINYINT}, #{visible,jdbcType=TINYINT}, #{description,jdbcType=VARCHAR},
-      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{parentId,jdbcType=INTEGER})
   </insert>
   
   <insert id="insertSelective" parameterType="Resources" >

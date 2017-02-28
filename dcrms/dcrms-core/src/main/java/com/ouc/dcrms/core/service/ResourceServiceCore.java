@@ -17,5 +17,7 @@ public interface ResourceServiceCore {
 
     public List<Resources> getResources(String resName, Byte type,
 	    int startIndex, int pageSize);
+    
+    public List<Resources> getAllResource();
 }
 

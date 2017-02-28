@@ -23,6 +23,8 @@ public class Resources implements Serializable {
     
     private Date gmtModified;
 
+    private Integer parentId;
+
     public Integer getResid() {
         return resid;
     }
@@ -85,5 +87,13 @@ public class Resources implements Serializable {
 
     public void setGmtModified(Date gmtModified) {
 	this.gmtModified = gmtModified;
+    }
+
+    public Integer getParentId() {
+	return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+	this.parentId = parentId;
     }
 }

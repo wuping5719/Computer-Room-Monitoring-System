@@ -26,4 +26,6 @@ public interface ResourcesDAO {
 	    @Param("type") Byte type,
 	    @Param("startIndex") int startIndex, 
 	    @Param("pageSize") int pageSize);
+    
+    List<Resources> selectAllResource();
 }

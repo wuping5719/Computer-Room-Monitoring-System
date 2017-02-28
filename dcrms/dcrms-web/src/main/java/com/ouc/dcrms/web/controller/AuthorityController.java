@@ -73,4 +73,12 @@ public class AuthorityController {
 
 	return result;
     }
+    
+    @RequestMapping(value = "initRoleResTree.do", produces = "text/html;charset=UTF-8")
+    public @ResponseBody String initRoleResTree(HttpServletRequest request,
+	    HttpServletResponse response) {
+	String ztreeNodes = authorityServiceClient.getAllResources();
+	return ztreeNodes;
+    }
+    
 }

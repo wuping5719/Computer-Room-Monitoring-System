@@ -16,11 +16,17 @@
 	<title>角色列表</title>
 	<link href="<%=basePath%>static/bootstrap-3.3.0/dist/css/bootstrap.min.css" rel="stylesheet" >
     <link href="<%=basePath%>static/css/sweet-alert.css" rel="stylesheet" type="text/css" />
+    <link href="<%=basePath%>static/jquery-ui-1.11.4/jquery-ui.css" rel="stylesheet">
+    <link href="<%=basePath%>static/zTree_v3/css/metroStyle/metroStyle.css" rel="stylesheet">
     <link href="<%=basePath%>static/css/main-style.css" rel="stylesheet" >
 	<link href="<%=basePath%>static/css/roles-layout.css" rel="stylesheet" type="text/css" />
 	
 	<script src="<%=basePath%>static/js/jquery-1.9.1.min.js" type="text/javascript" ></script>
 	<script src="<%=basePath%>static/js/sweet-alert.min.js" type="text/javascript" ></script>
+	<script src="<%=basePath%>static/jquery-ui-1.11.4/external/jquery/jquery.js"></script>
+    <script src="<%=basePath%>static/jquery-ui-1.11.4/jquery-ui.js"></script>
+	<script src="<%=basePath%>static/zTree_v3/js/jquery.ztree.core-3.5.js"></script>
+    <script src="<%=basePath%>static/zTree_v3/js/jquery.ztree.excheck-3.5.js"></script>
 	<script src="<%=basePath%>static/js/main.js" type="text/javascript" ></script>
 </head>
    
@@ -132,8 +138,8 @@
 		 window.location.href = "<%=basePath%>loadResList.do";
 	 });
     
-      $(document).ready(function () {
-		 //ajax发请求
+     $(document).ready(function () {
+    	 // 异步加载角色列表
          $.ajax({
              type : "GET",
              url : "<%=basePath%>searchRoles.do?roleName=&description=&pageNum=1",
@@ -190,7 +196,7 @@
              error:function(e){
                  sweetAlert("网页发生错误：", e, "error");
              }
-       });
+        });
 	 });
 	 
      /*首页、下一页、上一页、末页按钮*/
@@ -291,7 +297,111 @@
                  }
           });
      });
-
 	</script>
+	
+	<div id="dialog" title="新建角色">
+	    <div id="roleInfo" style="margin:5px 2px; 
+			 border:1px solid #617775; background:#f5f5f5; 
+			 width:98%; height:96%;">
+		   <div style="margin:10px 10px;">
+			  <label style="margin-left:10px; color:#ff0000;">角色名称*：</label>
+			  <input id="roleName" type="text" style="width:320px" />
+		   </div>
+		   <div>
+			   <label style="margin-left:20px;">角色描述：</label>
+			   <input id="roleDetail" type="text" style="width:325px" />
+		   </div>
+		   <div id="relatedResource" class="ztree" 
+				  style="margin:10px 10px; border:1px solid #617775; 
+				  background:#f0f6e4; width:95%; height:250px; 
+				  overflow-y:scroll; overflow-x:auto;">
+		   </div>
+		</div>
+     </div>
+    
+    <script type="text/javascript">
+      $("#newRole").click(function(){
+    	  // 异步初始化新建角色
+          var setting = {
+                   check: {
+                      enable: true
+                   },
+                   data: {
+                       simpleData: {
+                            enable: true
+                       }
+                   }
+           };
+           var treeNodes; 
+           $.ajax({  
+               cache : false, //是否使用缓存  
+               type : 'POST', //请求方式：post  
+               dataType : 'json',//数据传输格式：json  
+               url : "<%=basePath%>initRoleResTree.do",  
+               error : function() {  
+                   sweetAlert("请求资源树数据失败！");
+               },  
+               success : function(data) {  
+                   treeNodes = data;  //把后台封装好的简单Json格式赋给treeNodes  
+                   var tree = $("#relatedResource");  
+                   tree = $.fn.zTree.init(tree, setting, treeNodes); 
+               }  
+          });  
+    	  
+    	  $("#dialog").dialog("open");
+    	  event.preventDefault();
+	  });
+    
+      $("#dialog").dialog({
+    	   autoOpen: false,
+    	   width: 500,
+    	   height: 500,
+    	   buttons: [
+    		 {
+    			text: "创建",
+    			click: function() {
+    				var treeObj = $.fn.zTree.getZTreeObj("relatedResource");
+    				var nodes = treeObj.getCheckedNodes(true);
+    	            var length = nodes.length;
+
+    	            var name = document.getElementById("roleName").value; //角色名称
+    	            if(name==""){
+    	                sweetAlert("角色名称不能为空！");
+    	                return;
+    	            }
+    	            var description = document.getElementById("roleDetail").value; //角色描述
+    	            var relatedResIds = "";   //关联资源id序列
+    	            for(var i=0; i<length; i++) {
+    	                if(i != length-1){
+    	                    relatedResIds += nodes[i].id + ",";
+    	                }else{
+    	                    relatedResIds += nodes[i].id;
+    	                }
+    	            }
+
+    	            $.ajax({
+    	                type: "POST",
+    	                url: "<%=basePath%>createRole?name=" + name + "&description=" + description + "&relatedResIds=" + relatedResIds,
+    	                success: function () {
+    	                	sweetAlert("创建角色成功！", "success");
+    	                	window.location.href = "<%=basePath%>loadRoleList.do";
+    	                },
+    	                error: function (e) {
+    	                    sweetAlert("创建角色失败：", e, "error");
+    	                }
+    	            });
+    	            
+    				$(this).dialog("close");
+    			}
+    		 },
+    		 {
+    			text: "取消",
+    			click: function() {
+    				$(this).dialog("close");
+    			}
+    		 }
+    	 ]
+       });
+    </script>
   </body>
 </html>

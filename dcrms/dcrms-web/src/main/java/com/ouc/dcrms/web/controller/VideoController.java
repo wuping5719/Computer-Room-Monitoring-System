@@ -24,14 +24,35 @@ public class VideoController {
     private SiteServiceClient siteServiceClient;
 
     @RequestMapping(value = "loadMultVideo.do", produces = "text/html;charset=UTF-8")
-    public String loadIndex(HttpServletRequest request,
+    public String loadMultVideo(HttpServletRequest request,
 	    HttpServletResponse response) {
 	List<CityDTO> cityDTOList = new ArrayList<>();
 	cityDTOList = siteServiceClient.getAllCity();
 	
 	request.setAttribute("cityDTOList", cityDTOList);
 	
-	return "pages/mult_video";
+	return "pages/video_multiple";
     }
     
+    @RequestMapping(value = "loadVideoPlayback.do", produces = "text/html;charset=UTF-8")
+    public String loadVideoPlayback(HttpServletRequest request,
+	    HttpServletResponse response) {
+	List<CityDTO> cityDTOList = new ArrayList<>();
+	cityDTOList = siteServiceClient.getAllCity();
+	
+	request.setAttribute("cityDTOList", cityDTOList);
+	
+	return "pages/video_playback";
+    }
+    
+    @RequestMapping(value = "loadVideoYuntai.do", produces = "text/html;charset=UTF-8")
+    public String loadVideoYuntai(HttpServletRequest request,
+	    HttpServletResponse response) {
+	List<CityDTO> cityDTOList = new ArrayList<>();
+	cityDTOList = siteServiceClient.getAllCity();
+	
+	request.setAttribute("cityDTOList", cityDTOList);
+	
+	return "pages/video_yuntai";
+    }
 }

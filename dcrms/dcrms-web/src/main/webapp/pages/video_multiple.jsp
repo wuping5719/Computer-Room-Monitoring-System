@@ -53,12 +53,19 @@
 		   </ul>
 		</div>
         <div id="panel">
-           <div style="margin-top:10px">
-              <label>站点所在城市：</label>
-              <select style="width:100px" >
-			     <c:forEach items="${cityDTOList}" var="cityDTO" >
-					<option value="${cityDTO.cityname}">${cityDTO.cityname}</option>
-				 </c:forEach>
+           <div style="margin-top:10px; text-align:left;">
+              <input type="button" id="playbackBtn" value="视频回放" style="margin:0 10px 0 50px; height:24px;" />
+              <input type="button" id="yunTaiBtn" value="云台控制" style="margin:0 120px 0 10px; height:24px;" />
+              
+              <label style="margin-top:10px" >当前所在城市：青岛  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
+              <label style="margin-top:10px" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 机房站点：</label>
+		      <select style="margin-top:10px; width:120px" >
+			     <option value="金家岭">金家岭</option>
+			     <option value="李村">李村</option>
+			     <option value="明星大厅">明星大厅</option>
+			     <option value="人民一路">人民一路</option>
+			     <option value="浮山后">浮山后</option>
+			     <option value="王哥庄">王哥庄</option>
 		      </select>
            </div>
            
@@ -131,6 +138,14 @@
         player.write('video4'); 
         player.write('video5');  
         player.write('video6');  
+        
+        $("#playbackBtn").click(function(){
+      	    window.location.href = "<%=basePath%>loadVideoPlayback.do";
+        });
+        
+        $("#yunTaiBtn").click(function(){
+      	    window.location.href = "<%=basePath%>loadVideoYuntai.do";
+        });
      </script>  
     </div> 
   </body>

@@ -16,10 +16,13 @@
 	<title>用户列表</title>
 	<link href="<%=basePath%>static/bootstrap-3.3.0/dist/css/bootstrap.min.css" rel="stylesheet" >
     <link href="<%=basePath%>static/css/sweet-alert.css" rel="stylesheet" type="text/css" />
+    <link href="<%=basePath%>static/jquery-ui-1.11.4/jquery-ui.css" rel="stylesheet">
     <link href="<%=basePath%>static/css/main-style.css" rel="stylesheet" >
 	<link href="<%=basePath%>static/css/users-layout.css" rel="stylesheet" type="text/css" />
 	
 	<script src="<%=basePath%>static/js/jquery-1.9.1.min.js" type="text/javascript" ></script>
+	<script src="<%=basePath%>static/jquery-ui-1.11.4/external/jquery/jquery.js"></script>
+    <script src="<%=basePath%>static/jquery-ui-1.11.4/jquery-ui.js"></script>
 	<script src="<%=basePath%>static/js/sweet-alert.min.js" type="text/javascript" ></script>
 	<script src="<%=basePath%>static/js/main.js" type="text/javascript" ></script>
 </head>
@@ -153,7 +156,7 @@
 				               <td >" + result.mobilePhone + "</td>\
 				               <td >" + result.sex + "</td>\
 				               <td >" + result.gmtModified + "</td>\
-				               <td ><a href=\"#\">" + result.roleName + "</a></td>\
+				               <td ><a href=\"JavaScript:bindingRole();\">" + result.roleName + "</a></td>\
 				               <td style=\"display:none\">" + result.id + "</td></tr>";
                          $("#usersTab").append(usersItem);
                      }
@@ -166,7 +169,7 @@
 				             <td >" + result.mobilePhone + "</td>\
 				             <td >" + result.sex + "</td>\
 				             <td >" + result.gmtModified + "</td>\
-				             <td ><a href=\"#\">" + result.roleName + "</a></td>\
+				             <td ><a href=\"JavaScript:bindingRole();\">" + result.roleName + "</a></td>\
 				             <td style=\"display:none\">" + result.id + "</td></tr>";
                          $("#usersTab").append(usersItem);
                      }
@@ -250,7 +253,7 @@
 					               <td >" + result.mobilePhone + "</td>\
 					               <td >" + result.sex + "</td>\
 					               <td >" + result.gmtModified + "</td>\
-					               <td ><a href=\"#\">" + result.roleName + "</a></td>\
+					               <td ><a href=\"JavaScript:bindingRole();\">" + result.roleName + "</a></td>\
 					               <td style=\"display:none\">" + result.id + "</td></tr>";
                              $("#usersTab").append(usersItem);
                          }
@@ -263,7 +266,7 @@
 					             <td >" + result.mobilePhone + "</td>\
 					             <td >" + result.sex + "</td>\
 					             <td >" + result.gmtModified + "</td>\
-					             <td ><a href=\"#\">" + result.roleName + "</a></td>\
+					             <td ><a href=\"JavaScript:bindingRole();\">" + result.roleName + "</a></td>\
 					             <td style=\"display:none\">" + result.id + "</td></tr>";
                              $("#usersTab").append(usersItem);
                          }
@@ -275,5 +278,174 @@
           });
       });
 	</script>
+	
+	<div id="dialog" title="权限分配-指定用户角色">
+	    <div style="margin:5px 2px; border:1px solid #617775; background:#f5f5f5; width:98%; height:96%;">
+            <div id="queryRole" >
+               <label style="margin-left:50px; margin-top:6px;">角色名称：</label>
+               <input id="roleName" style="margin-top:6px; width:100px; height:24px;" type="text" />
+               <label style="margin-left:20px; margin-top:6px;">角色描述：</label>
+               <input id="description" style="margin-top:6px; width:100px; height:24px;" type="text" />
+               <img id="rolesSearch" class="rolesSkip" src="<%=basePath%>static/img/search.png" />
+			</div>
+			
+			<div id="roleList" >
+				<table id="rolesTab" style="text-align:center; margin-left:10px; width:520px"> 
+					<tr style="font-weight:bold; background-color:#e1ebf5; text-align:center;">
+						<td style="width:50px">序号</td>
+						<td style="width:60px">关联</td>
+						<td style="width:120px">角色名</td>
+						<td style="width:150px">描述</td>
+						<td style="display:none">主键ID</td>
+					</tr>
+					<tr style="background-color:#ffffff">
+						<td>1</td>
+						<td><input type="radio" name="rad" checked="checked"/></td>
+						<td>系统管理员</td>
+						<td>日常管理系统</td>
+						<td style="display:none">2</td>
+					</tr>
+					<tr style="background-color:#eeffff;">
+						<td>2</td>
+						<td><input type="radio" name="rad"/></td>
+						<td>设备操作员</td>
+						<td>操作机房设备</td>
+						<td style="display:none">2</td>
+					</tr>
+					<tr style="background-color:#ffffff">
+						<td>3</td>
+						<td><input type="radio" name="rad"/></td>
+						<td>机房运维员</td>
+						<td>实时查看报警，运维机房	</td>
+						<td style="display:none">3</td>
+					</tr>
+					<tr style="background-color:#eeffff;">
+						<td>4</td>
+						<td><input type="radio" name="rad"/></td>
+						<td>巡视员</td>
+						<td>消防</td>
+						<td style="display:none">4</td>
+					</tr>
+					<tr style="background-color:#ffffff">
+						<td>5</td>
+						<td><input type="radio" name="rad"/></td>
+						<td>视频监控管理员</td>
+						<td>防盗</td>
+						<td style="display:none">5</td>
+					</tr>
+					<tr style="background-color:#eeffff;">
+						<td>6</td>
+						<td><input type="radio" name="rad"/></td>
+						<td>用户管理员</td>
+						<td>管理维护用户信息</td>
+						<td style="display:none">6</td>
+					</tr>
+					<tr style="background-color:#ffffff">
+						<td>7</td>
+						<td><input type="radio" name="rad" /></td>
+						<td>总经理</td>
+						<td>公司主管</td>
+						<td style="display:none">7</td>
+					</tr>
+					<tr style="background-color:#eeffff;">
+						<td>8</td>
+						<td><input type="radio" name="rad"/></td>
+						<td>安全管理员</td>
+						<td>入侵检测</td>
+						<td style="display:none">8</td>
+					</tr>
+					<tr style="background-color:#ffffff">
+						<td>9</td>
+						<td><input type="radio" name="rad" /></td>
+						<td>超级管理员</td>
+						<td>最大权限</td>
+						<td style="display:none">9</td>
+					</tr>
+					<tr style="background-color:#eeffff;">
+						<td>10</td>
+						<td><input type="radio" name="rad"/></td>
+						<td>采集操作员</td>
+						<td>管理采集</td>
+						<td style="display:none">10</td>
+					</tr>
+					<tr style="background-color:#ffffff">
+						<td>11</td>
+						<td><input type="radio" name="rad"/></td>
+						<td>导航操作员</td>
+						<td>查看站点导航</td>
+						<td style="display:none">11</td>
+					</tr>
+					<tr style="background-color:#eeffff;">
+						<td>12</td>
+						<td><input type="radio" name="rad"/></td>
+						<td>业务经理</td>
+						<td>管理业务</td>
+						<td style="display:none">12</td>
+					</tr>
+				</table>
+				
+				<table id="rolesPage">
+					<tr style="height:5px;">
+                        <td style="width:5px;"></td>
+                        <td style="width:20px;" ></td>
+                        <td style="width:50px;">
+                            <img id="rolesFirst" class="rolesSkip" src="<%=basePath%>static/img/first.png" />
+                        </td>
+                        <td style="width:50px;">
+                            <img id="rolesPrevious" class="rolesSkip" src="<%=basePath%>static/img/left.png" />
+                        </td>
+                        <td id="rolesCenterBar" style="width:120px;" >
+                            <input id="rolesCurPageNum" readonly="readonly" style="width:30px; height:24px;" value="1" />
+                            <label>/</label>
+                            <input id="rolesTotalPage" readonly="readonly" style="width:30px; height:24px;" value="2" />
+                            <label>页</label>
+                        </td>
+                        <td style="width:50px;">
+                            <img id="rolesNext" class="rolesSkip" src="<%=basePath%>static/img/right.png" />
+                        </td>
+                        <td style="width:40px;">
+                            <img id="rolesEnd" class="rolesSkip" src="<%=basePath%>static/img/end.png" />
+                        </td>
+                        <td style="width:120px;" >
+                            <label>跳转到</label>
+                            <input id ="rolesCurNo" style="width:40px; height:24px;" type="text" value="1" />
+                            <label>页</label>
+                        </td>
+                        <td style="width:50px;" >
+                            <img id="rolesJumpN" class="rolesSkip" src="<%=basePath%>static/img/sureBtn.png" />
+                        </td>
+                        <td style="width:20px;"></td>
+                    </tr>
+				</table>
+		   </div>
+		</div>
+    </div>
+    
+    <script type="text/javascript">
+      function bindingRole() {
+    	  $("#dialog").dialog("open");
+    	  event.preventDefault();
+	  };
+    
+      $("#dialog").dialog({
+    	   autoOpen: false,
+    	   width: 600,
+    	   height: 500,
+    	   buttons: [
+    		 {
+    			text: "确认",
+    			click: function() {
+    				$(this).dialog("close");
+    			}
+    		 },
+    		 {
+    			text: "取消",
+    			click: function() {
+    				$(this).dialog("close");
+    			}
+    		 }
+    	 ]
+       });
+    </script>
   </body>
 </html>

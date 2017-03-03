@@ -56,11 +56,13 @@
 		</div>
         <div id="panel">
             <div id="queryBar" >
-			   <label style="margin-left:600px;">登录名：</label>
+			   <label style="margin-left:580px;">登录名：</label>
                <input id="loginName" style="width:120px; height:24px;" type="text" />
                <label>姓名：</label>
                <input id="trueName" style="width:120px; height:24px;" type="text" />
                <img id="usersSearch" class="usersSkip" src="<%=basePath%>static/img/search.png" />
+               
+               <input type="button" id="operateLog" value="操作日志" style="margin-left:10px; height:24px;" />
 			</div>
 			
 			<div id="userListTable" >
@@ -279,7 +281,7 @@
       });
 	</script>
 	
-	<div id="dialog" title="权限分配-指定用户角色">
+	<div id="authDialog" title="权限分配-指定用户角色">
 	    <div style="margin:5px 2px; border:1px solid #617775; background:#f5f5f5; width:98%; height:96%;">
             <div id="queryRole" >
                <label style="margin-left:50px; margin-top:6px;">角色名称：</label>
@@ -423,11 +425,11 @@
     
     <script type="text/javascript">
       function bindingRole() {
-    	  $("#dialog").dialog("open");
+    	  $("#authDialog").dialog("open");
     	  event.preventDefault();
 	  };
     
-      $("#dialog").dialog({
+      $("#authDialog").dialog({
     	   autoOpen: false,
     	   width: 600,
     	   height: 500,
@@ -447,5 +449,161 @@
     	 ]
        });
     </script>
+    
+    <div id="logDialog" title="操作日志">
+	    <div style="margin:5px 2px; border:1px solid #617775; background:#f5f5f5; width:98%; height:96%;">
+            <div id="queryLog" >
+               <label style="margin-left:120px; margin-top:6px;">用户：</label>
+               <input id="userPar" style="margin-top:6px; width:100px; height:24px;" type="text" />
+               <label style="margin-left:20px; margin-top:6px;">操作：</label>
+               <input id="operatePar" style="margin-top:6px; width:100px; height:24px;" type="text" />
+               <img id="logsSearch" class="logsSkip" src="<%=basePath%>static/img/search.png" />
+			</div>
+			
+			<div id="logList" >
+				<table id="logsTab" style="text-align:center; margin-left:10px; margin-top:8px; width:520px"> 
+					<tr style="font-weight:bold; background-color:#e1ebf5; text-align:center;">
+						<td style="width:50px">序号</td>
+						<td style="width:80px">用户</td>
+						<td style="width:150px">操作</td>
+						<td style="width:120px">记录时间</td>
+						<td style="display:none">主键ID</td>
+					</tr>
+					<tr style="background-color:#ffffff">
+						<td>1</td>
+						<td>小雪</td>
+						<td>处理报警</td>
+						<td>2017-01-18 12:10:12</td>
+						<td style="display:none">2</td>
+					</tr>
+					<tr style="background-color:#eeffff;">
+						<td>2</td>
+						<td>张涛</td>
+						<td>查看多路视频</td>
+						<td>2017-01-19 09:30:56</td>
+						<td style="display:none">2</td>
+					</tr>
+					<tr style="background-color:#ffffff">
+						<td>3</td>
+						<td>余浩</td>
+						<td>配置采集器</td>
+						<td>2017-01-16 14:21:36</td>
+						<td style="display:none">3</td>
+					</tr>
+					<tr style="background-color:#eeffff;">
+						<td>4</td>
+						<td>张明</td>
+						<td>查看站点曲线</td>
+						<td>2017-01-15 16:45:36</td>
+						<td style="display:none">4</td>
+					</tr>
+					<tr style="background-color:#ffffff">
+						<td>5</td>
+						<td>吴迪</td>
+						<td>修改用户信息</td>
+						<td>2017-01-12 16:45:36</td>
+						<td style="display:none">5</td>
+					</tr>
+					<tr style="background-color:#eeffff;">
+						<td>6</td>
+						<td>王磊</td>
+						<td>给用户分配权限</td>
+						<td>2017-01-11 20:25:36</td>
+						<td style="display:none">6</td>
+					</tr>
+					<tr style="background-color:#ffffff">
+						<td>7</td>
+						<td>刘敏</td>
+						<td>查看站点数据</td>
+						<td>2017-01-08 22:15:56</td>
+						<td style="display:none">7</td>
+					</tr>
+					<tr style="background-color:#eeffff;">
+						<td>8</td>
+						<td>张明</td>
+						<td>配置精密空调</td>
+						<td>2017-01-07 21:28:16</td>
+						<td style="display:none">8</td>
+					</tr>
+					<tr style="background-color:#ffffff">
+						<td>9</td>
+						<td>小雪</td>
+						<td>取消所有报警</td>
+						<td>2017-01-05 10:32:39</td>
+						<td style="display:none">9</td>
+					</tr>
+					<tr style="background-color:#eeffff;">
+						<td>10</td>
+						<td>刘敏</td>
+						<td>操作云台</td>
+						<td>2017-01-01 16:12:16</td>
+						<td style="display:none">10</td>
+					</tr>
+				</table>
+				
+				<table id="logsPage" style="margin-top:8px;">
+					<tr style="height:5px;">
+                        <td style="width:5px;"></td>
+                        <td style="width:20px;" ></td>
+                        <td style="width:50px;">
+                            <img id="logsFirst" class="logsSkip" src="<%=basePath%>static/img/first.png" />
+                        </td>
+                        <td style="width:50px;">
+                            <img id="logsPrevious" class="logsSkip" src="<%=basePath%>static/img/left.png" />
+                        </td>
+                        <td id="logsCenterBar" style="width:120px;" >
+                            <input id="logsCurPageNum" readonly="readonly" style="width:30px; height:24px;" value="1" />
+                            <label>/</label>
+                            <input id="logsTotalPage" readonly="readonly" style="width:30px; height:24px;" value="2" />
+                            <label>页</label>
+                        </td>
+                        <td style="width:50px;">
+                            <img id="logsNext" class="logsSkip" src="<%=basePath%>static/img/right.png" />
+                        </td>
+                        <td style="width:40px;">
+                            <img id="logsEnd" class="logsSkip" src="<%=basePath%>static/img/end.png" />
+                        </td>
+                        <td style="width:120px;" >
+                            <label>跳转到</label>
+                            <input id ="logsCurNo" style="width:40px; height:24px;" type="text" value="1" />
+                            <label>页</label>
+                        </td>
+                        <td style="width:50px;" >
+                            <img id="logsJumpN" class="logsSkip" src="<%=basePath%>static/img/sureBtn.png" />
+                        </td>
+                        <td style="width:20px;"></td>
+                    </tr>
+				</table>
+		   </div>
+		</div>
+    </div>
+    
+    <script type="text/javascript">
+      $("#operateLog").click(function(){
+    	  $("#logDialog").dialog("open");
+    	  event.preventDefault();
+	  });
+    
+      $("#logDialog").dialog({
+    	   autoOpen: false,
+    	   width: 600,
+    	   height: 460,
+    	   buttons: [
+    		 {
+    			text: "确认",
+    			click: function() {
+    				$(this).dialog("close");
+    			}
+    		 },
+    		 {
+    			text: "取消",
+    			click: function() {
+    				$(this).dialog("close");
+    			}
+    		 }
+    	 ]
+       });
+    </script>
+    
   </body>
 </html>

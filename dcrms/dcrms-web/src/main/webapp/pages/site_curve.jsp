@@ -416,7 +416,7 @@
 	         </ul>
 	         <div id="tabs-analog" >
 	            <div style="width:100%; height:100%; overflow:auto;">
-	               <table id="realTimeData" style="text-align:center; table-layout:fixed; width:100%; height:100%;"> 
+	               <table id="analogData" style="text-align:center; table-layout:fixed; width:100%; height:100%;"> 
 					   <tr style="font-weight:bold; background-color:#e1ebf5; text-align:center;">
 						  <td style="width:150px">时间</td>
 						  <td style="width:120px">A相输入电压(V)</td>
@@ -603,10 +603,169 @@
 				</div>
              </div>
 	         <div id="tabs-switch">
-	       
+	            <div style="width:100%; height:100%; overflow:auto;">
+	               <table id="switchData" style="text-align:center; table-layout:fixed; width:100%; height:100%;"> 
+					   <tr style="font-weight:bold; background-color:#e1ebf5; text-align:center;">
+						  <td style="width:150px">时间</td>
+						  <td style="width:60px">烟感1</td>
+						  <td style="width:60px">烟感2</td>
+						  <td style="width:60px">火感1</td>
+						  <td style="width:60px">火感2</td>
+						  <td style="width:60px">水浸1</td>
+						  <td style="width:60px">水浸2</td>
+						  <td style="width:60px">红外1</td>
+						  <td style="width:60px">红外2</td>
+						  <td style="width:60px">门磁1</td>
+					   </tr>
+					   <tr style="background-color:#ffffff">
+						  <td>2017-01-18 13:10:32</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+					   </tr>
+					   <tr style="background-color:#eeffff;">
+						  <td>2017-01-18 13:11:04</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+					   </tr>
+					   <tr style="background-color:#ffffff">
+						  <td>2017-01-18 13:11:36</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+					   </tr>
+					   <tr style="background-color:#eeffff;">
+						  <td>2017-01-18 13:12:02</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+					   </tr>
+					   <tr style="background-color:#ffffff">
+						  <td>2017-01-18 13:12:32</td>	
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>		  
+					   </tr>
+					   <tr style="background-color:#eeffff;">
+						  <td>2017-01-18 13:13:06</td>	
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>		  
+					   </tr>
+					   <tr style="background-color:#ffffff">
+						  <td>2017-01-18 13:13:31</td>	
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>					  
+					   </tr>
+					   <tr style="background-color:#eeffff;">
+						  <td>2017-01-18 13:14:01</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+					   </tr>
+					   <tr style="background-color:#ffffff">
+						  <td>2017-01-18 13:14:32</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+					   </tr>
+					   <tr style="background-color:#eeffff;">
+						  <td>2017-01-18 13:15:03</td>	
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>					 
+					   </tr>
+					   <tr style="background-color:#ffffff">
+						  <td>2017-01-18 13:15:32</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+					   </tr>
+					   <tr style="background-color:#eeffff;">
+						  <td>2017-01-18 13:16:03</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#ff0000;">异常</td>
+						  <td style="color:#00ff00;">正常</td>
+						  <td style="color:#00ff00;">正常</td>
+					   </tr>
+				   </table>
+				</div>
 	         </div>
 	         <div id="tabs-download">
-	       
+	             <input type="button" id="dataDownload" value="以Excel表格形式下载数据" style="margin-left:200px; height:24px;" />
 	         </div>
           </div>
           <div id="tool" style="width:100%; height:8%;">

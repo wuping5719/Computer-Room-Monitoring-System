@@ -25,7 +25,6 @@
 		<commons-io.version>2.4</commons-io.version>
 		<jackson.version>1.9.12</jackson.version>
 		<commons-discovery.version>0.5</commons-discovery.version>
-		<log4j.version>1.2.14</log4j.version>
 		<dubbo.version>2.5.3</dubbo.version>
 		<zkclient.version>0.1</zkclient.version>
 		<zookeeper.version>3.4.6</zookeeper.version>
@@ -211,12 +210,24 @@
 		<dependency>
 			<groupId>jdom</groupId>
 			<artifactId>jdom</artifactId>
-			<version>1.1</version>
+			<version>1.0</version>
 		</dependency>
+		
+        <!-- 日志 log4j和slf4j -->
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>${log4j.version}</version>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.5</version>
 		</dependency>
 		
 		<dependency>
@@ -398,6 +409,41 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.apache.maven.plugins
+										</groupId>
+										<artifactId>
+											maven-compiler-plugin
+										</artifactId>
+										<versionRange>
+											[3.1,)
+										</versionRange>
+										<goals>
+											<goal>compile</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build> 
 	
 	<!-- Maven私服配置 -->
@@ -436,5 +482,6 @@
 	</pluginRepositories> 
 	<!-- Maven私服配置结束 -->
 </project>
+
 
 

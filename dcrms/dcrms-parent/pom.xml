@@ -15,7 +15,7 @@
 		<struts.version>2.3.15.1</struts.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<dubbo.version>2.8.3</dubbo.version>
+		<dubbo.version>2.5.3</dubbo.version>
 		<lts.version>1.6.2</lts.version>
 		<netty.version>4.0.13.Final</netty.version>
 		<leveldbjni.version>1.8</leveldbjni.version>
@@ -79,11 +79,14 @@
 			   <version>2.2.2</version>
 			   <classifier>jdk15</classifier>
 		    </dependency>
-			<dependency>
+		    
+           <!-- 
+           <dependency>
 				<groupId>weblogic</groupId>
 				<artifactId>wlfullclient</artifactId>
 				<version>10.3.6</version>
-			</dependency>
+			</dependency> 
+			-->
 			
 			<!-- zookeeper -->
 			<dependency>
@@ -248,6 +251,7 @@
 			</dependency>
 			
 			<!-- quartz -->
+			<!-- 
 			<dependency>
 				<groupId>org.quartz-scheduler</groupId>
 				<artifactId>quartz</artifactId>
@@ -262,8 +266,9 @@
 			<dependency>
 				<groupId>org.terracotta.quartz</groupId>
 				<artifactId>quartz-terracotta</artifactId>
-				<version>2.3.1</version>
-			</dependency>
+				<version>2.2.3</version>
+			</dependency> 
+			-->
 			
 			<dependency>
 				<groupId>org.aspectj</groupId>
@@ -544,6 +549,14 @@
                <artifactId>jedis</artifactId>  
                <version>2.8.1</version>  
             </dependency> 
+            
+            <!-- mail -->
+            <dependency>
+               <groupId>javax.mail</groupId>
+               <artifactId>mail</artifactId>
+               <version>1.4.7</version>
+            </dependency>
+
 		</dependencies>
 	</dependencyManagement>
 

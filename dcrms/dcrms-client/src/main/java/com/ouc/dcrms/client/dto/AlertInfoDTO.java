@@ -3,106 +3,106 @@ package com.ouc.dcrms.client.dto;
 import java.io.Serializable;
 
 public class AlertInfoDTO implements Serializable {
-   
-    private static final long serialVersionUID = 2320911252995100502L;
 
-    private Long sortIndex;
+	private static final long serialVersionUID = 2320911252995100502L;
 
-    private String siteName;
+	private Long sortIndex;
 
-    private String insName;
+	private String siteName;
 
-    private String alertTime;
+	private String insName;
 
-    private String reasonLevel;
+	private String alertTime;
 
-    private String reasonType;
-    
-    private String description;
+	private String reasonLevel;
 
-    private String isSolved;
-    
-    private String cityName;
+	private String reasonType;
 
-    private Long alertId;
+	private String description;
 
-    public Long getSortIndex() {
-	return sortIndex;
-    }
+	private String isSolved;
 
-    public void setSortIndex(Long sortIndex) {
-	this.sortIndex = sortIndex;
-    }
+	private String cityName;
 
-    public String getSiteName() {
-	return siteName;
-    }
+	private Long alertId;
 
-    public void setSiteName(String siteName) {
-	this.siteName = siteName;
-    }
+	public Long getSortIndex() {
+		return sortIndex;
+	}
 
-    public String getInsName() {
-	return insName;
-    }
+	public void setSortIndex(Long sortIndex) {
+		this.sortIndex = sortIndex;
+	}
 
-    public void setInsName(String insName) {
-	this.insName = insName;
-    }
+	public String getSiteName() {
+		return siteName;
+	}
 
-    public String getAlertTime() {
-	return alertTime;
-    }
+	public void setSiteName(String siteName) {
+		this.siteName = siteName;
+	}
 
-    public void setAlertTime(String alertTime) {
-	this.alertTime = alertTime;
-    }
+	public String getInsName() {
+		return insName;
+	}
 
-    public String getReasonLevel() {
-	return reasonLevel;
-    }
+	public void setInsName(String insName) {
+		this.insName = insName;
+	}
 
-    public void setReasonLevel(String reasonLevel) {
-	this.reasonLevel = reasonLevel;
-    }
+	public String getAlertTime() {
+		return alertTime;
+	}
 
-    public String getReasonType() {
-	return reasonType;
-    }
+	public void setAlertTime(String alertTime) {
+		this.alertTime = alertTime;
+	}
 
-    public void setReasonType(String reasonType) {
-	this.reasonType = reasonType;
-    }
+	public String getReasonLevel() {
+		return reasonLevel;
+	}
 
-    public String getIsSolved() {
-	return isSolved;
-    }
+	public void setReasonLevel(String reasonLevel) {
+		this.reasonLevel = reasonLevel;
+	}
 
-    public void setIsSolved(String isSolved) {
-	this.isSolved = isSolved;
-    }
+	public String getReasonType() {
+		return reasonType;
+	}
 
-    public String getDescription() {
-	return description;
-    }
+	public void setReasonType(String reasonType) {
+		this.reasonType = reasonType;
+	}
 
-    public void setDescription(String description) {
-	this.description = description;
-    }
+	public String getIsSolved() {
+		return isSolved;
+	}
 
-    public String getCityName() {
-	return cityName;
-    }
+	public void setIsSolved(String isSolved) {
+		this.isSolved = isSolved;
+	}
 
-    public void setCityName(String cityName) {
-	this.cityName = cityName;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public Long getAlertId() {
-	return alertId;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public void setAlertId(Long alertId) {
-	this.alertId = alertId;
-    }
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public Long getAlertId() {
+		return alertId;
+	}
+
+	public void setAlertId(Long alertId) {
+		this.alertId = alertId;
+	}
 }

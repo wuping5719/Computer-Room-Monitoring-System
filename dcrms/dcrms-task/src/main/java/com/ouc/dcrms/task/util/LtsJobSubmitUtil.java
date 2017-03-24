@@ -3,10 +3,6 @@ package com.ouc.dcrms.task.util;
 import com.github.ltsopensource.core.domain.Job;
 import com.github.ltsopensource.jobclient.JobClient;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
- 
-
 import java.util.List;
 
 /**
@@ -14,7 +10,6 @@ import java.util.List;
  */
 
 public class LtsJobSubmitUtil {
-    private static final Logger LOGGER = LoggerFactory.getLogger(LtsJobSubmitUtil.class);
     
     private JobClient<?, ?> jobClient;
     private List<Job> jobList;
@@ -37,15 +32,12 @@ public class LtsJobSubmitUtil {
  
     public void initSubmitJobs(){
         if (jobClient == null){
-            LOGGER.warn("jobClient is null,please set up!");
             return;
         }
         if (jobList == null){
-            LOGGER.warn("not set job,please set up!");
             return;
         }
         jobClient.submitJob(jobList);
-        LOGGER.info("job submit success!");
     }
 
 }

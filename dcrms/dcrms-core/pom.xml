@@ -16,11 +16,14 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
+		<!-- 
 		<dependency>
 			<groupId>weblogic</groupId>
 			<artifactId>wlfullclient</artifactId>
 			<scope>provided</scope>
-		</dependency>
+		</dependency> 
+		-->
+		
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>dubbo</artifactId>
@@ -124,6 +127,7 @@
 		</dependency>
 		
 		<!-- quartz -->
+		<!-- 
 		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
@@ -131,7 +135,8 @@
 		<dependency>
 			<groupId>org.terracotta.quartz</groupId>
 			<artifactId>quartz-terracotta</artifactId>
-		</dependency>
+		</dependency> 
+		-->
 		
 		<dependency>
 			<groupId>org.freemarker</groupId>
@@ -233,5 +238,11 @@
             <artifactId>jedis</artifactId>   
         </dependency> 
         
+        <!-- mail -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+        </dependency>
+            
 	</dependencies>
 </project>

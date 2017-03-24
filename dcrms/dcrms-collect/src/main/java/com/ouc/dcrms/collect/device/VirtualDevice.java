@@ -10,9 +10,9 @@ import com.ouc.dcrms.collect.util.Instrument;
 
 public interface VirtualDevice {
 
-    public String writeData(InitialInterface initialInterface,
+    public abstract String writeData(InitialInterface initialInterface,
 	    Instrument instrument, int commandType);
 
-    public String readData(String sensorsList, int sensorsLength,
+    public abstract String readData(String sensorsList, int sensorsLength,
 	    Instrument instrument, InitialInterface initialInterface);
 }

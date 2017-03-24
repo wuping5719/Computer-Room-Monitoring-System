@@ -1,3 +1,3 @@
 eclipse.preferences.version=1
-validator.Checked=src/main/resources/struts.xml,src/main/webapp/pages/users_register.jsp,src/main/webapp/static,src/main/webapp/gjslrjm.jsp,src/main/resources/cache/ehcache.xml,src/main/webapp/error.jsp
+validator.Checked=/
 validator.Unchecked=

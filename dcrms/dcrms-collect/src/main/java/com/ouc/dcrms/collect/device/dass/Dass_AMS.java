@@ -13,7 +13,6 @@ import com.ouc.dcrms.collect.util.data.PostProtocol;
 
 public class Dass_AMS implements VirtualDevice {
 
-    @Override
     public String writeData(InitialInterface initialInterface,
 	    Instrument instrument, int commandType) {
 	String[] cmd = new String[6];
@@ -49,7 +48,6 @@ public class Dass_AMS implements VirtualDevice {
 	return flag;
     }
 
-    @Override
     public String readData(String sensorsList, int sensorsLength,
 	    Instrument instrument, InitialInterface initialInterface) {
 	StringBuilder strData = new StringBuilder();

@@ -12,8 +12,7 @@ import com.ouc.dcrms.collect.util.data.GlobalVariable;
  */
 
 public class Dass_KLW8000 implements VirtualDevice {
-
-    @Override
+	
     public String writeData(InitialInterface initialInterface,
 	    Instrument instrument, int commandType) {
 	String flag = "0";
@@ -36,7 +35,6 @@ public class Dass_KLW8000 implements VirtualDevice {
 	return flag;
     }
 
-    @Override
     public String readData(String sensorsList, int sensorsLength,
 	    Instrument instrument, InitialInterface initialInterface) {
 	String data = "";

@@ -31,11 +31,13 @@
 	<mvc:resources location="/WEB-INF/view/css/" mapping="/css/**"/> 
 	-->
 	<!-- 拦截器 -->
+	<!-- 
 	<mvc:interceptors>
 		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
 			<property name="paramName" value="lang"></property>
 		</bean>
-	</mvc:interceptors>
+	</mvc:interceptors> 
+	-->
 
 	<mvc:interceptors>
 		<mvc:interceptor>

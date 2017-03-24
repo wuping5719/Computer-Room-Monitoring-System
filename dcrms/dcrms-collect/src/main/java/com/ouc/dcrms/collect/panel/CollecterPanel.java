@@ -68,7 +68,6 @@ public class CollecterPanel extends JFrame implements ActionListener {
 	this.setResizable(false);
     }
 
-    @Override
     public void actionPerformed(ActionEvent e) {
 	if (e.getActionCommand() == "开始采集") {
 	    JOptionPane.showMessageDialog(null, "开始采集！", "提示消息",

@@ -16,11 +16,13 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
+		<!-- 
 		<dependency>
 			<groupId>weblogic</groupId>
 			<artifactId>wlfullclient</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>dubbo</artifactId>

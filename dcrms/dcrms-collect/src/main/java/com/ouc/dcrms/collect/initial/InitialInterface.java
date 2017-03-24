@@ -20,7 +20,7 @@ public class InitialInterface {
     public String interfaceName;
 
     private enum InterfaceType {
-	Ethernet, GPIB, RS485, RS232, USB
+	    Ethernet, GPIB, RS485, RS232, USB
     };
 
     public InitialInterface(Instrument instrument, int instrumentNum)

@@ -86,7 +86,7 @@ public class AlertServiceClientImpl implements AlertServiceClient {
 	    }
 	}
 	
-	List<AlertRecord> alertRecordList = new ArrayList<>();
+	List<AlertRecord> alertRecordList = new ArrayList<AlertRecord>();
 	alertRecordList = alertServiceCore.getAlertRecords(siteid, 
 		reasonlevel, startTime, endTime, startIndex, pageSize);
 

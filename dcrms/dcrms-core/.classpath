@@ -27,15 +27,11 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="D:/Java/JMF2.1.1e/lib/customizer.jar"/>
 	<classpathentry kind="lib" path="D:/Java/JMF2.1.1e/lib/jmf.jar"/>
 	<classpathentry kind="lib" path="D:/Java/JMF2.1.1e/lib/mediaplayer.jar"/>
 	<classpathentry kind="lib" path="D:/Java/JMF2.1.1e/lib/multiplayer.jar"/>
 	<classpathentry kind="lib" path="D:/Java/JMF2.1.1e/lib/sound.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

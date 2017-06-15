@@ -13,7 +13,7 @@
  <img src="http://images.cnblogs.com/cnblogs_com/wp5719/831982/o_sitedata.png"  />
  
 * 3.Site Video
- <img src="http://images.cnblogs.com/cnblogs_com/wp5719/831982/o_video1.png"  />
+ <img src="http://images.cnblogs.com/cnblogs_com/wp5719/831982/o_video.png"  />
 
 * 4.Device Management
  <img src="http://images.cnblogs.com/cnblogs_com/wp5719/831982/o_cabinet.png"  />

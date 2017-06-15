@@ -7,14 +7,20 @@
  
  __Modules__
 * 1.Site Navigatio
- <img src="http://images.cnblogs.com/cnblogs_com/wp5719/831982/o_site2.png"  />
+ <img src="http://images.cnblogs.com/cnblogs_com/wp5719/831982/o_index2.png"  />
  
 * 2.Site Data
- <img src="http://images.cnblogs.com/cnblogs_com/wp5719/831982/o_siteData1.png"  />
+ <img src="http://images.cnblogs.com/cnblogs_com/wp5719/831982/o_sitedata.png"  />
  
 * 3.Site Video
  <img src="http://images.cnblogs.com/cnblogs_com/wp5719/831982/o_video1.png"  />
 
+* 4.Device Management
+ <img src="http://images.cnblogs.com/cnblogs_com/wp5719/831982/o_cabinet.png"  />
+ 
+* 5.Alarm Management
+ <img src="http://images.cnblogs.com/cnblogs_com/wp5719/831982/o_alert1.png"  />
+ 
 ## License 
   The MIT License (MIT)
   
